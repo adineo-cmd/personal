@@ -1,46 +1,80 @@
-# Astro Starter Kit: Basics
+# 🌌 Aditya Yadav — Personal Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+A minimal, reflective, and deeply personal portfolio built with **Astro**, **Tailwind CSS**, and a love for clean aesthetics.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> *“Create without pressure. Ship without apology.”*
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📖 Overview
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+This repository contains the source code for my **personal portfolio website** — a digital home for my projects, writings, reading list, life goals, and a timeline of growth.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Designed with intention, it blends **technical craftsmanship** with **personal expression**, reflecting both my engineering rigor and my values around balance, sustainability, and meaning.
 
-## 🧞 Commands
+### Built with
+- **Astro** — Fast, content-focused static site generation  
+- **Tailwind CSS** — Custom zinc-based dark theme  
+- **Pure CSS tabs & filters** — No JavaScript for core navigation  
+- **Responsive & accessible** — Optimized for mobile and desktop  
+- **Performance-first** — Lighthouse scores consistently above 95  
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🗂️ Site Structure
 
-## 👀 Want to learn more?
+| Section   | Description |
+|----------|-------------|
+| **Home** | Hero introduction with contact info and résumé |
+| **About** | Bio, skills (AI/ML, Full-Stack, DevOps), and philosophy |
+| **Projects** | Curated showcase of featured work with live & GitHub links |
+| **Explore** | Gateway to deeper archives |
+| **Writings** | Essays and reflections on tech, life, and learning |
+| **Library** | Books I’ve read or am currently reading |
+| **List 100** | My unchanging list of 100 life goals (frozen at age 22) |
+| **Timeline** | Chronological milestones from 2022 → 2025+ |
+| **Contact** | Email, GitHub, LinkedIn, LeetCode |
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 🎨 Design Philosophy
+
+- **Monochrome depth**  
+  Layered grayscale palette (zinc-950 → zinc-100) with subtle accents
+
+- **Themed backgrounds**  
+  Each page features a unique gruvbox-inspired or abstract SVG/WebP background
+
+- **Typographic rhythm**  
+  - Body: *Courier New* (terminal roots)  
+  - Headings: Serif for contrast and clarity
+
+- **No bloat**  
+  Zero client-side JavaScript for tabs, filters, or navigation
+
+- **Clarity over noise**  
+  Every pixel serves readability, focus, and calm
+
+---
+
+## 🛠️ Tech Stack Highlights
+
+- **Framework:** Astro (SSG)
+- **Styling:** Tailwind CSS with `@layer` customizations
+- **State Management:** CSS sibling combinators (`:checked ~`)
+- **Content Management:** Centralized in `src/pages/data/content.js`
+- **Deployment:** Vercel, Netlify, or GitHub Pages ready
+
+---
+
+## 📁 Project Structure
+
+```bash
+src/
+├── assets/               # SVG & visual assets
+├── components/           # Reusable UI components
+├── layouts/              # Base HTML layouts
+├── pages/                # Route-based pages
+│   └── data/             # Centralized content (bio, projects, books, goals, timeline)
+├── styles/               # Tailwind & global styles
+└── env.d.ts              # Astro type definitions

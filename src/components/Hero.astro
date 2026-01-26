@@ -1,0 +1,87 @@
+---
+import { personalInfo } from '../pages/data/content.js';
+---
+
+<section
+  id="home"
+  class="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden"
+  style={{
+    backgroundImage: `url('/images/gruvbox_spac.webp')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#0f0f0f',
+  }}
+>
+  {/* Semi-transparent overlay */}
+  <div class="absolute inset-0 bg-black/70"></div>
+
+  {/* Content */}
+  <div class="max-w-4xl text-center relative z-10">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 text-zinc-100">
+      {personalInfo.name}
+    </h1>
+    <p class="text-xl text-zinc-400 mb-4">{personalInfo.title}</p>
+    
+    {/* Email and Location */}
+    <div class="flex items-center justify-center gap-6 mb-8 text-zinc-500 text-sm flex-wrap">
+      <a 
+        href={`mailto:${personalInfo.email}`}
+        class="flex items-center gap-2 hover:text-zinc-300 transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" /></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+        {personalInfo.email}
+      </a>
+      <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /></path>
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        {personalInfo.location}
+      </div>
+    </div>
+
+    <p class="text-base text-zinc-500 mb-8 max-w-3xl mx-auto leading-relaxed">
+      {personalInfo.description}
+    </p>
+
+    <div class="flex gap-4 justify-center flex-wrap">
+      <a 
+        href="/#contact"
+        class="px-6 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded text-sm transition-colors flex items-center gap-2"
+      >
+        Get in touch
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      </a>
+      <a 
+        href={personalInfo.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded text-sm transition-colors"
+      >
+        View GitHub
+      </a>
+      <a 
+        href={personalInfo.resumeUrl}
+        download
+        class="px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 rounded text-sm transition-colors flex items-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Resume
+      </a>
+    </div>
+  </div>
+</section>
+
+<style define:vars={{ backgroundImage: `url('/images/gruvbox_spac.jpg')` }}>
+  section {
+    background-image: var(--backgroundImage);
+  }
+</style>

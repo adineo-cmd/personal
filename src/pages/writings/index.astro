@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageNavigation from '../../components/PageNavigation.astro';
+import { writings } from '../data/writings.js';
+---
+
+<BaseLayout title="Writings | Aditya Yadav" description="Blog posts and essays">
+  {/* Background container */}
+  <div 
+    class="min-h-screen relative"
+    style={{
+      backgroundImage: "url('/images/gruvbox_grid.webp')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: '#0f0f0f',
+    }}
+  >
+    {/* Semi-transparent overlay for readability */}
+    <div class="absolute inset-0 bg-black/70"></div>
+
+    {/* Content */}
+    <div 
+      class="relative z-10 text-zinc-400" 
+      style="font-family: 'Courier New', Courier, monospace;"
+    >
+      <PageNavigation currentPage="writings" />
+
+      <div class="py-16 px-6">
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-3 text-zinc-200">Writings</h1>
+          <p class="text-zinc-500 text-sm mb-12">
+            Collected essays, notes, and experiments.
+          </p>
+
+          <div class="space-y-8">
+            {writings.map((writing) => (
+              <article class="border-b border-zinc-800/50 pb-8 last:border-0 hover:opacity-80 transition-opacity group">
+                <a href={`/writings/${writing.slug}`} class="block">
+                  <div class="flex gap-6">
+                    <div class="text-xs text-zinc-600 w-16 flex-shrink-0 pt-1">
+                      {writing.date}
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-medium text-zinc-200 mb-2 group-hover:text-zinc-100 transition-colors underline">
+                        {writing.title}
+                      </h3>
+                      <p class="text-sm text-zinc-400 leading-relaxed">
+                        {writing.description}
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Back Button */}
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

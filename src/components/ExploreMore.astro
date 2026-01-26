@@ -1,0 +1,70 @@
+---
+const links = [
+  {
+    label: 'projects, experiments',
+    path: 'projects',
+    id: 'projects'
+  },
+  {
+    label: 'blogs, thoughts',
+    path: 'writings',
+    id: 'writings'
+  },
+  {
+    label: 'books, reads',
+    path: 'library',
+    id: 'library'
+  },
+  {
+    label: 'progress, achievements',
+    path: 'timeline',
+    id: 'timeline'
+  },
+  {
+    label: 'goals, wishes',
+    path: 'list100',
+    id: 'list100'
+  }
+];
+---
+
+<section
+  id="explore"
+  class="py-24 px-6 bg-zinc-950 relative overflow-hidden"
+  style={{
+    backgroundImage: `url('/images/gruv-portal-cake.webp')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#0f0f0f',
+  }}
+>
+  {/* Semi-transparent overlay */}
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    {/* Left-aligned heading & subheading */}
+    <h2 class="text-4xl font-bold mb-2 text-zinc-100 text-left">
+      Personal Archive
+    </h2>
+    <p class="text-zinc-500 text-sm mb-12 text-left">
+      Dive into my projects, writings, reading list, timeline, and 100-goals list
+    </p>
+
+    {/* Left-aligned links */}
+    <div class="space-y-6 text-left">
+      {links.map((link, idx) => (
+        <div key={idx} class="text-lg text-zinc-500 leading-relaxed hover:text-zinc-400 transition-colors">
+          <span>{link.label}</span>
+          <span class="mx-3">–</span>
+          <a
+            href={`/${link.path}`}
+            class="text-zinc-300 underline hover:text-zinc-100 transition-colors"
+          >
+            {link.path}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

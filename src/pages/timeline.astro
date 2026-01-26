@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNavigation from '../components/PageNavigation.astro';
+import { timelineData } from './data/content.js';
+---
+
+<BaseLayout title="Timeline | Aditya Yadav" description="My timeline of achievements">
+  <>
+    <PageNavigation currentPage="timeline" />
+
+    <div 
+      class="min-h-screen relative"
+      style={{
+        backgroundImage: "url('/images/rocket.webp')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#0f0f0f',
+      }}
+    >
+      <div class="absolute inset-0 bg-black/70"></div>
+
+      <div 
+        class="relative z-10 text-zinc-400" 
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="py-16 px-6">
+          <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+              <h1 class="text-5xl font-serif mb-3 text-zinc-200">Timeline</h1>
+              <p class="text-zinc-500 text-base">
+                A running log of moments, milestones, and little proofs of progress.
+              </p>
+            </div>
+
+            {/* Radio buttons — must come before content for ~ selector */}
+            {timelineData.map((yearBlock) => (
+              <input 
+                type="radio" 
+                id={`year-${yearBlock.year}`} 
+                name="timeline-year" 
+                class="hidden"
+                checked={yearBlock.year === '2025'}
+              />
+            ))}
+
+            <div class="timeline-content">
+              {/* Mobile: show all */}
+              <div class="md:hidden space-y-12">
+                {timelineData.map((yearBlock) => (
+                  <div class="space-y-6">
+                    <h2 class="text-3xl text-zinc-200 font-semibold">{yearBlock.year}</h2>
+                    <div class="space-y-6">
+                      {yearBlock.events.map((event) => (
+                        <div class="flex items-start gap-4">
+                          <div class="w-3 h-3 rounded-full bg-zinc-200 mt-1.5 flex-shrink-0"></div>
+                          <div>
+                            <p class="text-xs text-zinc-600 mb-1 uppercase tracking-wider">
+                              {event.month}
+                            </p>
+                            <h3 class="text-lg text-zinc-200 leading-relaxed">
+                              {event.title}
+                              {event.detail && (
+                                <span class="text-zinc-500"> – {event.detail}</span>
+                              )}
+                            </h3>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop: year selector */}
+              <div class="hidden md:flex md:flex-row gap-12">
+                <aside class="md:w-24 flex-shrink-0">
+                  <nav class="space-y-4 md:sticky md:top-24">
+                    {timelineData.map(block => (
+                      <label
+                        for={`year-${block.year}`}
+                        class="block text-left text-lg transition-colors cursor-pointer font-semibold text-zinc-600 hover:text-zinc-400"
+                      >
+                        {block.year}
+                      </label>
+                    ))}
+                  </nav>
+                </aside>
+
+                <main class="flex-1">
+                  <div class="relative space-y-8">
+                    {timelineData.map((yearBlock) => (
+                      <div class="timeline-year" data-year={yearBlock.year}>
+                        {yearBlock.events.map((event) => (
+                          <div class="flex items-start gap-4 mb-8">
+                            <div class="w-3 h-3 rounded-full bg-zinc-400 mt-1.5 flex-shrink-0"></div>
+                            <div>
+                              <p class="text-xs text-zinc-600 mb-2 uppercase tracking-wider">
+                                {event.month}
+                              </p>
+                              <h3 class="text-lg text-zinc-200 leading-relaxed">
+                                {event.title}
+                                {event.detail && (
+                                  <span class="text-zinc-500"> – {event.detail}</span>
+                                )}
+                              </h3>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </main>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Back Button */}
+        <div class="border-t border-zinc-800/50 py-6">
+          <div class="max-w-7xl mx-auto px-6">
+            <a
+              href="/"
+              class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* ✅ Pure static CSS — no JS expressions */}
+    <style>
+      @media (min-width: 768px) {
+        .timeline-year {
+          display: none;
+        }
+
+        /* Show selected year */
+        #year-2022:checked ~ .timeline-content .timeline-year[data-year="2022"] {
+          display: block;
+        }
+        #year-2023:checked ~ .timeline-content .timeline-year[data-year="2023"] {
+          display: block;
+        }
+        #year-2024:checked ~ .timeline-content .timeline-year[data-year="2024"] {
+          display: block;
+        }
+        #year-2025:checked ~ .timeline-content .timeline-year[data-year="2025"] {
+          display: block;
+        }
+
+        /* Highlight active label */
+        #year-2022:checked ~ .timeline-content label[for="year-2022"],
+        #year-2023:checked ~ .timeline-content label[for="year-2023"],
+        #year-2024:checked ~ .timeline-content label[for="year-2024"],
+        #year-2025:checked ~ .timeline-content label[for="year-2025"] {
+          color: theme('colors.zinc.200');
+          font-weight: 600;
+        }
+      }
+    </style>
+  </>
+</BaseLayout>

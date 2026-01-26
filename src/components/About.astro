@@ -1,0 +1,45 @@
+---
+// src/components/About.astro
+import { aboutText, skills, personalInfo } from '../pages/data/content.js';
+---
+
+<section
+  id="about"
+  class="py-20 px-6 relative overflow-hidden"
+  style={{
+    backgroundImage: `url('/images/debian_grey_swirl.webp')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundColor: '#0f0f0f',
+  }}
+>
+  {/* Semi-transparent overlay */}
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  {/* Content */}
+  <div class="max-w-5xl mx-auto relative z-10">
+    <h2 class="text-3xl font-bold mb-8 text-zinc-200">About</h2>
+    
+    <p class="text-zinc-400 text-base mb-12 leading-relaxed">
+      {aboutText}
+    </p>
+
+    {/* Skills */}
+    <h3 class="text-xl font-semibold mb-6 text-zinc-300">Skills</h3>
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      {Object.entries(skills).map(([category, items]) => (
+        <div class="bg-zinc-900 border border-zinc-800 rounded p-6">
+          <h4 class="text-base font-semibold mb-4 text-zinc-300">{category}</h4>
+          <div class="flex flex-wrap gap-2">
+            {items.map((skill) => (
+              <span class="px-3 py-1 bg-zinc-800 text-zinc-400 rounded text-xs">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

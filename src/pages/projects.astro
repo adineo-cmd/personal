@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNavigation from '../components/PageNavigation.astro';
+import { projects } from './data/content.js';
+
+// Only include categories that actually appear in your real projects
+const categories = [
+  { id: 'all', label: 'All' },
+  { id: 'full-stack', label: 'Full Stack' },
+  { id: 'web-development', label: 'Web Development' },
+  { id: 'ai', label: 'AI' },
+  { id: 'machine-learning', label: 'Machine Learning' },
+  { id: 'nlp', label: 'NLP' },
+  { id: 'education', label: 'Education' },
+  { id: 'python', label: 'Python' }
+];
+---
+
+<BaseLayout title="Projects | Aditya Yadav" description="My projects and experiments">
+  <>
+    <PageNavigation currentPage="projects" />
+
+    {/* Background */}
+    <div 
+      class="min-h-screen relative"
+      style={{
+        backgroundImage: "url('/images/trisquel-gnu-linux.webp')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#0f0f0f',
+      }}
+    >
+      <div class="absolute inset-0 bg-black/70"></div>
+
+      <div 
+        class="relative z-10 text-zinc-400" 
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="py-16 px-6">
+          <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+              <h1 class="text-5xl font-serif mb-3 text-zinc-200">Projects</h1>
+              <p class="text-zinc-500 text-base">
+                Notes and build logs from ongoing/finished projects.
+              </p>
+            </div>
+
+            {/* ✅ NEW: Wrap radio buttons and content in same container */}
+            <div class="filter-wrapper">
+              {/* Radio buttons FIRST */}
+              {categories.map((cat) => (
+                <input 
+                  type="radio" 
+                  id={`cat-${cat.id}`} 
+                  name="projects-category" 
+                  class="hidden" 
+                  checked={cat.id === 'all'}
+                />
+              ))}
+
+              {/* Rest of content */}
+              <div class="filter-content">
+                {/* Mobile Category Pills */}
+                <div class="mb-8 md:hidden overflow-x-auto pb-2">
+                  <div class="flex gap-2 min-w-max">
+                    {categories.map(cat => (
+                      <label
+                        for={`cat-${cat.id}`}
+                        class="category-label px-4 py-2 text-sm whitespace-nowrap rounded-full transition-colors cursor-pointer bg-zinc-900/50 text-zinc-500 hover:text-zinc-300"
+                      >
+                        {cat.label}
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-12">
+                  {/* Desktop Sidebar */}
+                  <aside class="md:w-48 flex-shrink-0 hidden md:block">
+                    <nav class="space-y-1 md:sticky md:top-24">
+                      {categories.map(cat => (
+                        <label
+                          for={`cat-${cat.id}`}
+                          class="category-label block w-full text-left px-3 py-1.5 text-sm transition-colors rounded cursor-pointer text-zinc-500 hover:text-zinc-300"
+                        >
+                          {cat.label}
+                        </label>
+                      ))}
+                    </nav>
+                  </aside>
+
+                  {/* Projects List */}
+                  <main class="flex-1">
+                    <div class="space-y-6">
+                      {projects.map((project, idx) => (
+                        <article
+                          class="project-card group p-6 border border-zinc-800 rounded-lg bg-zinc-900/60 backdrop-blur-sm hover:bg-zinc-900 transition-colors"
+                          data-categories={JSON.stringify(project.categories || [])}
+                          key={idx}
+                        >
+                          <div class="flex flex-wrap items-start gap-4 mb-3">
+                            <h2 class="text-xl font-normal flex items-start gap-2">
+                              {project.githubUrl ? (
+                                <a
+                                  href={project.githubUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="text-zinc-200 hover:text-zinc-100 hover:underline transition-colors"
+                                >
+                                  {project.title}
+                                </a>
+                              ) : (
+                                <span class="text-zinc-200">{project.title}</span>
+                              )}
+
+                              {project.githubUrl && (
+                                <a
+                                  href={project.githubUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="text-zinc-500 hover:text-zinc-300 opacity-80 hover:opacity-100 transition-all flex items-center p-1 rounded hover:bg-zinc-800 hover:scale-110"
+                                >
+                                  <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    width="20" 
+                                    height="20" 
+                                    viewBox="0 0 24 24" 
+                                    fill="currentColor"
+                                    class="github-icon"
+                                  >
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111 1.022-.254 1.022-.567v-2.474c-3.338.724-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.956-.262 1.983-.397 3.003-.397s2.047.135 3.006.397c2.291-1.552 3.297-1.23 3.297-1.23.652 1.652.241 2.873.118 3.176.767.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823.899.823 1.82v2.683c0 .313.424.677 1.023.567 4.765-1.587 8.207-6.084 8.207-11.387 0-6.627-5.373-12-12-12z"/>
+                                  </svg>
+                                </a>
+                              )}
+                            </h2>
+                          </div>
+
+                          <p class="text-zinc-500 text-base leading-relaxed mb-4">
+                            {project.description}
+                          </p>
+
+                          {project.tags && (
+                            <div class="flex flex-wrap gap-2">
+                              {project.tags.map(tag => (
+                                <span class="text-xs bg-zinc-800/40 text-zinc-400 px-2 py-1 rounded">
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                  </main>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Back Button */}
+        <div class="border-t border-zinc-800/50 py-6">
+          <div class="max-w-7xl mx-auto px-6">
+            <a
+              href="/"
+              class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* Default: show all on mobile */
+      .project-card {
+        display: block;
+      }
+
+      @media (min-width: 768px) {
+        /* Hide all by default on desktop */
+        .project-card {
+          display: none;
+        }
+
+        /* Show based on selected category */
+        #cat-all:checked ~ .filter-content .project-card,
+        #cat-full-stack:checked ~ .filter-content .project-card[data-categories*="full-stack"],
+        #cat-web-development:checked ~ .filter-content .project-card[data-categories*="web-development"],
+        #cat-ai:checked ~ .filter-content .project-card[data-categories*="ai"],
+        #cat-machine-learning:checked ~ .filter-content .project-card[data-categories*="machine-learning"],
+        #cat-nlp:checked ~ .filter-content .project-card[data-categories*="nlp"],
+        #cat-education:checked ~ .filter-content .project-card[data-categories*="education"],
+        #cat-python:checked ~ .filter-content .project-card[data-categories*="python"] {
+          display: block;
+        }
+      }
+
+      /* Active label styles */
+      #cat-all:checked ~ .filter-content .category-label[for="cat-all"],
+      #cat-full-stack:checked ~ .filter-content .category-label[for="cat-full-stack"],
+      #cat-web-development:checked ~ .filter-content .category-label[for="cat-web-development"],
+      #cat-ai:checked ~ .filter-content .category-label[for="cat-ai"],
+      #cat-machine-learning:checked ~ .filter-content .category-label[for="cat-machine-learning"],
+      #cat-nlp:checked ~ .filter-content .category-label[for="cat-nlp"],
+      #cat-education:checked ~ .filter-content .category-label[for="cat-education"],
+      #cat-python:checked ~ .filter-content .category-label[for="cat-python"] {
+        background-color: rgb(23, 23, 23); /* = bg-zinc-900 */
+        color: rgb(228, 228, 228); /* = text-zinc-200 */
+      }
+
+      /* GitHub icon hover effect */
+      .github-icon {
+        transition: fill 0.2s ease;
+      }
+
+      a:hover .github-icon {
+        fill: rgb(228, 228, 228); /* text-zinc-200 */
+      }
+    </style>
+  </>
+</BaseLayout>

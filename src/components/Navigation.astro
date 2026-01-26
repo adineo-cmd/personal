@@ -1,0 +1,134 @@
+---
+import { personalInfo } from '../pages/data/content.js';
+---
+
+<>
+  <input type="checkbox" id="mobile-menu-checkbox" class="hidden" />
+
+  <nav class="fixed top-0 w-full bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="/" class="text-sm text-zinc-300 hover:text-zinc-100 transition-colors">
+        {personalInfo.username}
+      </a>
+
+      <label for="mobile-menu-checkbox" class="md:hidden text-zinc-400 hover:text-zinc-300 cursor-pointer block">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </label>
+
+      <div class="hidden md:flex gap-8 text-sm">
+        <a href="/" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="home">Home</a>
+        <a href="/#about" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="about">About</a>
+        <a href="/#explore" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="explore">Explore</a>
+        <a href="/#projects" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="projects">Projects</a>
+        <a href="/#contact" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="mobile-menu fixed top-16 left-0 right-0 bg-zinc-900 border-t border-zinc-800 md:hidden opacity-0 invisible transition-all duration-300 z-40">
+    <a href="/" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Home</a>
+    <a href="/#about" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">About</a>
+    <a href="/#explore" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Explore</a>
+    <a href="/#projects" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Projects</a>
+    <a href="/#contact" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Contact</a>
+  </nav>
+
+  <style>
+    #mobile-menu-checkbox:checked ~ nav.mobile-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-link.active {
+      color: #f4f4f5; /* zinc-100 */
+      font-weight: 600;
+    }
+  </style>
+
+  <script>
+    // Scroll spy logic - works with Astro client-side navigation
+    if (typeof window !== 'undefined') {
+      // Re-initialize on every page load (including SPA navigation)
+      document.addEventListener('astro:page-load', initScrollSpy);
+
+      function initScrollSpy() {
+        if (window.innerWidth < 768) return; // desktop only
+
+        const navLinks = document.querySelectorAll('.nav-link');
+        if (!navLinks.length) return;
+
+        // Map expected section IDs to actual DOM elements
+        const sectionConfigs = [
+          { id: 'home', selector: 'main, .min-h-screen' },
+          { id: 'about', selector: '#about' },
+          { id: 'explore', selector: '#explore' },
+          { id: 'projects', selector: '#projects' },
+          { id: 'contact', selector: '#contact' }
+        ];
+
+        const sections = sectionConfigs
+          .map(({ id, selector }) => ({
+            id,
+            element: document.querySelector(selector)
+          }))
+          .filter(sec => sec.element);
+
+        if (sections.length === 0) return;
+
+        function getActiveSectionId() {
+          const scrollY = window.scrollY + 120; // offset for sticky header + breathing room
+
+          // Find the last section whose top is above (or near) scroll position
+          for (let i = sections.length - 1; i >= 0; i--) {
+            const { id, element } = sections[i];
+            const offsetTop = element.offsetTop;
+            if (scrollY >= offsetTop) {
+              return id;
+            }
+          }
+          return 'home';
+        }
+
+        function setActiveLink() {
+          const activeId = getActiveSectionId();
+          navLinks.forEach(link => {
+            const sectionId = link.getAttribute('data-section');
+            if (sectionId === activeId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+
+        // Initialize
+        setActiveLink();
+
+        // Throttled scroll listener
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              setActiveLink();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        });
+
+        // Handle resize (e.g., desktop ↔ mobile toggle)
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768) {
+            setActiveLink();
+          }
+        });
+      }
+
+      // Also run immediately if page is already loaded
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(initScrollSpy, 100); // slight delay to ensure components are rendered
+      }
+    }
+  </script>
+</>

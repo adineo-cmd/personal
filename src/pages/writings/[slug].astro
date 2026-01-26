@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageNavigation from '../../components/PageNavigation.astro';
+import { writings } from '../data/writings.js';
+
+export async function getStaticPaths() {
+  return writings.map((writing) => ({
+    params: { slug: writing.slug },
+    props: { writing },
+  }));
+}
+
+const { writing } = Astro.props;
+
+if (!writing) {
+  return Astro.redirect('/writings');
+}
+---
+
+<BaseLayout title={`${writing.title} | Aditya Yadav`} description={writing.description}>
+  <div class="min-h-screen bg-zinc-950 text-zinc-400" style="font-family: 'Courier New', Courier, monospace;">
+    {/* ✅ Remove the duplicate checkbox here! */}
+    
+    {/* Page Navigation */}
+    <PageNavigation currentPage="writings" />
+
+    {/* Blog Post Content */}
+    <div class="py-16 px-6">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-5xl font-serif mb-6 text-zinc-200">{writing.title}</h1>
+        <p class="text-zinc-400 text-lg mb-6">{writing.description}</p>
+
+        <article class="prose prose-invert prose-zinc max-w-none">
+          <div 
+            class="text-zinc-400 leading-relaxed whitespace-pre-wrap"
+            set:html={writing.content}
+            style="font-size: 16px; line-height: 1.8;"
+          />
+        </article>
+      </div>
+    </div>
+
+    {/* Back to Writings at Bottom */}
+    <div class="border-t border-zinc-800 py-6">
+      <div class="max-w-3xl mx-auto px-6">
+        <a
+          href="/writings"
+          class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+          </svg>
+          Back to Writings
+        </a>
+      </div>
+    </div>
+  </div>
+  
+</BaseLayout>

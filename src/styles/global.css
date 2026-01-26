@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #09090b;
+  color: #a1a1aa;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Dark mode colors */
+:root {
+  color-scheme: dark;
+  --color-bg-primary: #09090b;
+  --color-text-primary: #a1a1aa;
+  --color-border: #27272a;
+}
+
+/* Markdown styling for blog posts */
+.prose h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e4e4e7;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #d4d4d8;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  color: #a1a1aa;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.prose ul,
+.prose ol {
+  color: #a1a1aa;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose code {
+  background-color: #27272a;
+  color: #e4e4e7;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.prose a {
+  color: #d4d4d8;
+  transition: color 0.2s;
+}
+
+.prose a:hover {
+  color: #f4f4f5;
+}
+
+/* Smooth transitions */
+a,
+button,
+input,
+label {
+  transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}

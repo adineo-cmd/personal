@@ -1,0 +1,89 @@
+---
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage } = Astro.props;
+
+const navItems = [
+  { label: 'home', href: '/' },
+  { label: 'projects', href: '/projects' },
+  { label: 'writings', href: '/writings' },
+  { label: 'timeline', href: '/timeline' },
+  { label: 'library', href: '/library' },
+  { label: 'list 100', href: '/list100' }
+];
+---
+
+<>
+  {/* Mobile Menu Checkbox */}
+  <input type="checkbox" id="page-nav-menu" class="hidden" />
+
+  {/* Desktop Navigation */}
+  <nav class="hidden md:block border-b border-zinc-800 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <div class="flex flex-wrap gap-8 justify-end">
+        {navItems.map(item => (
+          <a
+            href={item.href}
+            class={`text-sm transition-colors ${
+              currentPage === item.label
+                ? 'text-zinc-200 underline'
+                : 'text-zinc-500 hover:text-zinc-300'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+
+  {/* Mobile Menu Button and Sidebar */}
+  <div class="md:hidden flex justify-end px-6 py-6 border-b border-zinc-800 bg-zinc-950">
+    <label
+      for="page-nav-menu"
+      class="text-zinc-400 hover:text-zinc-200 cursor-pointer"
+      aria-label="Toggle menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+  </div>
+
+  {/* Mobile Sidebar */}
+  <nav class="mobile-nav fixed inset-y-0 left-0 z-50 w-64 bg-zinc-950 text-zinc-200 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden opacity-0 invisible">
+    <div class="p-6 pt-12">
+      <label
+        for="page-nav-menu"
+        class="absolute top-4 right-4 text-zinc-400 hover:text-zinc-200 cursor-pointer"
+        aria-label="Close menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </label>
+      <nav class="mt-8 space-y-4">
+        {navItems.map(item => (
+          <a
+            href={item.href}
+            class={`block w-full text-left px-4 py-2 rounded transition-colors ${
+              currentPage === item.label
+                ? 'bg-zinc-800 text-zinc-200'
+                : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </nav>
+
+  <style>
+    #page-nav-menu:checked ~ nav.mobile-nav {
+      @apply translate-x-0 opacity-100 visible;
+    }
+  </style>
+</>
