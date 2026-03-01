@@ -1,4 +1,4 @@
-# 🌌 Aditya Yadav — Personal Portfolio
+# 🌌 Aditya Yadav — Personal site
 
 A minimal, reflective, and deeply personal portfolio built with **Astro**, **Tailwind CSS**, and a love for clean aesthetics.
 
@@ -8,11 +8,12 @@ A minimal, reflective, and deeply personal portfolio built with **Astro**, **Tai
 
 ## 📖 Overview
 
-This repository contains the source code for my **personal portfolio website** — a digital home for my projects, writings, reading list, life goals, and a timeline of growth.
+This repository contains the source code for my **personal site website** — a digital home for my projects, writings, reading list, life goals, and a timeline of growth.
 
 Designed with intention, it blends **technical craftsmanship** with **personal expression**, reflecting both my engineering rigor and my values around balance, sustainability, and meaning.
 
 ### Built with
+
 - **Astro** — Fast, content-focused static site generation  
 - **Tailwind CSS** — Custom zinc-based dark theme  
 - **Pure CSS tabs & filters** — No JavaScript for core navigation  
@@ -33,7 +34,6 @@ Designed with intention, it blends **technical craftsmanship** with **personal e
 | **Library** | Books I’ve read or am currently reading |
 | **List 100** | My unchanging list of 100 life goals (frozen at age 22) |
 | **Timeline** | Chronological milestones from 2022 → 2025+ |
-| **Contact** | Email, GitHub, LinkedIn, LeetCode |
 
 ---
 
@@ -66,15 +66,3 @@ Designed with intention, it blends **technical craftsmanship** with **personal e
 - **Deployment:** Vercel, Netlify, or GitHub Pages ready
 
 ---
-
-## 📁 Project Structure
-
-```bash
-src/
-├── assets/               # SVG & visual assets
-├── components/           # Reusable UI components
-├── layouts/              # Base HTML layouts
-├── pages/                # Route-based pages
-│   └── data/             # Centralized content (bio, projects, books, goals, timeline)
-├── styles/               # Tailwind & global styles
-└── env.d.ts              # Astro type definitions

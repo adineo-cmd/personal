@@ -1,45 +1,52 @@
 ---
-import { personalInfo } from '../pages/data/content.js';
+import { personalInfo } from '../data/content.js';
 ---
 
 <>
-  <input type="checkbox" id="mobile-menu-checkbox" class="hidden" />
-
   <nav class="fixed top-0 w-full bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 z-50">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="/" class="text-sm text-zinc-300 hover:text-zinc-100 transition-colors">
         {personalInfo.username}
       </a>
 
-      <label for="mobile-menu-checkbox" class="md:hidden text-zinc-400 hover:text-zinc-300 cursor-pointer block">
+      <button 
+        id="mobileMenuButton" 
+        class="md:hidden text-zinc-400 hover:text-zinc-300 cursor-pointer bg-transparent border-none p-0"
+        aria-label="Toggle menu"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
-      </label>
+      </button>
 
       <div class="hidden md:flex gap-8 text-sm">
         <a href="/" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="home">Home</a>
         <a href="/#about" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="about">About</a>
         <a href="/#explore" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="explore">Explore</a>
-        <a href="/#projects" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="projects">Projects</a>
-        <a href="/#contact" class="nav-link capitalize transition-all relative text-zinc-500 hover:text-zinc-300" data-section="contact">Contact</a>
       </div>
     </div>
   </nav>
 
-  <nav class="mobile-menu fixed top-16 left-0 right-0 bg-zinc-900 border-t border-zinc-800 md:hidden opacity-0 invisible transition-all duration-300 z-40">
-    <a href="/" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Home</a>
-    <a href="/#about" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">About</a>
-    <a href="/#explore" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Explore</a>
-    <a href="/#projects" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Projects</a>
-    <a href="/#contact" class="block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Contact</a>
+  <!-- Mobile Menu -->
+  <nav class="mobile-menu fixed top-16 left-0 right-0 bg-zinc-900 border-t border-zinc-800 md:hidden opacity-0 invisible transition-all duration-300 z-40" id="mobileMenu">
+    <a href="/" class="mobile-link block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Home</a>
+    <a href="/#about" class="mobile-link block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">About</a>
+    <a href="/#explore" class="mobile-link block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-zinc-400 hover:bg-zinc-800 hover:text-zinc-300">Explore</a>
   </nav>
 
+  <!-- Overlay for mobile menu -->
+  <div class="mobile-overlay fixed inset-0 bg-black/50 z-30 md:hidden hidden" id="mobileOverlay"></div>
+
   <style>
-    #mobile-menu-checkbox:checked ~ nav.mobile-menu {
+    .mobile-menu.open {
       opacity: 1;
       visibility: visible;
     }
+    
+    .mobile-overlay.open {
+      display: block;
+    }
+    
     .nav-link.active {
       color: #f4f4f5; /* zinc-100 */
       font-weight: 600;
@@ -47,9 +54,45 @@ import { personalInfo } from '../pages/data/content.js';
   </style>
 
   <script>
-    // Scroll spy logic - works with Astro client-side navigation
+    // === Mobile Menu Toggle ===
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    
+    function openMobileMenu() {
+      mobileMenu?.classList.add('open');
+      mobileOverlay?.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+    
+    function closeMobileMenu() {
+      mobileMenu?.classList.remove('open');
+      mobileOverlay?.classList.remove('open');
+      document.body.style.overflow = ''; // Restore scrolling
+    }
+    
+    mobileMenuButton?.addEventListener('click', openMobileMenu);
+    mobileOverlay?.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (
+        mobileMenu?.classList.contains('open') &&
+        !mobileMenu.contains(event.target) &&
+        !mobileMenuButton?.contains(event.target)
+      ) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Close mobile menu when clicking a link inside
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // === Scroll Spy Logic ===
     if (typeof window !== 'undefined') {
-      // Re-initialize on every page load (including SPA navigation)
       document.addEventListener('astro:page-load', initScrollSpy);
 
       function initScrollSpy() {
@@ -58,13 +101,10 @@ import { personalInfo } from '../pages/data/content.js';
         const navLinks = document.querySelectorAll('.nav-link');
         if (!navLinks.length) return;
 
-        // Map expected section IDs to actual DOM elements
         const sectionConfigs = [
           { id: 'home', selector: 'main, .min-h-screen' },
           { id: 'about', selector: '#about' },
-          { id: 'explore', selector: '#explore' },
-          { id: 'projects', selector: '#projects' },
-          { id: 'contact', selector: '#contact' }
+          { id: 'explore', selector: '#explore' }
         ];
 
         const sections = sectionConfigs
@@ -77,9 +117,7 @@ import { personalInfo } from '../pages/data/content.js';
         if (sections.length === 0) return;
 
         function getActiveSectionId() {
-          const scrollY = window.scrollY + 120; // offset for sticky header + breathing room
-
-          // Find the last section whose top is above (or near) scroll position
+          const scrollY = window.scrollY + 120;
           for (let i = sections.length - 1; i >= 0; i--) {
             const { id, element } = sections[i];
             const offsetTop = element.offsetTop;
@@ -102,10 +140,8 @@ import { personalInfo } from '../pages/data/content.js';
           });
         }
 
-        // Initialize
         setActiveLink();
 
-        // Throttled scroll listener
         let ticking = false;
         window.addEventListener('scroll', () => {
           if (!ticking) {
@@ -117,7 +153,6 @@ import { personalInfo } from '../pages/data/content.js';
           }
         });
 
-        // Handle resize (e.g., desktop ↔ mobile toggle)
         window.addEventListener('resize', () => {
           if (window.innerWidth >= 768) {
             setActiveLink();
@@ -125,9 +160,8 @@ import { personalInfo } from '../pages/data/content.js';
         });
       }
 
-      // Also run immediately if page is already loaded
       if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        setTimeout(initScrollSpy, 100); // slight delay to ensure components are rendered
+        setTimeout(initScrollSpy, 100);
       }
     }
   </script>

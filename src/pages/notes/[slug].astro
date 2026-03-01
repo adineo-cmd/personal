@@ -1,0 +1,111 @@
+---
+// src/pages/notes/[slug].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageNav from '../../components/PageNavigation.astro';
+import { notesIndex } from '../../data/notesIndex.js';
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  const allNotes = notesIndex.categories.flatMap(cat => 
+    cat.notes.map(note => ({
+      params: { slug: note.slug },
+      props: { note, categoryTitle: cat.title },
+    }))
+  );
+  
+  return allNotes;
+}
+
+const { note, categoryTitle } = Astro.props;
+
+// Import note content
+const noteContent = await import(`../../content/notes/${note.slug}.md?raw`);
+const htmlContent = marked(noteContent.default);
+---
+
+<BaseLayout 
+  title={`${note.title} | Notes | Aditya Yadav`} 
+  description={note.excerpt || note.title}
+>
+  <>
+    <PageNav currentPage="notes" />
+
+    <div class="min-h-screen bg-[#0f0f0f]">
+      <div 
+        class="text-zinc-400 py-16 px-6"
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="max-w-4xl mx-auto">
+          {/* Back to Notes Link */}
+          <a 
+            href="/notes"
+            class="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 text-sm mb-6 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            All Notes
+          </a>
+
+          {/* Note Header */}
+          <header class="mb-8">
+            <h1 class="text-4xl font-serif text-zinc-200 mb-4">{note.title}</h1>
+            
+            <div class="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
+              <span>
+                {new Date(note.date).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </span>
+              <span>•</span>
+              <span>{categoryTitle}</span>
+              {note.tags && note.tags.length > 0 && (
+                <>
+                  <span>•</span>
+                  <div class="flex flex-wrap gap-2">
+                    {note.tags.map((tag, index) => (
+                      <span 
+                        key={index}
+                        class="px-2 py-0.5 bg-zinc-800/50 text-zinc-400 border border-zinc-700 rounded"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          </header>
+
+          {/* Note Content */}
+          <article class="prose prose-zinc max-w-none">
+            <div 
+              class="markdown-content text-zinc-300 text-sm leading-relaxed space-y-6"
+              set:html={htmlContent}
+            />
+          </article>
+
+          {/* Related Notes Section REMOVED */}
+
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-4xl mx-auto px-6">
+          <a
+            href="/notes"
+            class="inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to All Notes
+          </a>
+        </div>
+      </div>
+    </div>
+  </>
+</BaseLayout>

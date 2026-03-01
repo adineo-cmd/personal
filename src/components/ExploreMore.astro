@@ -1,30 +1,18 @@
 ---
 const links = [
-  {
-    label: 'projects, experiments',
-    path: 'projects',
-    id: 'projects'
-  },
-  {
-    label: 'blogs, thoughts',
-    path: 'writings',
-    id: 'writings'
-  },
-  {
-    label: 'books, reads',
-    path: 'library',
-    id: 'library'
-  },
-  {
-    label: 'progress, achievements',
-    path: 'timeline',
-    id: 'timeline'
-  },
-  {
-    label: 'goals, wishes',
-    path: 'list100',
-    id: 'list100'
-  }
+  { label: 'blogs, thoughts', path: 'writings', id: 'writings' },
+  { label: 'projects, experiments', path: 'projects', id: 'projects' },
+  { label: 'photographs', path: 'photos', id: 'photos' }, // 🌼 third spot!
+  { label: 'books, reads', path: 'library', id: 'library' },
+  { label: 'notes & ideas', path: 'notes', id: 'notes' },
+  { label: 'goals, wishes', path: 'list100', id: 'list100' },
+  { label: 'exercise routine', path: 'exercise', id: 'exercise' },
+  { label: 'daily routine', path: 'routine', id: 'routine' },
+  { label: 'computer & gear', path: 'gear', id: 'gear' },
+  { label: 'cool links', path: 'links', id: 'links' },
+  { label: 'progress, achievements', path: 'timeline', id: 'timeline' },
+  { label: 'family tree, lineage', path: 'family-tree', id: 'family-tree' },
+  { label: 'miscellaneous', id: 'misc', path: 'misc' }
 ];
 ---
 
@@ -32,7 +20,7 @@ const links = [
   id="explore"
   class="py-24 px-6 bg-zinc-950 relative overflow-hidden"
   style={{
-    backgroundImage: `url('/images/gruv-portal-cake.webp')`,
+    backgroundImage: `url('/images/debian_grey_swirl.webp')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -45,10 +33,10 @@ const links = [
   <div class="max-w-4xl mx-auto relative z-10">
     {/* Left-aligned heading & subheading */}
     <h2 class="text-4xl font-bold mb-2 text-zinc-100 text-left">
-      Personal Archive
+      Explore
     </h2>
     <p class="text-zinc-500 text-sm mb-12 text-left">
-      Dive into my projects, writings, reading list, timeline, and 100-goals list
+      projects, writings, books, timeline, family, goals, gear, notes, links, fitness, photos, and misc
     </p>
 
     {/* Left-aligned links */}
@@ -61,7 +49,7 @@ const links = [
             href={`/${link.path}`}
             class="text-zinc-300 underline hover:text-zinc-100 transition-colors"
           >
-            {link.path}
+            /{link.path}
           </a>
         </div>
       ))}

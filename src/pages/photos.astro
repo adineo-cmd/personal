@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNav from '../components/PageNavigation.astro';
+import { photosData } from '../data/photos.js';
+---
+
+<BaseLayout title="Photos | Aditya Yadav" description="A visual journey through the years">
+  <>
+    <PageNav currentPage="photos" />
+
+    <div class="min-h-screen bg-[#0f0f0f]">
+      <div 
+        class="text-zinc-400 py-16 px-6"
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-6 text-zinc-200">Photos</h1>
+          
+          <p class="text-xs text-zinc-500 mb-2">Updated: February 04, 2026</p>
+          
+          <p class="text-zinc-400 text-sm mb-8 leading-relaxed">
+            {photosData.description}
+          </p>
+
+          <pre class="text-zinc-500 text-sm mb-8 whitespace-pre font-mono">
+{photosData.asciiArt}
+          </pre>
+
+          {/* Equipment Timeline */}
+          <div class="mb-10 p-6 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg">
+            <h2 class="text-2xl font-medium text-zinc-200 mb-4">📷 Equipment Timeline</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+              {photosData.equipment.map((item, index) => (
+                <div key={index} class="p-4 bg-zinc-800/30 border border-zinc-700 rounded">
+                  <div class="text-sm font-medium text-zinc-300">{item.period}</div>
+                  <div class="text-xs text-zinc-500 mt-1">{item.gear}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Photo Gallery by Year */}
+          {photosData.years.map((yearSection, yearIndex) => (
+            <div class="mb-12 border-b border-zinc-800/50 pb-8 last:border-0 last:pb-0" key={yearIndex}>
+              <h2 class="text-3xl font-medium text-zinc-200 mb-3">{yearSection.year}</h2>
+              {yearSection.description && (
+                <p class="text-zinc-500 text-sm mb-6 leading-relaxed">
+                  {yearSection.description}
+                </p>
+              )}
+              
+              {/* Photo Grid */}
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {yearSection.photos.map((photo, photoIndex) => (
+                  <div 
+                    key={photoIndex}
+                    class="group cursor-zoom-in"
+                    onClick={(e) => {
+                      e.currentTarget.classList.toggle('zoomed');
+                    }}
+                  >
+                    <div class="aspect-square bg-zinc-800/30 border border-zinc-700 rounded-lg overflow-hidden">
+                      <img 
+                        src={photo.src}
+                        alt={photo.alt}
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .cursor-zoom-in {
+        cursor: zoom-in;
+      }
+      
+      .zoomed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: zoom-out;
+      }
+      
+      .zoomed img {
+        max-width: 90vw;
+        max-height: 90vh;
+        object-fit: contain;
+        animation: zoomIn 0.3s ease-out;
+      }
+      
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+
+    <script>
+      // Close zoom when clicking outside or pressing ESC
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('.zoomed')) {
+          e.target.closest('.zoomed').classList.remove('zoomed');
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.zoomed').forEach(el => {
+            el.classList.remove('zoomed');
+          });
+        }
+      });
+    </script>
+  </>
+</BaseLayout>

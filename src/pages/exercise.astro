@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNav from '../components/PageNavigation.astro';
+import { exerciseData } from '../data/exercise.js';
+---
+<BaseLayout title="Exercise | Aditya Yadav" description="My fitness journey and workout routine">
+  <>
+    <PageNav currentPage="exercise" />
+
+    <div class="min-h-screen bg-[#0f0f0f]">
+      <div 
+        class="text-zinc-400 py-16 px-6" 
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-6 text-zinc-200">Exercise</h1>
+          
+          <p class="text-xs text-zinc-500 mb-2">Updated: February 04, 2026</p>
+          
+          <p class="text-zinc-400 text-sm mb-6 leading-relaxed">
+            My fitness journey — running, cycling, swimming, strength training, 
+            and yoga. Tracking progress, setting goals, and staying active.
+          </p>
+
+          {/* Download button - positioned after "staying active" paragraph */}
+          <div class="mb-8">
+            <a 
+              href="/exercise.pdf" 
+              download
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-800 text-zinc-300 rounded-md hover:bg-zinc-700 transition-colors text-xs font-medium border border-zinc-700"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download PDF
+            </a>
+          </div>
+
+          <pre class="text-zinc-500 text-sm mb-8 whitespace-pre font-mono">
+{exerciseData.asciiArt}
+          </pre>
+
+          {exerciseData.sections.map((section, index) => (
+            <div class="mb-10 border-b border-zinc-800/50 pb-8 last:border-0 last:pb-0" key={index}>
+              <h2 class="text-2xl font-medium text-zinc-200 mb-3">{section.title}</h2>
+              {section.description && (
+                <p class="text-zinc-500 text-sm mb-4 leading-relaxed">
+                  {section.description}
+                </p>
+              )}
+              
+              {section.items && (
+                <ul class="space-y-3">
+                  {section.items.map((item, itemIndex) => (
+                    <li key={itemIndex} class="text-sm">
+                      {item.day ? (
+                        // Weekly routine format
+                        <div class="p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg">
+                          <h3 class="text-lg font-medium text-zinc-200 mb-2">{item.day}</h3>
+                          <ul class="list-none pl-5 space-y-1 text-zinc-300">
+                            {item.activities.map((activity, actIndex) => (
+                              <li key={actIndex}>{activity}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : item.children ? (
+                        // Nested items format - FIXED: Removed colon causing extra bullet
+                        <div class="p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg">
+                          <p class="text-zinc-300 mb-2">{item.text.replace(':', '')}</p>
+                          <ul class="list-none pl-6 space-y-1 text-zinc-400">
+                            {item.children.map((child, childIndex) => (
+                              <li key={childIndex}>{child}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        // Simple item format
+                        <div class="p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg text-zinc-300">
+                          {item.text}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </>
+</BaseLayout>

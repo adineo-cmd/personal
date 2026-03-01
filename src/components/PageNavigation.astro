@@ -6,24 +6,35 @@ interface Props {
 const { currentPage } = Astro.props;
 
 const navItems = [
-  { label: 'home', href: '/' },
-  { label: 'projects', href: '/projects' },
-  { label: 'writings', href: '/writings' },
-  { label: 'timeline', href: '/timeline' },
-  { label: 'library', href: '/library' },
-  { label: 'list 100', href: '/list100' }
+  { label: 'home', href: '/', display: '🏠 home' },
+  { label: 'projects', href: '/projects', display: '🚀 projects' },
+  { label: 'writings', href: '/writings', display: '✍️ writings' },
+  { label: 'exercise', href: '/exercise', display: '💪 exercise' },
+  { label: 'gear', href: '/gear', display: '⚙️ gear' },
+  { label: 'timeline', href: '/timeline', display: '📅 timeline' },
+  { label: 'notes', href: '/notes', display: '🗒️ notes' },
+  { label: 'daily routine', href: '/routine', display: '🌅 daily routine' },
+  { label: 'family tree, lineage', href: '/family-tree', display: '🌳 family-tree' },
+  { label: 'library', href: '/library', display: '📚 library' },
+  { label: 'list 100', href: '/list100', display: '💯 list 100' },
+  { label: 'photos', href: '/photos', display: '📸 photos' },
+  { label: 'links', href: '/links', display: '🔗 links' },
+  { label: 'misc', href: '/misc', display: '📦 misc' }
 ];
+
+// CONFIG: How many items to show directly before "More"
+const visibleCount = 6;
+const visibleItems = navItems.slice(0, visibleCount);
+const moreItems = navItems.slice(visibleCount);
 ---
 
 <>
-  {/* Mobile Menu Checkbox */}
-  <input type="checkbox" id="page-nav-menu" class="hidden" />
-
   {/* Desktop Navigation */}
   <nav class="hidden md:block border-b border-zinc-800 bg-zinc-950">
     <div class="max-w-7xl mx-auto px-6 py-6">
-      <div class="flex flex-wrap gap-8 justify-end">
-        {navItems.map(item => (
+      <div class="flex flex-wrap justify-end gap-4 items-center">
+        {/* Visible Items */}
+        {visibleItems.map(item => (
           <a
             href={item.href}
             class={`text-sm transition-colors ${
@@ -31,39 +42,68 @@ const navItems = [
                 ? 'text-zinc-200 underline'
                 : 'text-zinc-500 hover:text-zinc-300'
             }`}
+            aria-current={currentPage === item.label ? 'page' : undefined}
           >
-            {item.label}
+            {item.display}
           </a>
         ))}
+        
+        {/* More Dropdown */}
+        {moreItems.length > 0 && (
+          <div class="more-container relative inline-block" id="moreContainer">
+            <button
+              id="moreButton"
+              class="text-sm text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors select-none bg-transparent border-none"
+              aria-label="Toggle more menu"
+            >
+              more ▾
+            </button>
+            <div class="dropdown-menu absolute right-0 mt-2 min-w-[180px] bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg z-50 overflow-hidden hidden">
+              {moreItems.map(item => (
+                <a
+                  href={item.href}
+                  class={`block px-4 py-2 text-sm transition-colors ${
+                    currentPage === item.label
+                      ? 'bg-zinc-800 text-zinc-200'
+                      : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
+                  }`}
+                  aria-current={currentPage === item.label ? 'page' : undefined}
+                >
+                  {item.display}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   </nav>
 
-  {/* Mobile Menu Button and Sidebar */}
+  {/* Mobile Menu Button */}
   <div class="md:hidden flex justify-end px-6 py-6 border-b border-zinc-800 bg-zinc-950">
-    <label
-      for="page-nav-menu"
-      class="text-zinc-400 hover:text-zinc-200 cursor-pointer"
+    <button
+      id="mobileMenuButton"
+      class="text-zinc-400 hover:text-zinc-200 cursor-pointer bg-transparent border-none p-0"
       aria-label="Toggle menu"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
-    </label>
+    </button>
   </div>
 
   {/* Mobile Sidebar */}
-  <nav class="mobile-nav fixed inset-y-0 left-0 z-50 w-64 bg-zinc-950 text-zinc-200 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden opacity-0 invisible">
+  <nav class="mobile-nav fixed inset-y-0 left-0 z-50 w-64 bg-zinc-950 text-zinc-200 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden" id="mobileNav">
     <div class="p-6 pt-12">
-      <label
-        for="page-nav-menu"
-        class="absolute top-4 right-4 text-zinc-400 hover:text-zinc-200 cursor-pointer"
+      <button
+        id="mobileCloseButton"
+        class="absolute top-4 right-4 text-zinc-400 hover:text-zinc-200 cursor-pointer bg-transparent border-none p-0"
         aria-label="Close menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
-      </label>
+      </button>
       <nav class="mt-8 space-y-4">
         {navItems.map(item => (
           <a
@@ -73,17 +113,96 @@ const navItems = [
                 ? 'bg-zinc-800 text-zinc-200'
                 : 'text-zinc-400 hover:bg-zinc-800 hover:text-zinc-200'
             }`}
+            aria-current={currentPage === item.label ? 'page' : undefined}
           >
-            {item.label}
+            {item.display}
           </a>
         ))}
       </nav>
     </div>
   </nav>
 
+  {/* Overlay for mobile menu */}
+  <div class="mobile-overlay fixed inset-0 bg-black/50 z-40 md:hidden hidden" id="mobileOverlay"></div>
+
   <style>
-    #page-nav-menu:checked ~ nav.mobile-nav {
-      @apply translate-x-0 opacity-100 visible;
+    /* Mobile Sidebar Open State */
+    .mobile-nav.open {
+      transform: translateX(0);
+    }
+    
+    /* Show overlay when mobile menu is open */
+    .mobile-overlay.open {
+      display: block;
+    }
+    
+    /* Desktop More Dropdown Open State */
+    .dropdown-menu.open {
+      display: block;
     }
   </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // === Mobile Menu ===
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileCloseButton = document.getElementById('mobileCloseButton');
+      const mobileNav = document.getElementById('mobileNav');
+      const mobileOverlay = document.getElementById('mobileOverlay');
+      
+      function openMobileMenu() {
+        mobileNav?.classList.add('open');
+        mobileOverlay?.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+      }
+      
+      function closeMobileMenu() {
+        mobileNav?.classList.remove('open');
+        mobileOverlay?.classList.remove('open');
+        document.body.style.overflow = ''; // Restore scrolling
+      }
+      
+      mobileMenuButton?.addEventListener('click', openMobileMenu);
+      mobileCloseButton?.addEventListener('click', closeMobileMenu);
+      mobileOverlay?.addEventListener('click', closeMobileMenu);
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (
+          mobileNav?.classList.contains('open') &&
+          !mobileNav.contains(event.target) &&
+          !mobileMenuButton?.contains(event.target)
+        ) {
+          closeMobileMenu();
+        }
+      });
+      
+      // === Desktop More Dropdown ===
+      const moreButton = document.getElementById('moreButton');
+      const moreContainer = document.getElementById('moreContainer');
+      const dropdownMenu = moreContainer?.querySelector('.dropdown-menu');
+      
+      moreButton?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownMenu?.classList.toggle('open');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (event) => {
+        if (
+          dropdownMenu?.classList.contains('open') &&
+          !moreContainer?.contains(event.target)
+        ) {
+          dropdownMenu?.classList.remove('open');
+        }
+      });
+      
+      // Close dropdown when clicking a link inside
+      dropdownMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          dropdownMenu?.classList.remove('open');
+        });
+      });
+    });
+  </script>
 </>

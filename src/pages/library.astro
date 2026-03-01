@@ -1,101 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageNavigation from '../components/PageNavigation.astro';
-import { books } from './data/content.js';
+import { books } from '../data/content.js';
 
 const totalRead = books.filter(b => b.status === 'read').length;
 ---
 
 <BaseLayout title="Library | Aditya Yadav" description="My book collection">
   <>
-    {/* ✅ Remove duplicate checkbox — PageNavigation provides it */}
     <PageNavigation currentPage="library" />
 
-    {/* Background container */}
-    <div 
-      class="min-h-screen relative"
-      style={{
-        backgroundImage: "url('/images/gruvbox_image31.webp')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: '#0f0f0f',
-      }}
-    >
-      {/* Semi-transparent overlay for readability */}
-      <div class="absolute inset-0 bg-black/70"></div>
-
-      {/* Content */}
+    <div class="min-h-screen bg-[#0f0f0f]">
       <div 
-        class="relative z-10 text-zinc-400" 
+        class="text-zinc-400 py-16 px-6" 
         style="font-family: 'Courier New', Courier, monospace;"
       >
-        <div class="py-16 px-6">
-          <div class="max-w-5xl mx-auto">
-            <h1 class="text-5xl font-serif mb-3 text-zinc-200">Library</h1>
-            <p class="text-zinc-500 text-sm mb-2">
-              Books I'm reading and have read lately.
-            </p>
-            <p class="text-zinc-400 text-sm mb-12">
-              Total read: {totalRead}
-            </p>
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-3 text-zinc-200">Library</h1>
+          <p class="text-zinc-500 text-sm mb-2">
+            Books I'm reading and have read lately.
+          </p>
+          <p class="text-zinc-400 text-sm mb-12">
+            Total read: {totalRead}
+          </p>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {books.map((book, idx) => (
-                <div class="group">
-                  <div 
-                    class="aspect-[2/3] rounded border border-zinc-800 mb-3 flex items-center justify-center overflow-hidden bg-zinc-900/60 backdrop-blur-sm hover:border-zinc-700 transition-colors"
-                    style={{ backgroundColor: book.coverColor }}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-zinc-600 opacity-30">
-                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                    </svg>
-                  </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {books.map((book, idx) => (
+              <div class="group" key={idx}>
+                <div 
+                  class="aspect-[2/3] rounded border border-zinc-800 mb-3 flex items-center justify-center overflow-hidden bg-zinc-900/60 backdrop-blur-sm hover:border-zinc-700 transition-colors"
+                  style={{ backgroundColor: book.coverColor }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-zinc-600 opacity-30">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                  </svg>
+                </div>
+                
+                <div>
+                  <h3 class="text-sm font-medium text-zinc-200 mb-1 line-clamp-2 group-hover:text-zinc-100">
+                    {book.title}
+                  </h3>
+                  <p class="text-xs text-zinc-500 mb-2">{book.author}</p>
                   
-                  <div>
-                    <h3 class="text-sm font-medium text-zinc-200 mb-1 line-clamp-2 group-hover:text-zinc-100">
-                      {book.title}
-                    </h3>
-                    <p class="text-xs text-zinc-500 mb-2">{book.author}</p>
-                    
-                    <div class="flex flex-wrap gap-1 items-center">
-                      <span class={`text-xs px-2 py-0.5 rounded ${
-                        book.status === 'reading' 
-                          ? 'bg-zinc-800 text-zinc-400' 
-                          : book.status === 'read'
-                          ? 'bg-zinc-800 text-zinc-400'
-                          : 'bg-zinc-800 text-zinc-500'
-                      }`}>
-                        {book.status}
+                  <div class="flex flex-wrap gap-1 items-center">
+                    <span class={`text-xs px-2 py-0.5 rounded ${
+                      book.status === 'reading' 
+                        ? 'bg-zinc-800 text-zinc-400' 
+                        : book.status === 'read'
+                        ? 'bg-zinc-800 text-zinc-400'
+                        : 'bg-zinc-800 text-zinc-500'
+                    }`}>
+                      {book.status}
+                    </span>
+                    {book.rating && (
+                      <span class="text-xs text-zinc-600">
+                        {book.rating}
                       </span>
-                      {book.rating && (
-                        <span class="text-xs text-zinc-600">
-                          {book.rating}
-                        </span>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Back Button */}
-        <div class="border-t border-zinc-800/50 py-6">
-          <div class="max-w-5xl mx-auto px-6">
-            <a
-              href="/"
-              class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="19" y1="12" x2="5" y2="12" />
-                <polyline points="12 19 5 12 12 5" />
-              </svg>
-              Back to Home
-            </a>
-          </div>
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
         </div>
       </div>
     </div>

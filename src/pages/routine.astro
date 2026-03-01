@@ -1,0 +1,237 @@
+---
+// src/pages/routine.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNavigation from '../components/PageNavigation.astro';
+import { dailyRoutine, routineTips, budgetHealthHacks, weeklyTargets } from '../data/routine.js';
+
+// Group routine by period
+const groupedRoutine = dailyRoutine.reduce((acc, item) => {
+  if (!acc[item.period]) {
+    acc[item.period] = [];
+  }
+  acc[item.period].push(item);
+  return acc;
+}, {});
+
+// Priority badge colors
+const priorityColors = {
+  high: 'bg-green-500/20 text-green-400 border-green-500/30',
+  medium: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+  low: 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30'
+};
+
+// Period colors for section headers
+const periodColors = {
+  Morning: 'border-orange-500/50',
+  Midday: 'border-yellow-500/50',
+  Afternoon: 'border-amber-500/50',
+  Evening: 'border-purple-500/50',
+  Night: 'border-indigo-500/50'
+};
+---
+
+<BaseLayout title="Daily Routine | Aditya Yadav" description="Budget-friendly student routine (IST)">
+  <>
+    <PageNavigation currentPage="routine" />
+
+    <div class="min-h-screen bg-zinc-950 relative">
+      <div class="relative z-10 text-zinc-400" style="font-family: 'Courier New', Courier, monospace;">
+        <div class="py-8 px-4 md:px-6">
+          <div class="max-w-5xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-serif mb-2 text-zinc-200">Daily Routine</h1>
+            <p class="text-zinc-500 text-xs md:text-sm mb-8">
+              Student-Friendly Longevity • Indian Standard Time (IST) • Wake: 8:30 AM
+            </p>
+
+            <!-- Current Time & Progress -->
+            <div class="grid md:grid-cols-2 gap-4 mb-8">
+              <div class="p-4 rounded bg-zinc-900/50 border border-zinc-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-zinc-500 uppercase tracking-wider">Current IST</span>
+                  <span id="current-time" class="text-lg text-zinc-200 font-bold">--:--</span>
+                </div>
+              </div>
+              <div class="p-4 rounded bg-zinc-900/50 border border-zinc-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-zinc-500 uppercase tracking-wider">Day Progress</span>
+                  <span id="progress-text" class="text-lg text-zinc-200 font-bold">0%</span>
+                </div>
+                <div class="mt-2 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-gradient-to-r from-zinc-600 to-zinc-400 rounded-full" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weekly Targets -->
+            <div class="mb-10 p-5 rounded bg-zinc-900/50 border border-zinc-800/50">
+              <h3 class="text-xs font-bold text-zinc-300 mb-4 uppercase tracking-wider flex items-center gap-2">
+                <span>📊</span> Weekly Targets (Student Focus)
+              </h3>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {Object.entries(weeklyTargets).map(([key, value]) => (
+                  <div class="p-3 rounded bg-zinc-950/50 border border-zinc-800/50">
+                    <div class="text-[10px] text-zinc-500 uppercase mb-1">{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                    <div class="text-xs text-zinc-300 font-mono">{value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Routine by Period -->
+            {Object.entries(groupedRoutine).map(([period, items]) => (
+              <div class="mb-10">
+                <h2 class={`text-sm font-bold text-zinc-300 uppercase tracking-widest mb-4 border-b pb-2 ${periodColors[period] || 'border-zinc-800/50'}`}>
+                  {period}
+                </h2>
+                
+                <div class="space-y-3">
+                  {items.map((item, idx) => (
+                    <div 
+                      class="routine-item p-4 rounded bg-zinc-900/50 border-l-4 
+                        ${item.priority === 'high' ? 'border-green-500/50' : 
+                          item.priority === 'medium' ? 'border-yellow-500/50' : 
+                          'border-zinc-500/50'}"
+                    >
+                      <div class="flex items-start gap-3">
+                        <span class="text-2xl">{item.icon}</span>
+                        
+                        <div class="flex-1">
+                          <div class="flex items-center gap-2 mb-1 flex-wrap">
+                            <span class="text-xs text-zinc-500 font-mono bg-zinc-950/50 px-2 py-0.5 rounded">{item.time}</span>
+                            <span class="text-[10px] px-1.5 py-0.5 rounded border ${priorityColors[item.priority]} uppercase tracking-wider">
+                              {item.priority}
+                            </span>
+                            {item.details?.cost && (
+                              <span class="text-[10px] text-zinc-600">💰 {item.details.cost}</span>
+                            )}
+                            {item.details?.duration && (
+                              <span class="text-[10px] text-zinc-600">⏱ {item.details.duration}</span>
+                            )}
+                          </div>
+                          
+                          <h3 class="text-base text-zinc-200 font-bold mb-1">{item.title}</h3>
+                          <p class="text-xs text-zinc-500 mb-2">{item.description}</p>
+                          
+                          {/* Details always visible (no hover) */}
+                          {item.details?.tip && (
+                            <div class="mt-3 pt-3 border-t border-zinc-800/50">
+                              <span class="text-[10px] text-zinc-600 uppercase">💡 Tip:</span>
+                              <p class="text-xs text-zinc-400 mt-0.5">{item.details.tip}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <!-- Budget Health Hacks -->
+            <div class="mb-10 p-5 rounded bg-zinc-900/50 border border-zinc-800/50">
+              <h3 class="text-xs font-bold text-zinc-300 mb-4 uppercase tracking-wider flex items-center gap-2">
+                <span>💰</span> Budget Health Hacks
+              </h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                {budgetHealthHacks.map((hack, idx) => (
+                  <div class="flex items-start gap-2 text-xs text-zinc-400" key={idx}>
+                    <span class="text-green-500 mt-0.5">✓</span>
+                    <span>{hack}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Pro Tips -->
+            <div class="mb-10 p-5 rounded bg-zinc-900/50 border border-zinc-800/50">
+              <h3 class="text-xs font-bold text-zinc-300 mb-4 uppercase tracking-wider flex items-center gap-2">
+                <span>💡</span> Pro Tips (Student Edition)
+              </h3>
+              <ul class="space-y-2">
+                {routineTips.map((tip, idx) => (
+                  <li class="flex items-start gap-2 text-xs text-zinc-400" key={idx}>
+                    <span class="text-zinc-600 mt-0.5">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="border-t border-zinc-800/50 py-3">
+          <div class="max-w-7xl mx-auto px-4">
+            <a
+              href="/"
+              class="inline-flex items-center gap-1.5 text-zinc-500 text-xs"
+              aria-label="Navigate back to homepage"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      @media (max-width: 768px) {
+        .routine-item {
+          padding: 0.75rem;
+        }
+      }
+    </style>
+
+    <script>
+      // Update current IST time
+      function updateISTTime() {
+        const now = new Date();
+        const istOffset = 5.5 * 60 * 60 * 1000;
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const istTime = new Date(utc + istOffset);
+        
+        const hours = istTime.getHours().toString().padStart(2, '0');
+        const minutes = istTime.getMinutes().toString().padStart(2, '0');
+        const timeElement = document.getElementById('current-time');
+        
+        if (timeElement) {
+          timeElement.textContent = `${hours}:${minutes}`;
+        }
+
+        updateProgress(istTime);
+      }
+
+      function updateProgress(istTime) {
+        const currentHour = istTime.getHours();
+        const currentMinute = istTime.getMinutes();
+        const totalMinutes = currentHour * 60 + currentMinute;
+        
+        const routineStart = 510;
+        const routineEnd = 1830;
+        const routineDuration = routineEnd - routineStart;
+        
+        let progress = 0;
+        if (totalMinutes >= routineStart) {
+          progress = Math.min(((totalMinutes - routineStart) / routineDuration) * 100, 100);
+        }
+        
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        
+        if (progressBar) {
+          progressBar.style.width = `${progress.toFixed(1)}%`;
+        }
+        if (progressText) {
+          progressText.textContent = `${progress.toFixed(0)}%`;
+        }
+      }
+
+      updateISTTime();
+      setInterval(updateISTTime, 60000);
+    </script>
+  </>
+</BaseLayout>

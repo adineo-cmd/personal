@@ -1,0 +1,55 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  date: string;
+  excerpt?: string;
+  tags?: string[];
+}
+
+const { slug, title, date, excerpt, tags } = Astro.props;
+---
+
+<a 
+  href={`/notes/${slug}/`}
+  class="block p-6 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg hover:border-zinc-700 hover:bg-zinc-900/80 transition-all duration-300 group"
+>
+  <div class="flex items-start justify-between">
+    <div class="flex-1">
+      <h3 class="text-xl font-medium text-zinc-200 group-hover:text-zinc-100 transition-colors mb-2">
+        {title}
+      </h3>
+      <p class="text-zinc-500 text-sm mb-3">
+        {new Date(date).toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })}
+      </p>
+      {excerpt && (
+        <p class="text-zinc-400 text-sm leading-relaxed group-hover:text-zinc-300 transition-colors">
+          {excerpt}
+        </p>
+      )}
+    </div>
+    <div class="ml-4 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-zinc-600 group-hover:text-zinc-400">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
+  </div>
+  
+  {tags && tags.length > 0 && (
+    <div class="mt-4 flex flex-wrap gap-2">
+      {tags.map((tag, index) => (
+        <span 
+          key={index}
+          class="text-xs px-2 py-0.5 bg-zinc-800/50 text-zinc-400 border border-zinc-700 rounded hover:bg-zinc-800 hover:text-zinc-300 transition-colors"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+</a>

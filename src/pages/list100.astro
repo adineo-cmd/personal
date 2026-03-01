@@ -1,57 +1,61 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageNav from '../components/PageNavigation.astro'; // renamed for clarity
-import { goals } from './data/content.js';
+import PageNav from '../components/PageNavigation.astro';
+import { goals, habits } from '../data/content.js';
 
-const completedCount = goals.filter(g => g.completed).length;
-const totalCount = goals.length;
-const percentage = Math.round((completedCount / totalCount) * 100);
+// Goals progress
+const goalsCompleted = goals.filter(g => g.completed).length;
+const totalGoals = goals.length;
+const goalsPercentage = totalGoals > 0 
+  ? Math.round((goalsCompleted / totalGoals) * 100) 
+  : 0;
+
+// Habits progress
+const habitsCompleted = habits.filter(h => h.completed).length;
+const totalHabits = habits.length;
+const habitsPercentage = totalHabits > 0 
+  ? Math.round((habitsCompleted / totalHabits) * 100) 
+  : 0;
 ---
 
-<BaseLayout title="List 100 | Aditya Yadav" description="My 100 life goals">
+<BaseLayout title="List 100 | Aditya Yadav" description="My life goals and daily habits">
   <>
-    {/* ✅ Only include PageNavigation — it handles the checkbox internally */}
     <PageNav currentPage="list 100" />
 
-    {/* Main content with background */}
-    <div 
-      class="min-h-screen relative"
-      style={{
-        backgroundImage: "url('/images/a_white_swirly_circle_on_a_black_background.webp')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: '#0f0f0f',
-      }}
-    >
-      <div class="absolute inset-0 bg-black/70"></div>
-      
+    <div class="min-h-screen bg-[#0f0f0f]">
       <div 
-        class="relative z-10 text-zinc-400" 
+        class="text-zinc-400 py-16 px-6"
         style="font-family: 'Courier New', Courier, monospace;"
       >
-        <div class="py-16 px-6">
-          <div class="max-w-5xl mx-auto">
-            <h1 class="text-5xl font-serif mb-6 text-zinc-200">List 100</h1>
-            
-            <p class="text-xs text-zinc-500 mb-2">Created on: April 30, 2024</p>
-            
-            <p class="text-zinc-400 text-sm mb-8 leading-relaxed">
-              Note: I have intentionally decided to never add/remove any items from this list. 
-              It is here to capture a moment in time when I was 22 years old and thought I wanted 
-              all of the following things to happen before I turn 100.
-            </p>
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-6 text-zinc-200">List 100</h1>
+          
+          <p class="text-xs text-zinc-500 mb-2">Created on: April 30, 2024</p>
+          
+          <p class="text-zinc-400 text-sm mb-12 leading-relaxed">
+            Note: I have intentionally decided to never add/remove any items from the "Things I Want to Do" list. 
+            It captures a moment in time when I was 22 years old. The Habits section is dynamic and evolves with my journey.
+          </p>
 
-            <div class="mb-10">
-              <div class="flex items-center gap-3 mb-2">
-                <span class="text-sm text-zinc-400">
-                  Completed {completedCount} of {totalCount} ({percentage}%)
+          {/* ===== SECTION 1: THINGS I WANT TO DO / HOBBIES ===== */}
+          <section class="mb-16 pb-12 border-b border-zinc-800/70">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-serif text-zinc-200">Things I Want to Do / Hobbies</h2>
+              <span class="text-xs bg-zinc-800/50 text-zinc-500 px-3 py-1 rounded-full">
+                Fixed List • Created April 2024
+              </span>
+            </div>
+            
+            <div class="mb-8">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-sm font-mono text-zinc-300">
+                  Completed {goalsCompleted} of {totalGoals} ({goalsPercentage}%)
                 </span>
               </div>
               <div class="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
                 <div 
                   class="h-full bg-zinc-600 transition-all duration-500"
-                  style={{ width: `${percentage}%` }}
+                  style={`width: ${goalsPercentage}%`}
                 />
               </div>
             </div>
@@ -59,45 +63,110 @@ const percentage = Math.round((completedCount / totalCount) * 100);
             <div class="grid md:grid-cols-2 gap-4">
               {goals.map((goal) => (
                 <div 
-                  class="flex items-center gap-3 p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded hover:border-zinc-700 transition-colors"
+                  class="flex items-start gap-3 p-4 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg hover:border-zinc-700 transition-colors"
                 >
                   <div 
-                    class={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                    class={`mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                       goal.completed 
                         ? 'border-zinc-500 bg-zinc-500' 
                         : 'border-zinc-700'
                     }`}
                   >
                     {goal.completed && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-zinc-950">
-                        <polyline points="20 6 9 17 4 12"></polyline>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-zinc-950">
+                        <polyline points="20 6 9 17 4 12" />
                       </svg>
                     )}
                   </div>
-                  <span class={`text-sm ${
-                    goal.completed ? 'text-zinc-500 line-through' : 'text-zinc-300'
+                  <span class={`text-sm leading-relaxed ${
+                    goal.completed 
+                      ? 'text-zinc-600 line-through opacity-70' 
+                      : 'text-zinc-300'
                   }`}>
                     {goal.text}
                   </span>
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* ===== SECTION 2: HABITS ===== */}
+          <section class="mb-16">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-serif text-zinc-200">Habits</h2>
+              <span class="text-xs bg-zinc-800/50 text-zinc-500 px-3 py-1 rounded-full">
+                Dynamic List • Updated Regularly
+              </span>
+            </div>
+            
+            <p class="text-sm text-zinc-500 mb-6 pl-1">
+              These are practices I'm cultivating for sustainable growth. Completion indicates the habit is consistently integrated into my life.
+            </p>
+
+            <div class="mb-8">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-sm font-mono text-zinc-300">
+                  Established {habitsCompleted} of {totalHabits} ({habitsPercentage}%)
+                </span>
+              </div>
+              <div class="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div 
+                  class="h-full bg-zinc-600 transition-all duration-500"
+                  style={`width: ${habitsPercentage}%`}
+                />
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {habits.map((habit) => (
+                <div 
+                  class="flex items-start gap-3 p-4 bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-lg hover:border-zinc-700 transition-colors"
+                >
+                  <div 
+                    class={`mt-1 w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                      habit.completed 
+                        ? 'border-zinc-500 bg-zinc-500' 
+                        : 'border-zinc-700'
+                    }`}
+                  >
+                    {habit.completed && (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-zinc-950">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
+                  </div>
+                  <span class={`text-sm leading-relaxed ${
+                    habit.completed 
+                      ? 'text-zinc-600 opacity-80' 
+                      : 'text-zinc-300'
+                  }`}>
+                    {habit.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <div class="text-center py-8 text-zinc-700 text-sm border-t border-zinc-800/50">
+            <p>
+              "We are what we repeatedly do. Excellence, then, is not an act, but a habit." — Will Durant (paraphrasing Aristotle)
+            </p>
           </div>
         </div>
+      </div>
 
-        {/* Back Button */}
-        <div class="border-t border-zinc-800/50 py-6">
-          <div class="max-w-5xl mx-auto px-6">
-            <a
-              href="/"
-              class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
-              </svg>
-              Back to Home
-            </a>
-          </div>
+      {/* Back Button */}
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
         </div>
       </div>
     </div>

@@ -3,12 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
-import ExperienceEducation from '../components/ExperienceEducation.astro';
-import Projects from '../components/Projects.astro';
 import ExploreMore from '../components/ExploreMore.astro';
-import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-import { personalInfo } from './data/content.js';
+import { personalInfo } from '../data/content.js';
 ---
 
 <BaseLayout title={personalInfo.name} description={personalInfo.description}>
@@ -16,10 +13,7 @@ import { personalInfo } from './data/content.js';
     <Navigation />
     <Hero />
     <About />
-    <ExperienceEducation />
     <ExploreMore />
-    <Projects />
-    <Contact />
     <Footer />
   </div>
 </BaseLayout>

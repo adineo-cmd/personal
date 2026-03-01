@@ -1,0 +1,134 @@
+---
+// src/pages/family-tree.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNavigation from '../components/PageNavigation.astro';
+import { familyLineage } from '../data/family.js';
+---
+
+<BaseLayout title="Family Tree | Aditya Yadav" description="My direct lineage">
+  <>
+    <PageNavigation currentPage="family-tree" />
+
+    <div class="min-h-screen bg-zinc-950 relative">
+      <div class="relative z-10 text-zinc-400" style="font-family: 'Courier New', Courier, monospace;">
+        <div class="py-8 px-4 md:px-6">
+          <div class="max-w-5xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-serif mb-2 text-zinc-200">Family Tree</h1>
+            <p class="text-zinc-500 text-xs md:text-sm mb-8">
+              Direct lineage: paternal & maternal lines, chronologically ordered.
+            </p>
+
+            <!-- Generations -->
+            <div class="generations space-y-10">
+              {familyLineage.map((gen, genIdx) => (
+                <div key={genIdx} class="generation">
+                  {/* Generation Header */}
+                  <h2 class="text-sm font-bold text-zinc-300 uppercase tracking-widest mb-4 border-b border-zinc-800/50 pb-2">
+                    {gen.generation}
+                  </h2>
+
+                  {/* Pairs Grid - responsive: 1 col mobile, 2 cols tablet, 3 cols desktop for wide generations */}
+                  <div class="pairs-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {gen.pairs.map((pair, pairIdx) => (
+                      <div key={pairIdx} class="pair-column space-y-3">
+                        {/* Paternal / Left Side */}
+                        {pair.left && (
+                          <div class="person-entry p-3 rounded bg-zinc-900/50 border-l-2 border-zinc-500" aria-label={`Paternal: ${pair.left.role}, ${pair.left.name}`}>
+                            <div class="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">{pair.left.role}</div>
+                            <div class="text-base text-zinc-200 font-bold mb-1">{pair.left.name}</div>
+                            <div class="text-xs text-zinc-500 space-y-0.5">
+                              <div>Born: <span class="text-zinc-300">{pair.left.born}</span></div>
+                              <div>Place: <span class="text-zinc-300">{pair.left.place}</span></div>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Maternal / Right Side */}
+                        {pair.right && (
+                          <div class="person-entry p-3 rounded bg-zinc-900/50 border-l-2 border-zinc-600" aria-label={`Maternal: ${pair.right.role}, ${pair.right.name}`}>
+                            <div class="text-[10px] text-zinc-600 uppercase tracking-wider mb-1">{pair.right.role}</div>
+                            <div class="text-base text-zinc-200 font-bold mb-1">{pair.right.name}</div>
+                            <div class="text-xs text-zinc-500 space-y-0.5">
+                              <div>Born: <span class="text-zinc-300">{pair.right.born}</span></div>
+                              <div>Place: <span class="text-zinc-300">{pair.right.place}</span></div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Separator between generations */}
+                  {genIdx < familyLineage.length - 1 && (
+                    <div class="mt-8 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <!-- Legend -->
+            <div class="mt-12 pt-6 border-t border-zinc-800/50">
+              <h3 class="text-xs font-bold text-zinc-300 mb-3 uppercase tracking-wider">Legend</h3>
+              <div class="flex flex-wrap gap-4 text-[11px]">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-zinc-500"></span>
+                  <span class="text-zinc-400">Paternal Line</span>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
+                  <span class="text-zinc-400">Maternal Line</span>
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <span class="text-zinc-200 font-bold">Name</span>
+                  <span class="text-zinc-500">• Highlighted</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="border-t border-zinc-800/50 py-3">
+          <div class="max-w-7xl mx-auto px-4">
+            <a
+              href="/"
+              class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-zinc-200 transition-colors text-xs group"
+              aria-label="Navigate back to homepage"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:-translate-x-0.5 transition-transform">
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+              Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .pairs-grid {
+        /* Ensure consistent spacing and alignment */
+        align-items: start;
+      }
+      
+      /* Optional: Add subtle hover effect for interactivity */
+      .person-entry:hover {
+        background: rgba(39, 39, 42, 0.7); /* zinc-900/70 */
+        transition: background 0.2s ease;
+      }
+      
+      @media (max-width: 1023px) {
+        .pairs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 767px) {
+        .pairs-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </>
+</BaseLayout>

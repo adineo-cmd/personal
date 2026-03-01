@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNav from '../components/PageNavigation.astro';
+import { miscData } from '../data/misc.js';
+---
+
+<BaseLayout title="Misc | Aditya Yadav" description="Miscellaneous thoughts, projects, and curiosities">
+  <>
+    <PageNav currentPage="misc" />
+
+    <div class="min-h-screen bg-[#0f0f0f]">
+      <div 
+        class="text-zinc-400 py-16 px-6"
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-6 text-zinc-200">Misc</h1>
+          
+          <p class="text-xs text-zinc-500 mb-2">Updated: February 04, 2026</p>
+          
+          <p class="text-zinc-400 text-sm mb-8 leading-relaxed">
+            {miscData.description}
+          </p>
+
+          <pre class="text-zinc-500 text-sm mb-8 whitespace-pre font-mono">
+{miscData.asciiArt}
+          </pre>
+
+          {miscData.sections.map((section, index) => (
+            <div class="mb-10 border-b border-zinc-800/50 pb-8 last:border-0 last:pb-0" key={index}>
+              <h2 class="text-2xl font-medium text-zinc-200 mb-3">{section.title}</h2>
+              {section.description && (
+                <p class="text-zinc-500 text-sm mb-4 leading-relaxed">
+                  {section.description}
+                </p>
+              )}
+              
+              {section.items && (
+                <ul class="space-y-3">
+                  {section.items.map((item, itemIndex) => (
+                    <li key={itemIndex} class="text-sm">
+                      {item.children ? (
+                        // Nested items format
+                        <div class="p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg">
+                          <p class="text-zinc-300 mb-2">{item.text}</p>
+                          <ul class="list-disc pl-6 space-y-1 text-zinc-400">
+                            {item.children.map((child, childIndex) => (
+                              <li key={childIndex}>{child}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : item.description ? (
+                        // Item with description
+                        <div class="p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg">
+                          <p class="text-zinc-200 font-medium">{item.text}</p>
+                          <p class="text-zinc-500 text-sm mt-1">{item.description}</p>
+                        </div>
+                      ) : (
+                        // Simple item
+                        <div class="p-4 bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-lg text-zinc-300">
+                          {item.text}
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </>
+</BaseLayout>

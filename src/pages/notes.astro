@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNav from '../components/PageNavigation.astro';
+import { notesIndex } from '../data/notesIndex.js';
+import NoteCard from '../components/NoteCard.astro';
+---
+<BaseLayout title="Notes | Aditya Yadav" description="My personal knowledge base and curated notes">
+  <>
+    <PageNav currentPage="notes" />
+
+    <div class="min-h-screen bg-[#0f0f0f]">
+      <div 
+        class="text-zinc-400 py-16 px-6"
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-6 text-zinc-200">Notes</h1>
+          
+          <p class="text-xs text-zinc-500 mb-2">Last Updated: February 04, 2026</p>
+          
+          <p class="text-zinc-400 text-sm mb-8 leading-relaxed">
+            My personal knowledge base. A curated collection of 100+ notes on programming, 
+            AI/ML, DevOps, productivity, and homelab. Continuously updated as I learn and grow.
+          </p>
+
+          <pre class="text-zinc-500 text-sm mb-8 whitespace-pre font-mono">
+{notesIndex.asciiArt}
+          </pre>
+
+          {/* Statistics */}
+          <div class="mb-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg text-center">
+              <div class="text-3xl font-bold text-zinc-200">100+</div>
+              <div class="text-xs text-zinc-500 mt-1">Total Notes</div>
+            </div>
+            <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg text-center">
+              <div class="text-3xl font-bold text-zinc-200">{notesIndex.categories.length}</div>
+              <div class="text-xs text-zinc-500 mt-1">Categories</div>
+            </div>
+            <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg text-center">
+              <div class="text-3xl font-bold text-zinc-200">
+                {notesIndex.categories.reduce((sum, cat) => sum + cat.notes.length, 0)}
+              </div>
+              <div class="text-xs text-zinc-500 mt-1">Featured</div>
+            </div>
+            <div class="p-4 bg-zinc-900/60 border border-zinc-800 rounded-lg text-center">
+              <div class="text-3xl font-bold text-zinc-200">2024-2026</div>
+              <div class="text-xs text-zinc-500 mt-1">Active Years</div>
+            </div>
+          </div>
+
+          {/* Categories */}
+          {notesIndex.categories.map((category, catIndex) => (
+            <div class="mb-12 border-b border-zinc-800/50 pb-8 last:border-0 last:pb-0" key={catIndex}>
+              <h2 class="text-2xl font-medium text-zinc-200 mb-3">{category.title}</h2>
+              {category.description && (
+                <p class="text-zinc-500 text-sm mb-6 leading-relaxed">
+                  {category.description}
+                </p>
+              )}
+              
+              <div class="space-y-4">
+                {category.notes.map((note) => (
+                  <NoteCard 
+                    key={note.slug}
+                    slug={note.slug}
+                    title={note.title}
+                    date={note.date}
+                    excerpt={note.excerpt}
+                    tags={note.tags}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </>
+</BaseLayout>

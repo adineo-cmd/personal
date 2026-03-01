@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNav from '../components/PageNavigation.astro';
+import { gearData } from '../data/gear.js';
+---
+<BaseLayout title="Gear | Aditya Yadav" description="My homelab and tech setup">
+  <>
+    <PageNav currentPage="gear" />
+
+    <div class="min-h-screen bg-[#0f0f0f]">
+      <div 
+        class="text-zinc-400 py-16 px-6"
+        style="font-family: 'Courier New', Courier, monospace;"
+      >
+        <div class="max-w-5xl mx-auto">
+          <h1 class="text-5xl font-serif mb-6 text-zinc-200">Gear</h1>
+          
+          <p class="text-xs text-zinc-500 mb-2">Updated: February 03, 2026</p>
+          
+          <p class="text-zinc-400 text-sm mb-8 leading-relaxed">
+            My personal homelab, machines, and software stack. This reflects my current setup as of February 2026.
+          </p>
+
+          {gearData.sections.map((section, index) => (
+            <div class="mb-10 border-b border-zinc-800/50 pb-8 last:border-0 last:pb-0" key={index}>
+              <h2 class="text-2xl font-medium text-zinc-200 mb-3">{section.title}</h2>
+              {section.description && (
+                <p class="text-zinc-400 text-sm mb-4 leading-relaxed">
+                  {section.description}
+                </p>
+              )}
+              {section.items && (
+                <ul class="list-disc pl-6 space-y-2">
+                  {section.items.map((item, itemIndex) => (
+                    <li key={itemIndex} class="text-sm text-zinc-300">
+                      {item.description ? (
+                        <div class="mt-2">
+                          <h3 class="text-lg font-medium text-zinc-200">{item.text}</h3>
+                          <p class="text-zinc-400 text-sm mb-2 mt-1">{item.description}</p>
+                          {item.items && (
+                            <ul class="list-disc pl-8 space-y-1">
+                              {item.items.map((subItem, subIndex) => (
+                                <li key={subIndex} class="text-zinc-300">
+                                  {subItem.text}
+                                  {subItem.children && (
+                                    <ul class="list-disc pl-8 space-y-1">
+                                      {subItem.children.map((child, childIndex) => (
+                                        <li key={childIndex} class="text-zinc-400">{child.text}</li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ) : item.children ? (
+                        <div>
+                          {item.text}
+                          <ul class="list-disc pl-8 space-y-1">
+                            {item.children.map((child, childIndex) => (
+                              <li key={childIndex} class="text-zinc-400">
+                                {child.text}
+                                {child.children && (
+                                  <ul class="list-disc pl-8 space-y-1">
+                                    {child.children.map((grandchild, grandIndex) => (
+                                      <li key={grandIndex} class="text-zinc-500">{grandchild.text}</li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ) : (
+                        item.text
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="border-t border-zinc-800/50 py-6">
+        <div class="max-w-5xl mx-auto px-6">
+          <a
+            href="/"
+            class="flex items-center gap-2 text-zinc-500 hover:text-zinc-300 transition-colors text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </>
+</BaseLayout>
