@@ -30,7 +30,7 @@ const periodColors = {
 };
 ---
 
-<BaseLayout title="Daily Routine | Aditya Yadav" description="Budget-friendly student routine (IST)">
+<BaseLayout title="Daily Routine | Aditya Yadav" description="Budget-friendly routine (IST)">
   <>
     <PageNavigation currentPage="routine" />
 
@@ -40,7 +40,7 @@ const periodColors = {
           <div class="max-w-5xl mx-auto">
             <h1 class="text-3xl md:text-4xl font-serif mb-2 text-zinc-200">Daily Routine</h1>
             <p class="text-zinc-500 text-xs md:text-sm mb-8">
-              Student-Friendly Longevity • Indian Standard Time (IST) • Wake: 8:30 AM
+              Friendly Longevity • Indian Standard Time (IST) • Wake: 8:30 AM
             </p>
 
             <!-- Current Time & Progress -->
@@ -65,7 +65,7 @@ const periodColors = {
             <!-- Weekly Targets -->
             <div class="mb-10 p-5 rounded bg-zinc-900/50 border border-zinc-800/50">
               <h3 class="text-xs font-bold text-zinc-300 mb-4 uppercase tracking-wider flex items-center gap-2">
-                <span>📊</span> Weekly Targets (Student Focus)
+                <span>📊</span> Weekly Targets
               </h3>
               <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {Object.entries(weeklyTargets).map(([key, value]) => (
@@ -145,7 +145,7 @@ const periodColors = {
             <!-- Pro Tips -->
             <div class="mb-10 p-5 rounded bg-zinc-900/50 border border-zinc-800/50">
               <h3 class="text-xs font-bold text-zinc-300 mb-4 uppercase tracking-wider flex items-center gap-2">
-                <span>💡</span> Pro Tips (Student Edition)
+                <span>💡</span> Pro Tips
               </h3>
               <ul class="space-y-2">
                 {routineTips.map((tip, idx) => (
