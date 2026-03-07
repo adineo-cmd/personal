@@ -30,10 +30,13 @@ jobs:
         run: npm run build
 
       - name: Verify sitemap exists
-        run: ls -la dist/sitemap.xml
+        run: ls -la dist/sitemap-index.xml
+
+      - name: List all sitemap files
+        run: ls -la dist/sitemap*.xml
 
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@v1
         with:
-          api_token: ${{ secrets.NEOCITIES_API_KEY }}
+          api_key: ${{ secrets.NEOCITIES_API_KEY }}
           dist_dir: ./dist
