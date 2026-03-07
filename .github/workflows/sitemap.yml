@@ -29,6 +29,9 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Verify sitemap exists
+        run: ls -la dist/sitemap.xml
+
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@v1
         with:
