@@ -106,13 +106,20 @@ export const gearData = {
           ]
         },
         {
-          text: "Ai Tools:",
+          text: "AI Tools:",
           children: [
             { text: "Chatgpt(rare)" },
             { text: "Claude" },
             { text: "Z.ai" },
             { text: "Deepseek" },
-            { text: "Qwen" },
+            { text: "Qwen" }
+          ]
+        },
+        {
+          text: "AI Agent:",
+          children: [
+            { text: "Openclaw" },
+            { text: "Opencode" }
           ]
         },
         { text: "Terminal Multiplexer: tmux" }
