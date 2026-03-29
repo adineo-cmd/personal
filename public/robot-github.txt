@@ -1,0 +1,5 @@
+# robots.txt for GitHub Pages
+User-agent: *
+Allow: /
+Sitemap: https://adineo-cmd.github.io/personal/sitemap-index.xml
+Crawl-delay: 1
