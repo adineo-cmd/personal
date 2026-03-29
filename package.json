@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "build:neocities": "DEPLOY_TARGET=neocities astro build && cp public/robots-neocities.txt dist/robots.txt",
+    "build:github": "DEPLOY_TARGET=github-pages astro build && cp public/robots-github.txt dist/robots.txt",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
