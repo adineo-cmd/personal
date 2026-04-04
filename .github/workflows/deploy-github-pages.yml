@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # ← This enables manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -35,11 +35,11 @@ jobs:
 
       - name: Build Astro site for GitHub Pages
         run: npm run build:github
-        env:
-          DEPLOY_TARGET: github-pages
 
       - name: Verify build output
-        run: ls -la dist/
+        run: |
+          ls -la dist/
+          cat dist/index.html | head -20
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
