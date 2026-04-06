@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages (Personal)
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -33,13 +33,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Astro site for GitHub Pages
+      - name: Build
         run: npm run build:github
-
-      - name: Verify build output
-        run: |
-          ls -la dist/
-          cat dist/index.html | head -20
+        env:
+          GITHUB_PAGES: 'true'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
