@@ -4,36 +4,25 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'astro.config.mjs'
-      - 'package.json'
-      - 'package-lock.json'
-
-concurrency:
-  group: deploy-to-neocities
-  cancel-in-progress: true
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
-      - name: Install deps and build
-        run: |
-          npm ci
-          npm run build:neocities
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Verify build output
-        run: ls -la dist/
+      - name: Build
+        run: npm run build:neocities
 
       - name: Deploy to Neocities
         uses: bcomnes/deploy-to-neocities@v2
