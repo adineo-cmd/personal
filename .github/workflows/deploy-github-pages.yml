@@ -39,17 +39,28 @@ jobs:
           npx astro build --base /personal
           cp public/robots-github.txt dist/robots.txt
 
+      - name: Move files to /personal subfolder
+        run: |
+          echo "Moving build output to personal/ subfolder..."
+          mkdir -p dist/temp
+          mv dist/* dist/temp/ 2>/dev/null || true
+          mkdir -p dist/personal
+          mv dist/temp/* dist/personal/ 2>/dev/null || true
+          rm -rf dist/temp
+          echo "Files now in dist/personal/"
+          ls -la dist/personal/ | head -20
+
       - name: Verify build output
         run: |
-          echo "=== Files in dist/ ==="
-          ls -la dist/
-          echo "=== Checking for /personal/ in routes ==="
-          grep -r "/personal/" dist/ | head -10 || echo "⚠️ No /personal/ found!"
+          echo "=== Files in dist/personal/ ==="
+          ls -la dist/personal/
+          echo "=== Checking for /personal/ in HTML ==="
+          grep -r 'href="/personal/' dist/personal/ | head -5 || echo "⚠️ No /personal/ links found"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'  # ← Must match Astro's output folder!
+          path: './dist'  # Upload entire dist/ (which now contains personal/)
 
       - name: Deploy to GitHub Pages
         id: deployment
