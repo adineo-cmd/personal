@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:neocities": "astro build && cp public/robots-neocities.txt dist/robots.txt",
-    "build:github": "astro build --config ./astro.config.github.mjs && cp public/robots-github.txt dist/robots.txt",
+    "build:github": "GITHUB_PAGES=true astro build && cp public/robots-github.txt dist/robots.txt",
     "preview": "astro preview",
     "astro": "astro"
   },
