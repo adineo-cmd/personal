@@ -23,12 +23,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5  # ✅ Updated
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'  # ✅ Use Node 22
+          node-version: '22'
 
       - name: Install dependencies
         run: npm ci
@@ -48,7 +48,9 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'  # ← Must match Astro's output folder!
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4  # ✅ Latest version
+        uses: actions/deploy-pages@v4
