@@ -23,24 +23,32 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5  # ✅ Updated
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: '22'  # ✅ Use Node 22
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build:github
+      - name: Build for GitHub Pages
+        run: |
+          echo "Building with base path: /personal"
+          npx astro build --base /personal
+          cp public/robots-github.txt dist/robots.txt
+
+      - name: Verify build output
+        run: |
+          echo "=== Files in dist/ ==="
+          ls -la dist/
+          echo "=== Checking for /personal/ in routes ==="
+          grep -r "/personal/" dist/ | head -10 || echo "⚠️ No /personal/ found!"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4  # ✅ Latest version
