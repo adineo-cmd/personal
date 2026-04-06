@@ -1,10 +1,12 @@
 {
-  "name": "personal-2",
+  "name": "personal",
   "type": "module",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:neocities": "astro build && cp public/robots-neocities.txt dist/robots.txt",
+    "build:github": "astro build && node scripts/fix-gh-pages.js && cp public/robots-github.txt dist/robots.txt",
     "preview": "astro preview"
   },
   "dependencies": {
