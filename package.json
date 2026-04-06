@@ -6,9 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "build:neocities": "astro build && cp public/robots-neocities.txt dist/robots.txt",
-    "build:github": "GITHUB_PAGES=true astro build && cp public/robots-github.txt dist/robots.txt",
-    "preview": "astro preview",
-    "astro": "astro"
+    "build:github": "astro build --base /personal && cp public/robots-github.txt dist/robots.txt",
+    "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
