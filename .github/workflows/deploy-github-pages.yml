@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: npm ci
+
+      - name: Build for GitHub Pages
+        run: npm run build:github
+
+      - name: Verify build
+        run: |
+          echo "=== Files in dist/ ==="
+          ls -la dist/ | head -20
+          echo "=== Checking /personal/ links ==="
+          grep -o 'href="/personal/[^"]*"' dist/index.html | head -5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
