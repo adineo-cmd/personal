@@ -371,7 +371,7 @@ export const timelineData = [
       {
         month: '2004',
         title: 'Born',
-        detail: 'Lake Town Nursing Home, Kolkata – 700089, West Bengal, India',
+        detail: 'Kolkata, West Bengal, India',
         category: 'milestone'
       }
     ]

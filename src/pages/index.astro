@@ -5,10 +5,13 @@ import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import ExploreMore from '../components/ExploreMore.astro';
 import Footer from '../components/Footer.astro';
-import { personalInfo } from '../data/content.js';
 ---
 
-<BaseLayout title={personalInfo.name} description={personalInfo.description}>
+<BaseLayout
+  title="adineo — Aditya Yadav · personal site, projects & writings"
+  description="Aditya Yadav (adineo) — personal site documenting life, projects, writings, notes, and random thoughts."
+  home
+>
   <div class="min-h-screen bg-zinc-950 text-zinc-400" style="font-family: 'Courier New', Courier, monospace;">
     <Navigation />
     <Hero />

@@ -4,9 +4,39 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  home?: boolean;
 }
 
-const { title = 'Aditya Yadav', description = 'Fullstack Engineer' } = Astro.props;
+const {
+  title = 'adineo — Aditya Yadav',
+  description = 'Aditya Yadav (adineo) — personal site documenting life, projects, writings, and random thoughts.',
+  home = false,
+} = Astro.props;
+
+const siteName = 'adineo';
+const fullName = 'Aditya Yadav';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const homeURL = new URL(import.meta.env.BASE_URL, Astro.site);
+const ogImageURL = new URL(`${import.meta.env.BASE_URL}og-image.png`, Astro.site);
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: fullName,
+  alternateName: [siteName, 'adineo-cmd'],
+  url: homeURL.href,
+  image: ogImageURL.href,
+  jobTitle: 'Fullstack Engineer',
+  knowsAbout: ['Web development', 'AI/ML', 'Linux'],
+  sameAs: ['https://github.com/adineo-cmd'],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: `${siteName} — ${fullName}`,
+  url: homeURL.href,
+};
 ---
 
 <!DOCTYPE html>
@@ -14,10 +44,31 @@ const { title = 'Aditya Yadav', description = 'Fullstack Engineer' } = Astro.pro
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#09090b" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={fullName} />
+    <meta name="theme-color" content="#09090b" />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    {home && (
+      <script type="application/ld+json" set:html={JSON.stringify([personSchema, websiteSchema])} />
+    )}
   </head>
   <body class="bg-zinc-950 text-zinc-400 antialiased">
     <slot />
