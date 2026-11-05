@@ -26,33 +26,313 @@ export const skills = {
   'Tools': ['Git', 'GitHub', 'Vim', 'Linux', 'Ubuntu', 'Windows', 'VS Code']
 };
 
+// Synced with public repos on github.com/adineo-cmd and github.com/adineo-cmd2
 export const projects = [
   {
-    title: 'WebVault',
-    description: 'A curated repository of websites and resources across domains with a clean, responsive UI built using Astro and Tailwind CSS. Implemented search and filtering functionality with domain-wise categorization and a scalable Node.js + MongoDB backend.',
-    tags: ['Astro', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-    categories: ['full-stack', 'web-development'],
-    githubUrl: 'https://github.com/adineo-cmd',
+    title: 'Interactive Science',
+    description: 'Interactive science learning atlas — physics, chemistry, biology, and math on one Astro engine with in-browser search.',
+    tags: ['Astro', 'Python', 'Education'],
+    categories: ['knowledge', 'education'],
+    githubUrl: 'https://github.com/adineo-cmd/interactive-science',
+    liveUrl: 'https://adineo-cmd.github.io/interactive-science/',
+    featured: true
+  },
+  {
+    title: 'Idea Atlas',
+    description: 'An atlas of global problems, solved discoveries, and undiscovered ideas — Astro site with a 6-hourly Python data-refresh pipeline.',
+    tags: ['Astro', 'Python', 'Open Data'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/idea-atlas',
+    liveUrl: 'https://adineo-cmd.github.io/idea-atlas/',
+    featured: true
+  },
+  {
+    title: 'HumanWeb',
+    description: 'A human-curated map of the web — eleven directory sources, one tab each, never mixed. Astro.',
+    tags: ['Astro', 'Python', 'Curation'],
+    categories: ['knowledge', 'web'],
+    githubUrl: 'https://github.com/adineo-cmd/HumanWeb',
+    liveUrl: 'https://adineo-cmd.github.io/HumanWeb/',
+    featured: true
+  },
+  {
+    title: 'Self-Improvement Field Guide',
+    description: 'An evidence-graded field guide to being better in company — 599 workbook findings plus the elite-curriculum chapters. Astro, static.',
+    tags: ['Astro', 'TypeScript'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/self-improvement-field-guide',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'Longevity Protocol',
+    description: 'An evidence-graded operating manual for one body — 546 graded rows from the Longevity Master Workbook, live calculator, site search. Astro, static.',
+    tags: ['Astro', 'TypeScript'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/longevity-protocol',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'Law Simplified',
+    description: 'Plain-English Indian law guides — refunds, deposits, wages, FIRs, cyber fraud — 30 guides, 15 templates, 88 terms. Astro, static.',
+    tags: ['Astro', 'MDX'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/law-simplified',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'MindGym',
+    description: 'Train your brain like a muscle — 41 mental models, 84 exercises, 17 brain regions, 2279-technique database. Static and offline-capable.',
+    tags: ['HTML', 'JavaScript', 'Static Site'],
+    categories: ['knowledge', 'education'],
+    githubUrl: 'https://github.com/adineo-cmd/mindgym',
+    liveUrl: 'https://adineo-cmd.github.io/mindgym/',
+    featured: true
+  },
+  {
+    title: 'Unbuilt',
+    description: 'A census of human making: 180 ideas across 12 fields — already built, half-built, not built yet.',
+    tags: ['HTML', 'Static Site'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/unbuilt',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'Treehouse',
+    description: 'A shared front door for Library and Compass — one address, two separate datasets.',
+    tags: ['JavaScript'],
+    categories: ['web'],
+    githubUrl: 'https://github.com/adineo-cmd/treehouse',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'Library',
+    description: 'A browsable map of human knowledge — fields, domains and learning paths.',
+    tags: ['Astro', 'Svelte', 'JavaScript'],
+    categories: ['knowledge', 'education'],
+    githubUrl: 'https://github.com/adineo-cmd/library',
+    liveUrl: 'https://adineo-cmd.github.io/library/',
+    featured: true
+  },
+  {
+    title: 'Compass',
+    description: 'Step-by-step career roadmaps for non-tech fields.',
+    tags: ['Python', 'Roadmaps'],
+    categories: ['education', 'web'],
+    githubUrl: 'https://github.com/adineo-cmd/compass',
+    liveUrl: 'https://adineo-cmd.github.io/compass/',
+    featured: false
+  },
+  {
+    title: 'Unknown Research Engine',
+    description: 'Maps the boundary between known and unknown — gap maps and open-question analysis per field. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/unknown-research-engine',
+    liveUrl: 'https://adineo-cmd2.github.io/unknown-research-engine/',
+    featured: true
+  },
+  {
+    title: 'Socratic Debate Partner',
+    description: 'AI debate partner that argues any position Socratically — claim profiles, reasoning graphs, follow-up pressure. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/socratic-debate-partner',
+    liveUrl: 'https://adineo-cmd2.github.io/socratic-debate-partner/',
+    featured: false
+  },
+  {
+    title: 'Premortem Engine',
+    description: 'Runs premortem analyses on plans — failure scenarios, ranked risks, tracked mitigations. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/premortem-engine',
+    liveUrl: 'https://adineo-cmd2.github.io/premortem-engine/',
+    featured: false
+  },
+  {
+    title: 'Policy Simulator',
+    description: 'Simulates and compares policy outcomes across affected groups. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/policy-simulator',
+    liveUrl: 'https://adineo-cmd2.github.io/policy-simulator/',
+    featured: false
+  },
+  {
+    title: 'Counterfactual History',
+    description: 'Explores alternate history branches from real divergence points with side-by-side timeline comparison. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/counterfactual-history',
+    liveUrl: 'https://adineo-cmd2.github.io/counterfactual-history/',
+    featured: false
+  },
+  {
+    title: 'Contradiction Finder',
+    description: 'Surfaces contradictions across a corpus — claim extraction with evidence spans, ranked conflict pairs. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'NLP'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/contradiction-finder',
+    liveUrl: 'https://adineo-cmd2.github.io/contradiction-finder/',
+    featured: false
+  },
+  {
+    title: 'Cognitive Bias Detector',
+    description: 'Detects cognitive biases in text — bias maps, explorer, and detection timeline. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/cognitive-bias-detector',
+    liveUrl: 'https://adineo-cmd2.github.io/cognitive-bias-detector/',
+    featured: false
+  },
+  {
+    title: 'Code Optimizer',
+    description: 'Analyzes code and proposes measured optimizations — impact estimates, diff preview, applied history. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai', 'devtools'],
+    githubUrl: 'https://github.com/adineo-cmd2/code-optimizer',
+    liveUrl: 'https://adineo-cmd2.github.io/code-optimizer/',
+    featured: false
+  },
+  {
+    title: 'Architecture Archaeologist',
+    description: 'Digs through codebase architecture — ingestion, dependency maps, Q&A, and archaeology reports. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai', 'devtools'],
+    githubUrl: 'https://github.com/adineo-cmd2/architecture-archaeologist',
+    liveUrl: 'https://adineo-cmd2.github.io/architecture-archaeologist/',
+    featured: false
+  },
+  {
+    title: 'AI Showrunner',
+    description: 'AI showrunner for serialized fiction — living story bible, continuity tracking, episode drafting. FastAPI + Astro.',
+    tags: ['FastAPI', 'Astro', 'Python'],
+    categories: ['ai'],
+    githubUrl: 'https://github.com/adineo-cmd2/ai-showrunner',
+    liveUrl: 'https://adineo-cmd2.github.io/ai-showrunner/',
+    featured: false
+  },
+  {
+    title: 'Atrium',
+    description: 'Shared front door for ten reasoning instruments — one portal, ten separate apps, no shared data.',
+    tags: ['JavaScript'],
+    categories: ['web'],
+    githubUrl: 'https://github.com/adineo-cmd2/atrium',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'DIR-825G1 OpenWrt',
+    description: 'OpenWrt port for D-Link DIR-825 G1 (Realtek RTL8197DN) — device files, flash format RE, tooling, and full engineering log.',
+    tags: ['OpenWrt', 'Python', 'Embedded'],
+    categories: ['devtools'],
+    githubUrl: 'https://github.com/adineo-cmd/dir825g1-openwrt',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'The Open Studio',
+    description: 'A free photography and crafts reference library — a full photography wing plus eleven field studios. Pure static, no build step.',
+    tags: ['HTML', 'Static Site'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/the-open-studio',
+    liveUrl: 'https://adineo-cmd.github.io/the-open-studio/',
+    featured: false
+  },
+  {
+    title: 'The Open Arena',
+    description: 'A free reference library for every sport — 119+ dedicated sport guides in one pure-static wiki.',
+    tags: ['Python', 'Static Site'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/the-open-arena',
+    liveUrl: 'https://adineo-cmd.github.io/the-open-arena/',
+    featured: false
+  },
+  {
+    title: 'Survival Field Guide',
+    description: 'A complete offline-capable survival field guide — shelter, water, fire, first aid, navigation, gear, and a self-quiz. Pure static.',
+    tags: ['HTML', 'Offline'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/survival-field-guide',
+    liveUrl: 'https://adineo-cmd.github.io/survival-field-guide/',
+    featured: false
+  },
+  {
+    title: 'Human Skills',
+    description: 'A registry of every skill humanity has ever mastered — skills.sh-style directory. Static, no tracking.',
+    tags: ['JavaScript', 'Static Site'],
+    categories: ['knowledge', 'web'],
+    githubUrl: 'https://github.com/adineo-cmd/human-skills',
+    liveUrl: 'https://adineo-cmd.github.io/human-skills/',
+    featured: false
+  },
+  {
+    title: 'The Open Dojo',
+    description: 'A free martial arts reference library — styles, kata, ranks, terminology, syllabi, and sparring guides across 15 pages. Pure static.',
+    tags: ['HTML', 'Static Site'],
+    categories: ['knowledge'],
+    githubUrl: 'https://github.com/adineo-cmd/the-open-dojo',
+    liveUrl: 'https://adineo-cmd.github.io/the-open-dojo/',
+    featured: false
+  },
+  {
+    title: 'Agentic Workflow',
+    description: 'Harness-agnostic agentic coding setup — universal rules, agents, skills, MCP hub wiring, and two-account git identity. Works with any AI coding agent.',
+    tags: ['Python', 'MCP', 'AI Agents'],
+    categories: ['devtools', 'ai'],
+    githubUrl: 'https://github.com/adineo-cmd/agentic-workflow',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'Dotfiles',
+    description: 'Portable bash-core dotfiles for Linux, macOS, and WSL — zero-dependency install.',
+    tags: ['Bash', 'Linux', 'Neovim'],
+    categories: ['devtools'],
+    githubUrl: 'https://github.com/adineo-cmd/dotfiles',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'Cloud Predict',
+    description: 'Machine learning prediction pipeline — training, calibration, evaluation, and inference with a CLI and app interface.',
+    tags: ['Python', 'Machine Learning'],
+    categories: ['ml'],
+    githubUrl: 'https://github.com/adineo-cmd/cloud_predict',
+    liveUrl: null,
+    featured: false
+  },
+  {
+    title: 'MindfulAI',
+    description: 'AI-Based Mental Wellness Assistance System.',
+    tags: ['Python', 'Machine Learning', 'Wellness'],
+    categories: ['ai', 'ml'],
+    githubUrl: 'https://github.com/adineo-cmd/mindfulai',
     liveUrl: null,
     featured: true
   },
   {
-    title: 'RoadmapX',
-    description: 'A structured learning platform offering step-by-step career roadmaps in business, finance, science, and management. Features interactive progress dashboards with milestone tracking powered by a FastAPI backend and PostgreSQL.',
-    tags: ['Astro', 'FastAPI', 'PostgreSQL', 'Tailwind CSS'],
-    categories: ['full-stack', 'education'],
-    githubUrl: 'https://github.com/adineo-cmd',
-    liveUrl: null,
+    title: 'Akashic',
+    description: 'Akashic is an open-source Palantir alternative for connecting, exploring, and analyzing complex data. Fully self-hosted, privacy-first, and requiring no API keys.',
+    tags: ['Data Platform', 'Self-Hosted', 'Open Source'],
+    categories: ['devtools'],
+    githubUrl: 'https://github.com/adineo-cmd/Akashic',
+    liveUrl: 'https://akashic.cavira.app',
     featured: true
   },
   {
-    title: 'AI Chat Assistant',
-    description: 'Conversational AI assistant that answers queries using a multi-domain knowledge base. Integrated vector embeddings and transformer models for semantic search, achieving ~85% accuracy in contextual responses.',
-    tags: ['Python', 'TensorFlow', 'PyTorch', 'Flask', 'NLP'],
-    categories: ['ai', 'machine-learning', 'nlp'],
-    githubUrl: 'https://github.com/adineo-cmd',
-    liveUrl: null,
-    featured: true
+    title: 'AI Career Assistant',
+    description: 'A smart, interactive web app powered by the OpenAI GPT API that guides users in building their AI careers — learning paths, job insights, and personalized advice through a ChatGPT-style chat interface.',
+    tags: ['OpenAI API', 'Vercel', 'JavaScript'],
+    categories: ['ai', 'web'],
+    githubUrl: 'https://github.com/adineo-cmd/ai-career-assistant',
+    liveUrl: 'https://ai-career-assistant-ebon.vercel.app',
+    featured: false
   }
 ];
 

@@ -6,13 +6,12 @@ import { projects } from '../data/content.js';
 // Only include categories that actually appear in your real projects
 const categories = [
   { id: 'all', label: 'All' },
-  { id: 'full-stack', label: 'Full Stack' },
-  { id: 'web-development', label: 'Web Development' },
+  { id: 'knowledge', label: 'Knowledge' },
   { id: 'ai', label: 'AI' },
-  { id: 'machine-learning', label: 'Machine Learning' },
-  { id: 'nlp', label: 'NLP' },
+  { id: 'ml', label: 'Machine Learning' },
+  { id: 'web', label: 'Web' },
   { id: 'education', label: 'Education' },
-  { id: 'python', label: 'Python' }
+  { id: 'devtools', label: 'Dev Tools' }
 ];
 ---
 
@@ -123,15 +122,28 @@ const categories = [
                                   rel="noopener noreferrer"
                                   class="text-[#6a6260] hover:text-[#e0aa40] opacity-80 hover:opacity-100 transition-all flex items-center p-1 rounded hover:bg-[#1e1e22] hover:scale-110"
                                 >
-                                  <svg 
-                                    xmlns="http://www.w3.org/2000/svg" 
-                                    width="20" 
-                                    height="20" 
-                                    viewBox="0 0 24 24" 
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
                                     fill="currentColor"
                                     class="github-icon"
                                   >
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111 1.022-.254 1.022-.567v-2.474c-3.338.724-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.956-.262 1.983-.397 3.003-.397s2.047.135 3.006.397c2.291-1.552 3.297-1.23 3.297-1.23.652 1.652.241 2.873.118 3.176.767.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823.899.823 1.82v2.683c0 .313.424.677 1.023.567 4.765-1.587 8.207-6.084 8.207-11.387 0-6.627-5.373-12-12-12z"/>
+                                  </svg>
+                                </a>
+                              )}
+
+                              {project.liveUrl && (
+                                <a
+                                  href={project.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="text-[#6a6260] hover:text-[#e0aa40] opacity-80 hover:opacity-100 transition-all flex items-center p-1 rounded hover:bg-[#1e1e22] hover:scale-110"
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                                   </svg>
                                 </a>
                               )}
@@ -193,26 +205,24 @@ const categories = [
 
         /* Show based on selected category */
         #cat-all:checked ~ .filter-content .project-card,
-        #cat-full-stack:checked ~ .filter-content .project-card[data-categories*="full-stack"],
-        #cat-web-development:checked ~ .filter-content .project-card[data-categories*="web-development"],
+        #cat-knowledge:checked ~ .filter-content .project-card[data-categories*="knowledge"],
         #cat-ai:checked ~ .filter-content .project-card[data-categories*="ai"],
-        #cat-machine-learning:checked ~ .filter-content .project-card[data-categories*="machine-learning"],
-        #cat-nlp:checked ~ .filter-content .project-card[data-categories*="nlp"],
+        #cat-ml:checked ~ .filter-content .project-card[data-categories*="ml"],
+        #cat-web:checked ~ .filter-content .project-card[data-categories*="web"],
         #cat-education:checked ~ .filter-content .project-card[data-categories*="education"],
-        #cat-python:checked ~ .filter-content .project-card[data-categories*="python"] {
+        #cat-devtools:checked ~ .filter-content .project-card[data-categories*="devtools"] {
           display: block;
         }
       }
 
       /* Active label styles */
       #cat-all:checked ~ .filter-content .category-label[for="cat-all"],
-      #cat-full-stack:checked ~ .filter-content .category-label[for="cat-full-stack"],
-      #cat-web-development:checked ~ .filter-content .category-label[for="cat-web-development"],
+      #cat-knowledge:checked ~ .filter-content .category-label[for="cat-knowledge"],
       #cat-ai:checked ~ .filter-content .category-label[for="cat-ai"],
-      #cat-machine-learning:checked ~ .filter-content .category-label[for="cat-machine-learning"],
-      #cat-nlp:checked ~ .filter-content .category-label[for="cat-nlp"],
+      #cat-ml:checked ~ .filter-content .category-label[for="cat-ml"],
+      #cat-web:checked ~ .filter-content .category-label[for="cat-web"],
       #cat-education:checked ~ .filter-content .category-label[for="cat-education"],
-      #cat-python:checked ~ .filter-content .category-label[for="cat-python"] {
+      #cat-devtools:checked ~ .filter-content .category-label[for="cat-devtools"] {
         background-color: #121214;
         color: #e0aa40;
       }
