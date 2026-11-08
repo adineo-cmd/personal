@@ -33,56 +33,56 @@ const inspirations = [
   <>
     <PageNav currentPage="list 100" />
 
-    <div class="min-h-screen bg-[#08080a] text-[#ddd6cc]">
+    <div class="min-h-screen bg-[#1d2021] text-[#ebdbb2]">
       <div class="py-8 md:py-12 px-4 md:px-6">
         <div class="max-w-6xl mx-auto">
           
           <header class="mb-8 md:mb-12">
             <div class="flex items-center gap-3 md:gap-4 mb-6">
-              <span class="text-[10px] md:text-xs tracking-[0.3em] text-[#a89e92] uppercase">A Life Well Lived</span>
-              <div class="h-px bg-gradient-to-r from-[#e0aa40]/50 to-transparent flex-1"></div>
+              <span class="text-[10px] md:text-xs tracking-[0.3em] text-[#a89984] uppercase">A Life Well Lived</span>
+              <div class="h-px bg-gradient-to-r from-[#8ec07c]/50 to-transparent flex-1"></div>
             </div>
             
             <h1 class="text-5xl md:text-7xl font-serif mb-4">
-              <span class="text-white font-bold">100</span>
-              <span class="text-[#e0aa40] italic font-light ml-2 md:ml-4">Things</span>
+              <span class="text-[#fbf1c7] font-bold">100</span>
+              <span class="text-[#8ec07c] italic font-light ml-2 md:ml-4">Things</span>
             </h1>
             
-            <p class="text-[#a89e92] text-sm md:text-base max-w-2xl mb-6 md:mb-8 leading-relaxed">
+            <p class="text-[#a89984] text-sm md:text-base max-w-2xl mb-6 md:mb-8 leading-relaxed">
               A living document — a testament to curiosity, courage, and the beautiful hunger for more. 
               Check items off as you live them.
             </p>
 
             <!-- Progress Card -->
-            <div class="bg-[#0e0e10]/50 border border-[#2a2a2e] rounded-lg p-4 md:p-6 mb-6">
+            <div class="bg-[#282828]/50 border border-[#3c3836] rounded-lg p-4 md:p-6 mb-6">
               <div class="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
                 <div class="relative w-20 h-20 md:w-24 md:h-24 flex items-center justify-center flex-shrink-0">
                   <svg class="w-full h-full transform -rotate-90">
-                    <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="6" fill="transparent" class="text-[#2a2a2e]" />
-                    <circle id="progress-circle" cx="48" cy="48" r="40" stroke="currentColor" stroke-width="6" fill="transparent" stroke-dasharray={2 * Math.PI * 40} stroke-dashoffset={2 * Math.PI * 40 * (1 - stats.percentage / 100)} class="text-[#e0aa40] transition-all duration-500" stroke-linecap="round" />
+                    <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="6" fill="transparent" class="text-[#3c3836]" />
+                    <circle id="progress-circle" cx="48" cy="48" r="40" stroke="currentColor" stroke-width="6" fill="transparent" stroke-dasharray={2 * Math.PI * 40} stroke-dashoffset={2 * Math.PI * 40 * (1 - stats.percentage / 100)} class="text-[#8ec07c] transition-all duration-500" stroke-linecap="round" />
                   </svg>
                   <div class="absolute inset-0 flex flex-col items-center justify-center">
-                    <span id="percentage-text" class="text-xl md:text-2xl font-bold text-[#e0aa40]">{stats.percentage}%</span>
-                    <span class="text-[8px] md:text-[10px] text-[#6a6260] uppercase tracking-wider">Done</span>
+                    <span id="percentage-text" class="text-xl md:text-2xl font-bold text-[#8ec07c]">{stats.percentage}%</span>
+                    <span class="text-[8px] md:text-[10px] text-[#928374] uppercase tracking-wider">Done</span>
                   </div>
                 </div>
                 <div class="flex-1 w-full">
                   <div class="flex gap-4 md:gap-8 mb-3 md:mb-4">
                     <div>
-                      <div id="completed-count" class="text-xl md:text-2xl font-serif text-[#5a9870]">{stats.goalsCompleted}</div>
-                      <div class="text-[9px] md:text-[10px] text-[#6a6260] uppercase tracking-wider">Completed</div>
+                      <div id="completed-count" class="text-xl md:text-2xl font-serif text-[#b8bb26]">{stats.goalsCompleted}</div>
+                      <div class="text-[9px] md:text-[10px] text-[#928374] uppercase tracking-wider">Completed</div>
                     </div>
                     <div>
-                      <div id="remaining-count" class="text-xl md:text-2xl font-serif text-[#d86848]">{stats.goalsTotal - stats.goalsCompleted}</div>
-                      <div class="text-[9px] md:text-[10px] text-[#6a6260] uppercase tracking-wider">Remaining</div>
+                      <div id="remaining-count" class="text-xl md:text-2xl font-serif text-[#fe8019]">{stats.goalsTotal - stats.goalsCompleted}</div>
+                      <div class="text-[9px] md:text-[10px] text-[#928374] uppercase tracking-wider">Remaining</div>
                     </div>
                     <div>
-                      <div class="text-xl md:text-2xl font-serif text-[#ddd6cc]">{stats.goalsTotal}</div>
-                      <div class="text-[9px] md:text-[10px] text-[#6a6260] uppercase tracking-wider">Total</div>
+                      <div class="text-xl md:text-2xl font-serif text-[#ebdbb2]">{stats.goalsTotal}</div>
+                      <div class="text-[9px] md:text-[10px] text-[#928374] uppercase tracking-wider">Total</div>
                     </div>
                   </div>
-                  <div class="w-full h-px bg-[#2a2a2e] mb-2"></div>
-                  <div class="text-xs text-[#6a6260] font-mono">
+                  <div class="w-full h-px bg-[#3c3836] mb-2"></div>
+                  <div class="text-xs text-[#928374] font-mono">
                     <span id="progress-text">{stats.goalsCompleted}</span> of {stats.goalsTotal} completed · Keep going
                   </div>
                 </div>
@@ -91,23 +91,23 @@ const inspirations = [
 
             <!-- Inspire Me -->
             <div class="flex flex-col sm:flex-row items-start gap-4 mb-6">
-              <button id="inspire-btn" type="button" class="border border-[#2a2a2e] bg-[#0e0e10]/30 text-[#a89e92] px-4 py-2 text-xs tracking-widest uppercase hover:border-[#e0aa40]/50 hover:text-[#e0aa40] transition-all cursor-pointer select-none">
+              <button id="inspire-btn" type="button" class="border border-[#3c3836] bg-[#282828]/30 text-[#a89984] px-4 py-2 text-xs tracking-widest uppercase hover:border-[#8ec07c]/50 hover:text-[#8ec07c] transition-all cursor-pointer select-none">
                  Inspire Me
               </button>
-              <div id="inspiration-text" class="text-[#e0aa40]/90 italic text-sm md:text-base font-light opacity-0 transition-opacity duration-500 flex-1 min-h-[1.5rem]"></div>
+              <div id="inspiration-text" class="text-[#8ec07c]/90 italic text-sm md:text-base font-light opacity-0 transition-opacity duration-500 flex-1 min-h-[1.5rem]"></div>
             </div>
 
             <!-- Category Filters -->
             <div class="overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
               <div class="flex gap-2 min-w-max" id="category-filters">
-                <button type="button" data-category="all" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-[#e0aa40] border-[#e0aa40] text-[#08080a] font-semibold cursor-pointer select-none">All</button>
-                <button type="button" data-category="travel" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none">✈ Travel</button>
-                <button type="button" data-category="adventure" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none">⛰ Adventure</button>
-                <button type="button" data-category="learning" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none"> Learning</button>
-                <button type="button" data-category="creative" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none">🎨 Creative</button>
-                <button type="button" data-category="food" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none"> Food</button>
-                <button type="button" data-category="people" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none">🤝 People</button>
-                <button type="button" data-category="mind" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#2a2a2e] text-[#a89e92] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] cursor-pointer select-none">🧠 Mind</button>
+                <button type="button" data-category="all" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-[#8ec07c] border-[#8ec07c] text-[#1d2021] font-semibold cursor-pointer select-none">All</button>
+                <button type="button" data-category="travel" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none">✈ Travel</button>
+                <button type="button" data-category="adventure" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none">⛰ Adventure</button>
+                <button type="button" data-category="learning" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none"> Learning</button>
+                <button type="button" data-category="creative" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none">🎨 Creative</button>
+                <button type="button" data-category="food" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none"> Food</button>
+                <button type="button" data-category="people" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none">🤝 People</button>
+                <button type="button" data-category="mind" class="category-btn px-4 py-2 text-xs tracking-wider uppercase transition-all border bg-transparent border-[#3c3836] text-[#a89984] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] cursor-pointer select-none">🧠 Mind</button>
               </div>
             </div>
           </header>
@@ -117,26 +117,26 @@ const inspirations = [
 
           <!-- Habits Section -->
           <section class="mb-12 md:mb-16">
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#2a2a2e]">
-              <h2 class="text-xl md:text-2xl font-serif text-white flex items-center gap-3">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#3c3836]">
+              <h2 class="text-xl md:text-2xl font-serif text-[#fbf1c7] flex items-center gap-3">
                 <span class="text-2xl">✨</span>
                 <span>Daily Habits</span>
               </h2>
-              <span id="habits-counter" class="text-xs text-[#6a6260] font-mono">{stats.habitsCompleted}/{stats.habitsTotal}</span>
+              <span id="habits-counter" class="text-xs text-[#928374] font-mono">{stats.habitsCompleted}/{stats.habitsTotal}</span>
             </div>
-            <div id="habits-container" class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2a2a2e]/50 border border-[#2a2a2e] rounded-lg overflow-hidden"></div>
+            <div id="habits-container" class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#3c3836]/50 border border-[#3c3836] rounded-lg overflow-hidden"></div>
           </section>
 
-          <div class="text-center py-6 md:py-8 border-t border-[#2a2a2e]">
-            <p class="text-[10px] md:text-xs text-[#6a6260] tracking-[0.2em] uppercase">✦ a life well lived · 100 things · living document</p>
+          <div class="text-center py-6 md:py-8 border-t border-[#3c3836]">
+            <p class="text-[10px] md:text-xs text-[#928374] tracking-[0.2em] uppercase">✦ a life well lived · 100 things · living document</p>
           </div>
 
         </div>
       </div>
 
-      <div class="border-t border-[#2a2a2e] py-4 md:py-6">
+      <div class="border-t border-[#3c3836] py-4 md:py-6">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
-          <a href="/" class="flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-xs tracking-wider uppercase">
+          <a href="/" class="flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-xs tracking-wider uppercase">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
             Back to Home
           </a>
@@ -214,21 +214,21 @@ const inspirations = [
           const section = document.createElement('section');
           section.className = 'mb-12 md:mb-16';
           section.innerHTML = `
-            <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#2a2a2e]">
-              <h2 class="text-xl md:text-2xl font-serif text-white flex items-center gap-3">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#3c3836]">
+              <h2 class="text-xl md:text-2xl font-serif text-[#fbf1c7] flex items-center gap-3">
                 <span class="text-2xl">${display.emoji}</span>
                 <span>${display.name}</span>
               </h2>
-              <span class="text-xs text-[#6a6260] font-mono">${completed}/${goals.length}</span>
+              <span class="text-xs text-[#928374] font-mono">${completed}/${goals.length}</span>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2a2a2e]/50 border border-[#2a2a2e] rounded-lg overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#3c3836]/50 border border-[#3c3836] rounded-lg overflow-hidden">
               ${goals.map((g, i) => `
-                <div class="goal-item flex items-center gap-4 p-4 bg-[#0e0e10]/30 hover:bg-[#121214] transition-all group border-l-2 ${g.completed ? 'border-[#5a9870]/50' : 'border-[#2a2a2e] hover:border-[#e0aa40]'} cursor-pointer select-none">
-                  <span class="text-[10px] text-[#6a6260] font-mono w-6 flex-shrink-0">${String(i + 1).padStart(2, '0')}</span>
-                  <div class="w-4 h-4 border flex-shrink-0 rounded-sm ${g.completed ? 'bg-[#5a9870]/50 border-[#5a9870]/50' : 'border-[#2a2a2e] group-hover:border-[#e0aa40]/50'} flex items-center justify-center">
-                    ${g.completed ? '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#08080a" stroke-width="3"><polyline points="20 6 9 17 4 12" /></svg>' : ''}
+                <div class="goal-item flex items-center gap-4 p-4 bg-[#282828]/30 hover:bg-[#3c3836] transition-all group border-l-2 ${g.completed ? 'border-[#b8bb26]/50' : 'border-[#3c3836] hover:border-[#8ec07c]'} cursor-pointer select-none">
+                  <span class="text-[10px] text-[#928374] font-mono w-6 flex-shrink-0">${String(i + 1).padStart(2, '0')}</span>
+                  <div class="w-4 h-4 border flex-shrink-0 rounded-sm ${g.completed ? 'bg-[#b8bb26]/50 border-[#b8bb26]/50' : 'border-[#3c3836] group-hover:border-[#8ec07c]/50'} flex items-center justify-center">
+                    ${g.completed ? '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1d2021" stroke-width="3"><polyline points="20 6 9 17 4 12" /></svg>' : ''}
                   </div>
-                  <span class="text-sm flex-1 leading-relaxed ${g.completed ? 'text-[#6a6260] line-through' : 'text-[#ddd6cc] group-hover:text-white'}">${g.text}</span>
+                  <span class="text-sm flex-1 leading-relaxed ${g.completed ? 'text-[#928374] line-through' : 'text-[#ebdbb2] group-hover:text-[#fbf1c7]'}">${g.text}</span>
                 </div>
               `).join('')}
             </div>
@@ -241,13 +241,13 @@ const inspirations = [
           els.habitsContainer.innerHTML = '';
           habitsData.forEach((h, idx) => {
             const item = document.createElement('div');
-            item.className = `habit-item flex items-center gap-4 p-4 bg-[#0e0e10]/30 hover:bg-[#121214] transition-all group border-l-2 ${h.completed ? 'border-[#5a9870]/50' : 'border-[#2a2a2e] hover:border-[#e0aa40]'} cursor-pointer select-none`;
+            item.className = `habit-item flex items-center gap-4 p-4 bg-[#282828]/30 hover:bg-[#3c3836] transition-all group border-l-2 ${h.completed ? 'border-[#b8bb26]/50' : 'border-[#3c3836] hover:border-[#8ec07c]'} cursor-pointer select-none`;
             item.innerHTML = `
-              <span class="text-[10px] text-[#6a6260] font-mono w-6 flex-shrink-0">${String(idx + 1).padStart(2, '0')}</span>
-              <div class="w-4 h-4 border flex-shrink-0 rounded-sm ${h.completed ? 'bg-[#5a9870]/50 border-[#5a9870]/50' : 'border-[#2a2a2e] group-hover:border-[#e0aa40]/50'} flex items-center justify-center">
-                ${h.completed ? '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#08080a" stroke-width="3"><polyline points="20 6 9 17 4 12" /></svg>' : ''}
+              <span class="text-[10px] text-[#928374] font-mono w-6 flex-shrink-0">${String(idx + 1).padStart(2, '0')}</span>
+              <div class="w-4 h-4 border flex-shrink-0 rounded-sm ${h.completed ? 'bg-[#b8bb26]/50 border-[#b8bb26]/50' : 'border-[#3c3836] group-hover:border-[#8ec07c]/50'} flex items-center justify-center">
+                ${h.completed ? '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1d2021" stroke-width="3"><polyline points="20 6 9 17 4 12" /></svg>' : ''}
               </div>
-              <span class="text-sm flex-1 leading-relaxed ${h.completed ? 'text-[#6a6260] line-through' : 'text-[#ddd6cc] group-hover:text-white'}">${h.text}</span>
+              <span class="text-sm flex-1 leading-relaxed ${h.completed ? 'text-[#928374] line-through' : 'text-[#ebdbb2] group-hover:text-[#fbf1c7]'}">${h.text}</span>
             `;
             els.habitsContainer.appendChild(item);
           });
@@ -278,14 +278,14 @@ const inspirations = [
             els.categoryBtns.forEach(b => {
               const isActive = b.dataset.category === currentFilter;
               if (isActive) {
-                b.style.backgroundColor = '#e0aa40';
-                b.style.borderColor = '#e0aa40';
-                b.style.color = '#08080a';
+                b.style.backgroundColor = '#8ec07c';
+                b.style.borderColor = '#8ec07c';
+                b.style.color = '#1d2021';
                 b.style.fontWeight = '600';
               } else {
                 b.style.backgroundColor = 'transparent';
-                b.style.borderColor = '#2a2a2e';
-                b.style.color = '#a89e92';
+                b.style.borderColor = '#3c3836';
+                b.style.color = '#a89984';
                 b.style.fontWeight = 'normal';
               }
             });

@@ -1,7 +1,7 @@
 export default {
   "label": "Visualization & Neural Priming",
   "icon": "🌀",
-  "color": "#9070a0",
+  "color": "#d3869b",
   "group": "Performance",
   "sub": "Mental Rehearsal, Neural Priming",
   "subdomains": [

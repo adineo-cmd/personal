@@ -12,40 +12,40 @@ const featuredCount = notesIndex.categories.reduce((sum, cat) => {
   <>
     <PageNav currentPage="notes" />
 
-    <div class="min-h-screen bg-[#08080a] text-[#ddd6cc]">
+    <div class="min-h-screen bg-[#1d2021] text-[#ebdbb2]">
       <div class="py-16 px-6">
         <div class="max-w-6xl mx-auto">
           
           {/* Header */}
           <div class="mb-12">
-            <p class="text-xs text-[#6a6260] uppercase tracking-widest mb-2">Knowledge Base</p>
+            <p class="text-xs text-[#928374] uppercase tracking-widest mb-2">Knowledge Base</p>
             <h1 class="text-6xl md:text-7xl font-serif mb-4">
-              <span class="text-white">My</span><span class="text-[#e0aa40] italic"> Notes</span>
+              <span class="text-[#fbf1c7]">My</span><span class="text-[#8ec07c] italic"> Notes</span>
             </h1>
-            <p class="text-[#6a6260] text-sm mb-6">Last Updated — February 04, 2026</p>
-            <p class="text-[#a89e92] max-w-2xl leading-relaxed">
+            <p class="text-[#928374] text-sm mb-6">Last Updated — February 04, 2026</p>
+            <p class="text-[#a89984] max-w-2xl leading-relaxed">
               A curated collection of 100+ notes on programming, AI/ML, DevOps, 
               productivity, and homelab. Continuously updated as I learn and grow.
             </p>
           </div>
 
           {/* Stats Grid */}
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#2a2a2e] border border-[#2a2a2e] mb-16">
-            <div class="bg-[#08080a] p-6">
-              <div class="text-4xl font-serif text-[#e0aa40] mb-1">100+</div>
-              <div class="text-xs text-[#6a6260] uppercase tracking-wider">Total Notes</div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#3c3836] border border-[#3c3836] mb-16">
+            <div class="bg-[#1d2021] p-6">
+              <div class="text-4xl font-serif text-[#8ec07c] mb-1">100+</div>
+              <div class="text-xs text-[#928374] uppercase tracking-wider">Total Notes</div>
             </div>
-            <div class="bg-[#08080a] p-6">
-              <div class="text-4xl font-serif text-[#5a9870] mb-1">6</div>
-              <div class="text-xs text-[#6a6260] uppercase tracking-wider">Categories</div>
+            <div class="bg-[#1d2021] p-6">
+              <div class="text-4xl font-serif text-[#b8bb26] mb-1">6</div>
+              <div class="text-xs text-[#928374] uppercase tracking-wider">Categories</div>
             </div>
-            <div class="bg-[#08080a] p-6">
-              <div class="text-4xl font-serif text-[#5a80a8] mb-1">26</div>
-              <div class="text-xs text-[#6a6260] uppercase tracking-wider">Featured</div>
+            <div class="bg-[#1d2021] p-6">
+              <div class="text-4xl font-serif text-[#83a598] mb-1">26</div>
+              <div class="text-xs text-[#928374] uppercase tracking-wider">Featured</div>
             </div>
-            <div class="bg-[#08080a] p-6">
-              <div class="text-4xl font-serif text-[#d86848] mb-1">2024–26</div>
-              <div class="text-xs text-[#6a6260] uppercase tracking-wider">Active Years</div>
+            <div class="bg-[#1d2021] p-6">
+              <div class="text-4xl font-serif text-[#fe8019] mb-1">2024–26</div>
+              <div class="text-xs text-[#928374] uppercase tracking-wider">Active Years</div>
             </div>
           </div>
 
@@ -56,13 +56,13 @@ const featuredCount = notesIndex.categories.reduce((sum, cat) => {
                 type="text" 
                 id="searchInput"
                 placeholder="Search notes, tags..."
-                class="w-full bg-[#0e0e10] border border-[#2a2a2e] rounded-lg py-3 pl-12 pr-4 text-sm text-[#ddd6cc] placeholder-[#6a6260] focus:outline-none focus:border-[#e0aa40] transition-colors"
+                class="w-full bg-[#282828] border border-[#3c3836] rounded-lg py-3 pl-12 pr-4 text-sm text-[#ebdbb2] placeholder-[#928374] focus:outline-none focus:border-[#8ec07c] transition-colors"
               />
-              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6a6260]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#928374]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-            <p id="searchResults" class="text-xs text-[#6a6260] mt-2 hidden"></p>
+            <p id="searchResults" class="text-xs text-[#928374] mt-2 hidden"></p>
           </div>
 
           {/* Categories & Notes */}
@@ -70,11 +70,11 @@ const featuredCount = notesIndex.categories.reduce((sum, cat) => {
             {notesIndex.categories.map((category, catIndex) => (
               <div class="mb-12 category-section" data-category={category.title} key={catIndex}>
                 <div class="flex items-center gap-3 mb-6">
-                  <h2 class="text-2xl font-serif text-white">
+                  <h2 class="text-2xl font-serif text-[#fbf1c7]">
                     {category.title}
                   </h2>
-                  <span class="text-[#6a6260] text-sm italic">{category.description}</span>
-                  <span class="ml-auto text-xs text-[#6a6260] border border-[#2a2a2e] rounded-full px-3 py-1 note-count">
+                  <span class="text-[#928374] text-sm italic">{category.description}</span>
+                  <span class="ml-auto text-xs text-[#928374] border border-[#3c3836] rounded-full px-3 py-1 note-count">
                     {category.notes.length} notes
                   </span>
                 </div>
@@ -83,22 +83,22 @@ const featuredCount = notesIndex.categories.reduce((sum, cat) => {
                   {category.notes.map((note) => (
                     <a 
                       href={`/notes/${note.slug}`}
-                      class="note-card block group border-l-2 border-[#2a2a2e] hover:border-[#e0aa40] pl-6 py-2 transition-all duration-300"
+                      class="note-card block group border-l-2 border-[#3c3836] hover:border-[#8ec07c] pl-6 py-2 transition-all duration-300"
                       data-title={note.title.toLowerCase()}
                       data-tags={note.tags?.join(' ').toLowerCase() || ''}
                       data-excerpt={note.excerpt.toLowerCase()}
                       key={note.slug}
                     >
-                      <article class="bg-[#0e0e10] border border-[#2a2a2e]/50 rounded-lg p-6 hover:border-[#2a2a2e] transition-colors">
+                      <article class="bg-[#282828] border border-[#3c3836]/50 rounded-lg p-6 hover:border-[#3c3836] transition-colors">
                         <div class="flex items-start justify-between mb-2">
-                          <h3 class="text-lg font-medium text-[#ddd6cc] group-hover:text-white transition-colors">
+                          <h3 class="text-lg font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] transition-colors">
                             {note.title}
                           </h3>
-                          <time class="text-xs text-[#6a6260] whitespace-nowrap ml-4">
+                          <time class="text-xs text-[#928374] whitespace-nowrap ml-4">
                             {new Date(note.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                           </time>
                         </div>
-                        <p class="text-sm text-[#a89e92] leading-relaxed mb-4">
+                        <p class="text-sm text-[#a89984] leading-relaxed mb-4">
                           {note.excerpt}
                         </p>
                         {note.tags && note.tags.length > 0 && (
@@ -106,7 +106,7 @@ const featuredCount = notesIndex.categories.reduce((sum, cat) => {
                             {note.tags.map((tag, tagIndex) => (
                               <span 
                                 key={tagIndex}
-                                class="text-xs text-[#6a6260] border border-[#2a2a2e]/50 px-2 py-1 rounded hover:border-[#2a2a2e] transition-colors"
+                                class="text-xs text-[#928374] border border-[#3c3836]/50 px-2 py-1 rounded hover:border-[#3c3836] transition-colors"
                               >
                                 {tag}
                               </span>
@@ -125,11 +125,11 @@ const featuredCount = notesIndex.categories.reduce((sum, cat) => {
       </div>
 
       {/* Footer */}
-      <div class="border-t border-[#2a2a2e]/50 py-6">
+      <div class="border-t border-[#3c3836]/50 py-6">
         <div class="max-w-6xl mx-auto px-6">
           <a
             href="/"
-            class="inline-flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-sm"
+            class="inline-flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-sm"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />

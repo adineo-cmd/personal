@@ -1,7 +1,7 @@
 export default {
   "label": "Cognitive Foundation",
   "icon": "🧬",
-  "color": "#5a80a8",
+  "color": "#83a598",
   "group": "Core",
   "sub": "Focus, Memory, Processing",
   "subdomains": [

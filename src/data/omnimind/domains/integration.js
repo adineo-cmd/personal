@@ -1,7 +1,7 @@
 export default {
   "label": "Integration & Synthesis",
   "icon": "🌐",
-  "color": "#7060c0",
+  "color": "#d3869b",
   "group": "Foundation",
   "sub": "Cross Domain, Daily Synthesis",
   "subdomains": [

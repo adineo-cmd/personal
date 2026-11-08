@@ -1,7 +1,7 @@
 export default {
   "label": "Meta-Learning Architecture",
   "icon": "🔬",
-  "color": "#3090a8",
+  "color": "#83a598",
   "group": "Domains",
   "sub": "Learning How To Learn, Cognitive Optimization",
   "subdomains": [

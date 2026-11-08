@@ -1,7 +1,7 @@
 export default {
   "label": "Flow State",
   "icon": "🌊",
-  "color": "#5a9870",
+  "color": "#b8bb26",
   "group": "Performance",
   "sub": "Triggers, Cultivation",
   "subdomains": [

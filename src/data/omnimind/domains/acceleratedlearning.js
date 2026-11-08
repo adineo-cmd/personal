@@ -1,7 +1,7 @@
 export default {
   "label": "Accelerated Learning",
   "icon": "⚡",
-  "color": "#e0aa40",
+  "color": "#8ec07c",
   "group": "Core",
   "sub": "Deconstruction, Encoding, Consolidation",
   "subdomains": [

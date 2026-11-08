@@ -1,7 +1,7 @@
 export default {
   "label": "Rapid Comprehension",
   "icon": "🎯",
-  "color": "#409898",
+  "color": "#8ec07c",
   "group": "Domains",
   "sub": "Core Extraction, Structural Mapping, Instant Application",
   "subdomains": [

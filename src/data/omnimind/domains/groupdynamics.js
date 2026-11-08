@@ -1,7 +1,7 @@
 export default {
   "label": "Leadership & Group Dynamics",
   "icon": "👥",
-  "color": "#d09030",
+  "color": "#fe8019",
   "group": "Social",
   "sub": "Crowd Psychology, Team Architecture",
   "subdomains": [

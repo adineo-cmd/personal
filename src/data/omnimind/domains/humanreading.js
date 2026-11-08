@@ -1,7 +1,7 @@
 export default {
   "label": "Human Reading",
   "icon": "👁️",
-  "color": "#7060c0",
+  "color": "#d3869b",
   "group": "Social",
   "sub": "Baseline Calibration, Motivational Profiling, Predictive Modeling",
   "subdomains": [

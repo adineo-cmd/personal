@@ -10,20 +10,20 @@ import { personalInfo } from '../data/content.js';
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: '#08080a',
+    backgroundColor: '#1d2021',
   }}
 >
   {/* Semi-transparent overlay */}
-  <div class="absolute inset-0 bg-[#08080a]/80"></div>
+  <div class="absolute inset-0 bg-[#1d2021]/80"></div>
 
   {/* Content */}
   <div class="max-w-4xl text-center relative z-10">
-    <h1 class="text-5xl md:text-6xl font-bold mb-4 text-[#ddd6cc]">
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 text-[#ebdbb2]">
       {personalInfo.name}
     </h1>
-    <p class="text-xl text-[#a89e92] mb-8">{personalInfo.title}</p>
+    <p class="text-xl text-[#a89984] mb-8">{personalInfo.title}</p>
     
-    <p class="text-base text-[#6a6260] mb-8 max-w-3xl mx-auto leading-relaxed">
+    <p class="text-base text-[#928374] mb-8 max-w-3xl mx-auto leading-relaxed">
       {personalInfo.description}
     </p>
   </div>

@@ -1,7 +1,7 @@
 export default {
   "label": "Time Perception & Temporal Mastery",
   "icon": "⏱️",
-  "color": "#3090a8",
+  "color": "#83a598",
   "group": "Domains",
   "sub": "Perception, Management",
   "subdomains": [

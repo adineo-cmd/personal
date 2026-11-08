@@ -14,24 +14,48 @@ html {
 }
 
 body {
-  background-color: #09090b;
-  color: #a1a1aa;
+  background-color: #1d2021;
+  color: #a89984;
   font-family: 'Courier New', Courier, monospace;
 }
 
-/* Dark mode colors */
+/* Dark mode colors — gruvbox dark palette */
 :root {
   color-scheme: dark;
-  --color-bg-primary: #09090b;
-  --color-text-primary: #a1a1aa;
-  --color-border: #27272a;
+  /* backgrounds */
+  --gb-bg0-h: #1d2021;
+  --gb-bg0: #282828;
+  --gb-bg0-s: #32302f;
+  --gb-bg1: #3c3836;
+  --gb-bg2: #504945;
+  --gb-bg3: #665c54;
+  --gb-bg4: #7c6f64;
+  --gb-gray: #928374;
+  /* foregrounds */
+  --gb-fg: #fbf1c7;
+  --gb-fg1: #ebdbb2;
+  --gb-fg2: #d5c4a1;
+  --gb-fg3: #bdae93;
+  --gb-fg4: #a89984;
+  /* accents */
+  --gb-red: #fb4934;
+  --gb-green: #b8bb26;
+  --gb-accent: #8ec07c;
+  --gb-blue: #83a598;
+  --gb-purple: #d3869b;
+  --gb-aqua: #8ec07c;
+  --gb-orange: #fe8019;
+
+  --color-bg-primary: #1d2021;
+  --color-text-primary: #a89984;
+  --color-border: #3c3836;
 }
 
 /* Markdown styling for blog posts */
 .prose h2 {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #e4e4e7;
+  color: #ebdbb2;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -39,20 +63,20 @@ body {
 .prose h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #d4d4d8;
+  color: #d5c4a1;
   margin-top: 1rem;
   margin-bottom: 0.75rem;
 }
 
 .prose p {
-  color: #a1a1aa;
+  color: #a89984;
   margin-bottom: 1rem;
   line-height: 1.5;
 }
 
 .prose ul,
 .prose ol {
-  color: #a1a1aa;
+  color: #a89984;
   margin-left: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -62,20 +86,20 @@ body {
 }
 
 .prose code {
-  background-color: #27272a;
-  color: #e4e4e7;
+  background-color: #3c3836;
+  color: #ebdbb2;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
 }
 
 .prose a {
-  color: #d4d4d8;
+  color: #d5c4a1;
   transition: color 0.2s;
 }
 
 .prose a:hover {
-  color: #f4f4f5;
+  color: #fbf1c7;
 }
 
 /* Smooth transitions */
@@ -93,14 +117,14 @@ label {
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #1d2021;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #3c3836;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #504945;
 }

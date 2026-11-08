@@ -1,7 +1,7 @@
 export default {
   "label": "Existential Resilience",
   "icon": "🌌",
-  "color": "#5a80a8",
+  "color": "#83a598",
   "group": "Foundation",
   "sub": "Meaning Making, Mortality Awareness",
   "subdomains": [

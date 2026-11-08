@@ -7,11 +7,11 @@ import { linksData } from '../data/links';
 <BaseLayout title="Links | Aditya Yadav" description="All my links and online presences">
   <style>
     :root{
-      --bg:#08080a;--surf:#0e0e10;--card:#121214;--card2:#161618;
-      --b1:#1e1e22;--b2:#2a2a2e;
-      --t1:#ddd6cc;--t2:#a89e92;--mu:#6a6260;--dim:#3a3836;
-      --gold:#e0aa40;--gold2:#f0cc72;
-      --coral:#d86848;--sage:#5a9870;--slate:#5a80a8;
+      --bg:#1d2021;--surf:#282828;--card:#3c3836;--card2:#282828;
+      --b1:#3c3836;--b2:#3c3836;
+      --t1:#ebdbb2;--t2:#a89984;--mu:#928374;--dim:#504945;
+      --gold:#8ec07c;--gold2:#8ec07c;
+      --coral:#fe8019;--sage:#b8bb26;--slate:#83a598;
       --pnav-height: 56px;
     }
     
@@ -25,7 +25,7 @@ import { linksData } from '../data/links';
     .sidebar::-webkit-scrollbar-thumb{background:var(--b2);border-radius:2px;}
     
     .sb-head{padding:0 24px 24px;border-bottom:1px solid var(--b1);margin-bottom:16px;}
-    .sb-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;}
+    .sb-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fbf1c7;margin-bottom:4px;}
     .sb-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mu);}
     
     .sb-search-wrap{padding:0 16px 16px;border-bottom:1px solid var(--b1);margin-bottom:8px;}
@@ -35,7 +35,7 @@ import { linksData } from '../data/links';
     
     .toc-item{display:flex;align-items:center;gap:10px;padding:7px 24px;cursor:pointer;transition:all .15s;text-decoration:none;color:var(--mu);font-size:13px;}
     .toc-item:hover{background:var(--card);color:var(--t2);}
-    .toc-item.active{background:rgba(224,170,64,.07);color:var(--gold);border-left:2px solid var(--gold);}
+    .toc-item.active{background:rgba(142,192,124,.07);color:var(--gold);border-left:2px solid var(--gold);}
     .toc-num{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);width:20px;}
     .toc-label{flex:1;font-size:12px;}
     .toc-count{font-family:'DM Mono',monospace;font-size:9px;color:var(--dim);}
@@ -44,7 +44,7 @@ import { linksData } from '../data/links';
     
     .eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
     
-    h1{font-family:'Playfair Display',serif;font-size:clamp(48px,8vw,80px);font-weight:900;line-height:.9;color:#fff;margin-bottom:12px;}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(48px,8vw,80px);font-weight:900;line-height:.9;color:#fbf1c7;margin-bottom:12px;}
     h1 span{color:var(--gold);font-style:italic;}
     
     .hd-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--mu);margin-bottom:12px;}
@@ -62,7 +62,7 @@ import { linksData } from '../data/links';
     .cat-section{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--b2);}
     .cat-section:last-of-type{border-bottom:none;}
     
-    .cat-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:6px;}
+    .cat-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fbf1c7;margin-bottom:6px;}
     .cat-sub{font-size:12px;color:var(--mu);font-style:italic;margin-bottom:14px;}
     
     .link-list{display:flex;flex-direction:column;gap:8px;}
@@ -137,7 +137,7 @@ import { linksData } from '../data/links';
       }
       
       .cat-bar .toc-item.active{
-        background: rgba(224, 170, 64, 0.15);
+        background: rgba(142, 192, 124, 0.15);
         color: var(--gold);
         border-color: var(--gold);
       }

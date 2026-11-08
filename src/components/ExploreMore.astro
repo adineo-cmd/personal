@@ -1,8 +1,10 @@
 ---
 // src/components/ExploreMore.astro
+// Home teaser — Create & Learn live here; Body, Mind, Tools & Roots live on /explore
 const linkGroups = [
   {
     id: 'create',
+    num: '01',
     title: 'Create',
     tag: 'things I make',
     items: [
@@ -13,6 +15,7 @@ const linkGroups = [
   },
   {
     id: 'learn',
+    num: '02',
     title: 'Learn',
     tag: 'things I study',
     items: [
@@ -21,99 +24,56 @@ const linkGroups = [
       { label: 'goals, wishes', path: 'list100', name: 'List 100' },
     ]
   },
-  {
-    id: 'body',
-    title: 'Body',
-    tag: 'taking care of myself',
-    items: [
-      { label: 'exercise routine', path: 'exercise', name: 'Exercise' },
-      { label: 'home training skills', path: 'hometraining', name: 'Home Training' },
-      { label: 'martial arts encyclopedia', path: 'martialarts', name: 'Martial Arts' },
-      { label: 'mobility & flexibility', path: 'mobility', name: 'Mobility' }, // 🆕 Added
-      { label: 'anatomy & injury guide', path: 'anatomy', name: 'Anatomy' },
-      { label: 'daily routine', path: 'routine', name: 'Daily Routine' },
-    ]
-  },
-  {
-    id: 'mind',
-    title: 'Mind',
-    tag: 'mental training & cognitive mastery',
-    items: [
-      { label: 'universal mastery system', path: 'mind', name: 'Mind Training' },
-    ]
-  },
-  {
-    id: 'tools',
-    title: 'Tools',
-    tag: 'things I use',
-    items: [
-      { label: 'computer & gear', path: 'gear', name: 'Gear' },
-      { label: 'cool links', path: 'links', name: 'Links' },
-      { label: 'progress, achievements', path: 'timeline', name: 'Timeline' },
-    ]
-  },
-  {
-    id: 'roots',
-    title: 'Roots',
-    tag: 'where I come from',
-    items: [
-      { label: 'family tree, lineage', path: 'family-tree', name: 'Family Tree' },
-      { label: 'miscellaneous', path: 'misc', name: 'Misc' },
-    ]
-  }
 ];
 ---
 
 <section
   id="explore"
-  class="py-16 md:py-24 px-4 md:px-6 bg-[#08080a] relative overflow-hidden"
+  class="py-16 md:py-24 px-4 md:px-6 bg-[#1d2021] relative overflow-hidden"
   style={{
     backgroundImage: `url('/images/debian_grey_swirl.webp')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundColor: '#08080a',
+    backgroundColor: '#1d2021',
   }}
 >
-  <div class="absolute inset-0 bg-[#08080a]/80"></div>
+  <div class="absolute inset-0 bg-[#1d2021]/80"></div>
 
   <div class="max-w-4xl mx-auto relative z-10">
-    <h2 class="text-2xl md:text-4xl font-bold mb-2 text-[#ddd6cc] text-left">
+    <h2 class="text-2xl md:text-4xl font-bold mb-2 text-[#ebdbb2] text-left">
       Explore
     </h2>
-    <p class="text-[#a89e92] text-xs md:text-sm mb-8 md:mb-12 text-left">
+    <p class="text-[#a89984] text-xs md:text-sm mb-8 md:mb-12 text-left">
       projects, writings, books, timeline, family, goals, gear, notes, links, fitness, mind training, photos, and misc
     </p>
 
-    <div class="flex flex-col">
-      {linkGroups.map((group, index) => (
-        <div class="py-6 md:py-8 border-t border-[#2a2a2e]">
-          <div class="flex items-baseline justify-between gap-2 md:gap-4 mb-3 md:mb-5">
-            <div class="font-serif font-medium text-lg md:text-2xl tracking-tight text-[#ddd6cc] flex items-baseline gap-2 md:gap-3">
-              <span class="font-mono text-[10px] md:text-xs text-[#e0aa40]/80 tracking-wide">
-                {String(index + 1).padStart(2, '0')}
+    <div class="grid md:grid-cols-2 gap-px bg-[#3c3836] border border-[#3c3836] mb-8">
+      {linkGroups.map((group) => (
+        <div class="bg-[#1d2021]/90 backdrop-blur-sm p-6 md:p-8">
+          <div class="flex items-baseline justify-between gap-2 mb-6">
+            <div class="font-serif font-medium text-xl md:text-2xl tracking-tight text-[#ebdbb2] flex items-baseline gap-3">
+              <span class="font-mono text-[10px] md:text-xs text-[#8ec07c]/80 tracking-wide">
+                {group.num}
               </span>
               {group.title}
             </div>
-            <div class="text-xs md:text-sm text-[#6a6260] italic whitespace-nowrap hidden sm:block">
+            <div class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap hidden sm:block">
               {group.tag}
             </div>
           </div>
 
           <div class="space-y-3 md:space-y-4 text-left">
-            {group.items.map((item, idx) => (
-              <div 
-                key={idx} 
-                class="flex flex-wrap items-baseline gap-x-2 md:gap-x-3 text-sm md:text-lg leading-relaxed transition-colors group"
-              >
-                <a 
-                  href={`/${item.path}`} 
-                  class="font-medium text-[#ddd6cc] underline decoration-[#3a3836] underline-offset-4 hover:text-[#e0aa40] hover:decoration-[#e0aa40] transition-colors"
+            {group.items.map((item) => (
+              <div class="flex flex-wrap items-baseline gap-x-2 md:gap-x-3 text-sm md:text-lg leading-relaxed group">
+                <a
+                  href={`/${item.path}`}
+                  class="font-medium text-[#ebdbb2] underline decoration-[#504945] underline-offset-4 hover:text-[#8ec07c] hover:decoration-[#8ec07c] transition-colors"
                 >
                   {item.name}
                 </a>
-                <span class="text-[#3a3836] select-none">–</span>
-                <span class="text-[#a89e92] group-hover:text-[#ddd6cc] transition-colors">
+                <span class="text-[#504945] select-none">–</span>
+                <span class="text-[#a89984] group-hover:text-[#ebdbb2] transition-colors">
                   {item.label}
                 </span>
               </div>
@@ -122,5 +82,24 @@ const linkGroups = [
         </div>
       ))}
     </div>
+
+    <a
+      href="/explore"
+      class="group block border border-[#3c3836] bg-[#282828]/60 hover:bg-[#3c3836]/60 hover:border-[#8ec07c]/50 transition-all duration-300 px-6 py-5 md:px-8 md:py-6"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <span class="text-[#8ec07c] font-medium text-sm md:text-base">body · mind · tools · roots</span>
+          <span class="text-[#a89984] text-xs md:text-sm"> — training, gear, lineage & everything deeper</span>
+        </div>
+        <span class="text-[#928374] group-hover:text-[#8ec07c] transition-colors text-sm whitespace-nowrap flex items-center gap-2">
+          open the archive
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform group-hover:translate-x-1">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </span>
+      </div>
+    </a>
   </div>
 </section>

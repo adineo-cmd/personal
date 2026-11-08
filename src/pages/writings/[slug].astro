@@ -19,18 +19,18 @@ if (!writing) {
 ---
 
 <BaseLayout title={`${writing.title} | Aditya Yadav`} description={writing.description}>
-  <div class="min-h-screen bg-[#08080a] text-[#a89e92]" style="font-family: 'Courier New', Courier, monospace;">
+  <div class="min-h-screen bg-[#1d2021] text-[#a89984]" style="font-family: 'Courier New', Courier, monospace;">
     <PageNavigation currentPage="writings" />
 
     <div class="py-16 px-6">
       <div class="max-w-3xl mx-auto">
-        <h1 class="text-5xl font-serif mb-6 text-white">{writing.title}</h1>
-        <p class="text-[#a89e92] text-lg mb-8">{writing.description}</p>
+        <h1 class="text-5xl font-serif mb-6 text-[#fbf1c7]">{writing.title}</h1>
+        <p class="text-[#a89984] text-lg mb-8">{writing.description}</p>
 
         {/* Render HTML content safely */}
         <article class="prose prose-invert max-w-none">
           <div 
-            class="text-[#ddd6cc] leading-relaxed [&_h2]:text-white [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:mb-4 [&_h2]:mt-8 [&_p]:mb-4 [&_a]:text-[#e0aa40] [&_a]:hover:text-[#f0cc72] [&_code]:bg-[#0e0e10] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_pre]:bg-[#0e0e10] [&_pre]:p-6 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_blockquote]:border-l-4 [&_blockquote]:border-[#e0aa40]/30 [&_blockquote]:pl-6 [&_blockquote]:text-[#a89e92] [&_blockquote]:italic"
+            class="text-[#ebdbb2] leading-relaxed [&_h2]:text-[#fbf1c7] [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:mb-4 [&_h2]:mt-8 [&_p]:mb-4 [&_a]:text-[#8ec07c] [&_a]:hover:text-[#8ec07c] [&_code]:bg-[#282828] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_pre]:bg-[#282828] [&_pre]:p-6 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_blockquote]:border-l-4 [&_blockquote]:border-[#8ec07c]/30 [&_blockquote]:pl-6 [&_blockquote]:text-[#a89984] [&_blockquote]:italic"
             set:html={writing.content}
             style="font-size: 16px; line-height: 1.8;"
           />
@@ -39,11 +39,11 @@ if (!writing) {
     </div>
 
     {/* Back to Writings */}
-    <div class="border-t border-[#2a2a2e] py-6">
+    <div class="border-t border-[#3c3836] py-6">
       <div class="max-w-3xl mx-auto px-6">
         <a
           href="/writings"
-          class="flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-sm"
+          class="flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-sm"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="19" y1="12" x2="5" y2="12" />

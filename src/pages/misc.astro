@@ -8,16 +8,16 @@ import { miscData } from '../data/misc.js';
   <>
     <PageNav currentPage="misc" />
 
-    <div class="min-h-screen bg-[#08080a] text-[#ddd6cc]">
+    <div class="min-h-screen bg-[#1d2021] text-[#ebdbb2]">
       <!-- Header Section -->
-      <div class="border-b border-[#2a2a2e]/50 py-12 px-6">
+      <div class="border-b border-[#3c3836]/50 py-12 px-6">
         <div class="max-w-5xl mx-auto">
-          <p class="text-xs text-[#6a6260] tracking-widest mb-3 font-mono uppercase">The Miscellaneous</p>
+          <p class="text-xs text-[#928374] tracking-widest mb-3 font-mono uppercase">The Miscellaneous</p>
           <h1 class="text-5xl md:text-6xl font-serif mb-3">
             <span class="misc-title">Misc</span>
           </h1>
-          <p class="text-sm text-[#6a6260] mb-4 font-mono">Updated — February 04, 2026</p>
-          <p class="text-[#a89e92] max-w-2xl leading-relaxed text-sm md:text-base">
+          <p class="text-sm text-[#928374] mb-4 font-mono">Updated — February 04, 2026</p>
+          <p class="text-[#a89984] max-w-2xl leading-relaxed text-sm md:text-base">
             {miscData.description}
           </p>
         </div>
@@ -27,13 +27,13 @@ import { miscData } from '../data/misc.js';
         <!-- Currently Reading Section -->
         <section>
           <div class="flex items-baseline gap-3 mb-6">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">📚 Currently Reading</h2>
-            <p class="text-xs md:text-sm text-[#6a6260] italic">Books I'm immersed in</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-[#fbf1c7]">📚 Currently Reading</h2>
+            <p class="text-xs md:text-sm text-[#928374] italic">Books I'm immersed in</p>
           </div>
           
           <div class="space-y-3">
             {miscData.sections.find(s => s.title === "📚 Currently Reading")?.items.map((item, index) => {
-              const colors = ['border-[#d86848]', 'border-[#5a80a8]', 'border-[#5a9870]', 'border-[#9070a0]'];
+              const colors = ['border-[#fe8019]', 'border-[#83a598]', 'border-[#b8bb26]', 'border-[#d3869b]'];
               const borderColor = colors[index % colors.length];
               
               const parts = item.text.split(' by ');
@@ -41,13 +41,13 @@ import { miscData } from '../data/misc.js';
               const author = parts.length > 1 ? parts[1] : '';
               
               return (
-                <div class={`p-4 md:p-5 bg-[#0e0e10]/40 border-l-4 ${borderColor} border-[#2a2a2e] rounded-r-lg hover:bg-[#121214] transition-colors`}>
+                <div class={`p-4 md:p-5 bg-[#282828]/40 border-l-4 ${borderColor} border-[#3c3836] rounded-r-lg hover:bg-[#3c3836] transition-colors`}>
                   <div class="flex justify-between items-start gap-4">
                     <div class="flex-1">
-                      <h3 class="text-base md:text-lg font-medium text-[#ddd6cc] mb-1">{title}</h3>
-                      <p class="text-xs md:text-sm text-[#6a6260] italic">{author} · {item.description}</p>
+                      <h3 class="text-base md:text-lg font-medium text-[#ebdbb2] mb-1">{title}</h3>
+                      <p class="text-xs md:text-sm text-[#928374] italic">{author} · {item.description}</p>
                     </div>
-                    <span class="px-3 py-1 text-xs text-[#e0aa40] border border-[#e0aa40]/30 rounded-full bg-[#e0aa40]/10 whitespace-nowrap">READING</span>
+                    <span class="px-3 py-1 text-xs text-[#8ec07c] border border-[#8ec07c]/30 rounded-full bg-[#8ec07c]/10 whitespace-nowrap">READING</span>
                   </div>
                 </div>
               );
@@ -58,20 +58,20 @@ import { miscData } from '../data/misc.js';
         <!-- Currently Listening Section -->
         <section>
           <div class="flex items-baseline gap-3 mb-6">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">🎧 Currently Listening</h2>
-            <p class="text-xs md:text-sm text-[#6a6260] italic">Music & podcasts on rotation</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-[#fbf1c7]">🎧 Currently Listening</h2>
+            <p class="text-xs md:text-sm text-[#928374] italic">Music & podcasts on rotation</p>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: 'Lo-fi Study & Relax', type: 'MUSIC', desc: 'My go-to focus music for deep work sessions', badge: 'Now playing', badgeColor: 'text-[#5a9870] border-[#5a9870]/30 bg-[#5a9870]/10' },
-              { title: 'Darknet Diaries', type: 'PODCAST', desc: 'True stories from the dark side of the internet', badge: 'Subscribed', badgeColor: 'text-[#9070a0] border-[#9070a0]/30 bg-[#9070a0]/10' },
-              { title: 'Lex Fridman Podcast', type: 'PODCAST', desc: 'Long-form conversations about AI, science, and humanity', badge: 'On rotation', badgeColor: 'text-[#e0aa40] border-[#e0aa40]/30 bg-[#e0aa40]/10' }
+              { title: 'Lo-fi Study & Relax', type: 'MUSIC', desc: 'My go-to focus music for deep work sessions', badge: 'Now playing', badgeColor: 'text-[#b8bb26] border-[#b8bb26]/30 bg-[#b8bb26]/10' },
+              { title: 'Darknet Diaries', type: 'PODCAST', desc: 'True stories from the dark side of the internet', badge: 'Subscribed', badgeColor: 'text-[#d3869b] border-[#d3869b]/30 bg-[#d3869b]/10' },
+              { title: 'Lex Fridman Podcast', type: 'PODCAST', desc: 'Long-form conversations about AI, science, and humanity', badge: 'On rotation', badgeColor: 'text-[#8ec07c] border-[#8ec07c]/30 bg-[#8ec07c]/10' }
             ].map((item) => (
-              <div class="p-4 md:p-5 bg-[#0e0e10]/40 border border-[#2a2a2e] rounded-lg hover:border-[#2a2a2e] transition-colors">
-                <p class="text-xs text-[#6a6260] mb-2 font-mono">{item.type}</p>
-                <h3 class="text-base md:text-lg font-medium text-[#ddd6cc] mb-2">{item.title}</h3>
-                <p class="text-xs md:text-sm text-[#a89e92] mb-4">{item.desc}</p>
+              <div class="p-4 md:p-5 bg-[#282828]/40 border border-[#3c3836] rounded-lg hover:border-[#3c3836] transition-colors">
+                <p class="text-xs text-[#928374] mb-2 font-mono">{item.type}</p>
+                <h3 class="text-base md:text-lg font-medium text-[#ebdbb2] mb-2">{item.title}</h3>
+                <p class="text-xs md:text-sm text-[#a89984] mb-4">{item.desc}</p>
                 <span class={`inline-flex px-2 py-1 text-xs border rounded-full ${item.badgeColor}`}>
                   {item.badge}
                 </span>
@@ -83,8 +83,8 @@ import { miscData } from '../data/misc.js';
         <!-- Currently Watching Section -->
         <section>
           <div class="flex items-baseline gap-3 mb-6">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">📺 Currently Watching</h2>
-            <p class="text-xs md:text-sm text-[#6a6260] italic">Shows & content I'm into</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-[#fbf1c7]">📺 Currently Watching</h2>
+            <p class="text-xs md:text-sm text-[#928374] italic">Shows & content I'm into</p>
           </div>
           
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -94,14 +94,14 @@ import { miscData } from '../data/misc.js';
               { title: 'Mr. Robot', type: 'SERIES', desc: 'Still the most technically accurate hacker show', status: 'rewatching' },
               { title: 'Fireship', type: 'YOUTUBE', desc: '100-second explainers that actually teach', status: 'watching' }
             ].map((show) => (
-              <div class="p-4 md:p-5 bg-[#0e0e10]/40 border border-[#2a2a2e] rounded-lg hover:border-[#2a2a2e] transition-colors">
-                <p class="text-xs text-[#6a6260] mb-2 font-mono">{show.type}</p>
-                <h3 class="text-base md:text-lg font-medium text-[#ddd6cc] mb-2">{show.title}</h3>
-                <p class="text-xs md:text-sm text-[#a89e92] mb-4">{show.desc}</p>
+              <div class="p-4 md:p-5 bg-[#282828]/40 border border-[#3c3836] rounded-lg hover:border-[#3c3836] transition-colors">
+                <p class="text-xs text-[#928374] mb-2 font-mono">{show.type}</p>
+                <h3 class="text-base md:text-lg font-medium text-[#ebdbb2] mb-2">{show.title}</h3>
+                <p class="text-xs md:text-sm text-[#a89984] mb-4">{show.desc}</p>
                 <span class={`inline-flex px-3 py-1 text-xs border rounded-full ${
                   show.status === 'rewatching' 
-                    ? 'text-[#5a9870] border-[#5a9870]/30 bg-[#5a9870]/10' 
-                    : 'text-[#5a80a8] border-[#5a80a8]/30 bg-[#5a80a8]/10'
+                    ? 'text-[#b8bb26] border-[#b8bb26]/30 bg-[#b8bb26]/10' 
+                    : 'text-[#83a598] border-[#83a598]/30 bg-[#83a598]/10'
                 }`}>
                   {show.status}
                 </span>
@@ -113,20 +113,20 @@ import { miscData } from '../data/misc.js';
         <!-- Learning Progress Section -->
         <section>
           <div class="flex items-baseline gap-3 mb-6">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">🌱 Learning Progress</h2>
-            <p class="text-xs md:text-sm text-[#6a6260] italic">Hover to see progress</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-[#fbf1c7]">🌱 Learning Progress</h2>
+            <p class="text-xs md:text-sm text-[#928374] italic">Hover to see progress</p>
           </div>
           
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[
-              { title: 'AI Agents', desc: 'LangChain, RAG', percent: 65, color: 'text-[#e0aa40]' },
-              { title: 'Linux Internals', desc: 'Kernel, systemd', percent: 72, color: 'text-[#5a9870]' },
-              { title: 'Docker/DevOps', desc: 'Compose, CI/CD', percent: 60, color: 'text-[#d86848]' },
-              { title: 'Web Dev', desc: 'Frontend, CSS', percent: 55, color: 'text-[#5a80a8]' },
-              { title: 'Cybersecurity', desc: 'Ethical hacking', percent: 40, color: 'text-[#9070a0]' },
-              { title: 'Data Eng.', desc: 'SQL, pipelines', percent: 48, color: 'text-[#f0cc72]' }
+              { title: 'AI Agents', desc: 'LangChain, RAG', percent: 65, color: 'text-[#8ec07c]' },
+              { title: 'Linux Internals', desc: 'Kernel, systemd', percent: 72, color: 'text-[#b8bb26]' },
+              { title: 'Docker/DevOps', desc: 'Compose, CI/CD', percent: 60, color: 'text-[#fe8019]' },
+              { title: 'Web Dev', desc: 'Frontend, CSS', percent: 55, color: 'text-[#83a598]' },
+              { title: 'Cybersecurity', desc: 'Ethical hacking', percent: 40, color: 'text-[#d3869b]' },
+              { title: 'Data Eng.', desc: 'SQL, pipelines', percent: 48, color: 'text-[#8ec07c]' }
             ].map((skill) => (
-              <div class="p-4 md:p-5 bg-[#0e0e10]/40 border border-[#2a2a2e] rounded-lg hover:border-[#2a2a2e] transition-colors group">
+              <div class="p-4 md:p-5 bg-[#282828]/40 border border-[#3c3836] rounded-lg hover:border-[#3c3836] transition-colors group">
                 <div class="flex items-center gap-4">
                   <div class="relative w-14 h-14 md:w-16 md:h-16">
                     <svg class="w-14 h-14 md:w-16 md:h-16 transform -rotate-90">
@@ -137,7 +137,7 @@ import { miscData } from '../data/misc.js';
                         stroke="currentColor"
                         stroke-width="4"
                         fill="none"
-                        class="text-[#2a2a2e]"
+                        class="text-[#3c3836]"
                       />
                       <circle
                         cx="28"
@@ -157,8 +157,8 @@ import { miscData } from '../data/misc.js';
                     </span>
                   </div>
                   <div>
-                    <h3 class="text-sm md:text-base font-medium text-[#ddd6cc]">{skill.title}</h3>
-                    <p class="text-xs text-[#6a6260]">{skill.desc}</p>
+                    <h3 class="text-sm md:text-base font-medium text-[#ebdbb2]">{skill.title}</h3>
+                    <p class="text-xs text-[#928374]">{skill.desc}</p>
                   </div>
                 </div>
               </div>
@@ -169,29 +169,29 @@ import { miscData } from '../data/misc.js';
         <!-- Words That Stuck Section -->
         <section>
           <div class="flex items-baseline gap-3 mb-6">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">💭 Words That Stuck</h2>
-            <p class="text-xs md:text-sm text-[#6a6260] italic">Click to cycle</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-[#fbf1c7]">💭 Words That Stuck</h2>
+            <p class="text-xs md:text-sm text-[#928374] italic">Click to cycle</p>
           </div>
           
-          <div class="p-6 md:p-8 bg-[#0e0e10]/40 border border-[#2a2a2e] rounded-lg relative">
-            <svg class="absolute top-4 right-4 w-6 h-6 md:w-8 md:h-8 text-[#3a3836]" fill="currentColor" viewBox="0 0 24 24">
+          <div class="p-6 md:p-8 bg-[#282828]/40 border border-[#3c3836] rounded-lg relative">
+            <svg class="absolute top-4 right-4 w-6 h-6 md:w-8 md:h-8 text-[#504945]" fill="currentColor" viewBox="0 0 24 24">
               <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
             </svg>
             
-            <blockquote class="text-lg md:text-2xl font-serif text-[#a89e92] italic mb-4">
+            <blockquote class="text-lg md:text-2xl font-serif text-[#a89984] italic mb-4">
               "Simplicity is the ultimate sophistication."
             </blockquote>
-            <p class="text-xs md:text-sm text-[#6a6260] font-mono mb-4">— Leonardo da Vinci</p>
+            <p class="text-xs md:text-sm text-[#928374] font-mono mb-4">— Leonardo da Vinci</p>
             
             <div class="flex items-center gap-2">
               <div class="flex gap-1">
-                <span class="w-2 h-2 rounded-full bg-[#3a3836]"></span>
-                <span class="w-2 h-2 rounded-full bg-[#3a3836]"></span>
-                <span class="w-2 h-2 rounded-full bg-[#e0aa40]"></span>
-                <span class="w-2 h-2 rounded-full bg-[#3a3836]"></span>
-                <span class="w-2 h-2 rounded-full bg-[#3a3836]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#504945]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#504945]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#8ec07c]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#504945]"></span>
+                <span class="w-2 h-2 rounded-full bg-[#504945]"></span>
               </div>
-              <span class="ml-4 text-xs text-[#6a6260] font-mono uppercase tracking-wider">Click to cycle quotes</span>
+              <span class="ml-4 text-xs text-[#928374] font-mono uppercase tracking-wider">Click to cycle quotes</span>
             </div>
           </div>
         </section>
@@ -199,8 +199,8 @@ import { miscData } from '../data/misc.js';
         <!-- Currently Obsessed With Section -->
         <section>
           <div class="flex items-baseline gap-3 mb-6">
-            <h2 class="text-2xl md:text-3xl font-serif text-white">⚡ Currently Obsessed With</h2>
-            <p class="text-xs md:text-sm text-[#6a6260] italic">The rotating fixations</p>
+            <h2 class="text-2xl md:text-3xl font-serif text-[#fbf1c7]">⚡ Currently Obsessed With</h2>
+            <p class="text-xs md:text-sm text-[#928374] italic">The rotating fixations</p>
           </div>
           
           <div class="flex flex-wrap gap-2 md:gap-3">
@@ -210,7 +210,7 @@ import { miscData } from '../data/misc.js';
               'Cybersecurity', 'Docker Compose', 'Terminal aesthetics', 
               'Vector DBs', 'Personal knowledge mgmt'
             ].map((tag) => (
-              <span class="px-3 md:px-4 py-2 text-xs md:text-sm border border-[#2a2a2e] hover:border-[#e0aa40]/50 hover:text-[#e0aa40] text-[#a89e92] rounded cursor-pointer transition-colors bg-[#0e0e10]/40">
+              <span class="px-3 md:px-4 py-2 text-xs md:text-sm border border-[#3c3836] hover:border-[#8ec07c]/50 hover:text-[#8ec07c] text-[#a89984] rounded cursor-pointer transition-colors bg-[#282828]/40">
                 {tag}
               </span>
             ))}
@@ -219,8 +219,8 @@ import { miscData } from '../data/misc.js';
       </div>
 
       <!-- Footer -->
-      <div class="border-t border-[#2a2a2e]/50 py-6 mt-12">
-        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs font-mono text-[#6a6260]">
+      <div class="border-t border-[#3c3836]/50 py-6 mt-12">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs font-mono text-[#928374]">
           <span>~/misc — the odds & ends</span>
           <span>updated feb 2026</span>
         </div>
@@ -229,7 +229,7 @@ import { miscData } from '../data/misc.js';
 
     <style is:global>
       .misc-title {
-        background: linear-gradient(to right, #ddd6cc 75%, #e0aa40 75%);
+        background: linear-gradient(to right, #ebdbb2 75%, #8ec07c 75%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;

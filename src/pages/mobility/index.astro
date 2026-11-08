@@ -10,18 +10,18 @@ const systems = [...mobilityFlexibilityRegistry].sort((a, b) => a.name.localeCom
   <Fragment>
     <PageNav currentPage="mobility" />
 
-    <div class="min-h-screen bg-[#08080a]">
-      <div class="text-[#a89e92] py-16 px-6" style="font-family: 'Courier New', Courier, monospace;">
+    <div class="min-h-screen bg-[#1d2021]">
+      <div class="text-[#a89984] py-16 px-6" style="font-family: 'Courier New', Courier, monospace;">
         <div class="max-w-6xl mx-auto">
           
           <!-- Header Section -->
           <header class="mb-12">
-            <h1 class="text-5xl font-serif mb-6 text-[#ddd6cc]">
-              <span class="text-white">🦴 Mobility</span><span class="text-[#e0aa40] italic"> & Flexibility</span>
-              <span class="text-[#ddd6cc]"> Encyclopedia</span>
+            <h1 class="text-5xl font-serif mb-6 text-[#ebdbb2]">
+              <span class="text-[#fbf1c7]">🦴 Mobility</span><span class="text-[#8ec07c] italic"> & Flexibility</span>
+              <span class="text-[#ebdbb2]"> Encyclopedia</span>
             </h1>
-            <p class="text-xs text-[#6a6260] mb-2">Updated: September 02, 2026</p>
-            <p class="text-[#a89e92] text-sm mb-8 leading-relaxed max-w-3xl">
+            <p class="text-xs text-[#928374] mb-2">Updated: September 02, 2026</p>
+            <p class="text-[#a89984] text-sm mb-8 leading-relaxed max-w-3xl">
               Decentralized knowledge base for human movement optimization. 
               Explore comprehensive frameworks integrating FRC, CARs, Yoga, Gymnastics, Physical Therapy, and Combat Sport demands.
             </p>
@@ -32,9 +32,9 @@ const systems = [...mobilityFlexibilityRegistry].sort((a, b) => a.name.localeCom
                 type="text" 
                 id="systemSearch"
                 placeholder="Search systems (e.g., Mobility, Flexibility, Integration)..."
-                class="w-full px-4 py-3 bg-[#0e0e10] border border-[#2a2a2e] rounded-lg text-[#ddd6cc] placeholder-[#6a6260] focus:outline-none focus:border-[#e0aa40] focus:ring-1 focus:ring-[#e0aa40]/50 transition-all group-hover:border-[#2a2a2e]"
+                class="w-full px-4 py-3 bg-[#282828] border border-[#3c3836] rounded-lg text-[#ebdbb2] placeholder-[#928374] focus:outline-none focus:border-[#8ec07c] focus:ring-1 focus:ring-[#8ec07c]/50 transition-all group-hover:border-[#3c3836]"
               />
-              <svg class="absolute right-3 top-3.5 w-5 h-5 text-[#6a6260] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="absolute right-3 top-3.5 w-5 h-5 text-[#928374] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
@@ -45,32 +45,32 @@ const systems = [...mobilityFlexibilityRegistry].sort((a, b) => a.name.localeCom
             {systems.map(system => (
               <a 
                 href={`/mobility/${system.id}`}
-                class="system-card group block border border-[#2a2a2e] rounded-lg p-5 bg-[#0e0e10]/30 hover:bg-[#121214] hover:border-[#3a3a3e] transition-all duration-200 relative overflow-hidden"
+                class="system-card group block border border-[#3c3836] rounded-lg p-5 bg-[#282828]/30 hover:bg-[#3c3836] hover:border-[#504945] transition-all duration-200 relative overflow-hidden"
                 data-search-text={`${system.name} ${system.origin} ${system.description}`.toLowerCase()}
               >
-                <div class={`absolute top-0 left-0 w-full h-1 ${system.color?.split(' ')[0] || 'bg-[#2a2a2e]'} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
+                <div class={`absolute top-0 left-0 w-full h-1 ${system.color?.split(' ')[0] || 'bg-[#3c3836]'} opacity-0 group-hover:opacity-100 transition-opacity`}></div>
 
                 <div class="flex items-start gap-4 mb-3">
-                  <span class="text-3xl bg-[#0e0e10] p-2 rounded-lg border border-[#2a2a2e] group-hover:border-[#3a3a3e] transition-colors shadow-sm">{system.icon}</span>
+                  <span class="text-3xl bg-[#282828] p-2 rounded-lg border border-[#3c3836] group-hover:border-[#504945] transition-colors shadow-sm">{system.icon}</span>
                   <div class="flex-1 min-w-0">
-                    <h3 class="text-lg font-medium text-[#ddd6cc] group-hover:text-white transition-colors truncate">{system.name}</h3>
-                    <p class="text-xs text-[#6a6260] mt-0.5 font-mono">{system.origin}</p>
+                    <h3 class="text-lg font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] transition-colors truncate">{system.name}</h3>
+                    <p class="text-xs text-[#928374] mt-0.5 font-mono">{system.origin}</p>
                   </div>
                 </div>
                 
-                <p class="text-sm text-[#a89e92] line-clamp-2 mb-4 leading-relaxed">{system.description}</p>
+                <p class="text-sm text-[#a89984] line-clamp-2 mb-4 leading-relaxed">{system.description}</p>
                 
                 {system.keyPrinciples?.length > 0 && (
-                  <div class="pt-3 border-t border-[#2a2a2e]/50 group-hover:border-[#2a2a2e] transition-colors">
-                    <div class="text-[10px] uppercase tracking-wider text-[#6a6260] mb-2">Core Principles</div>
+                  <div class="pt-3 border-t border-[#3c3836]/50 group-hover:border-[#3c3836] transition-colors">
+                    <div class="text-[10px] uppercase tracking-wider text-[#928374] mb-2">Core Principles</div>
                     <div class="flex flex-wrap gap-1.5">
                       {system.keyPrinciples.slice(0, 3).map(principle => (
-                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#1e1e22] text-[#6a6260] border border-[#2a2a2e] truncate">
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-[#3c3836] text-[#928374] border border-[#3c3836] truncate">
                           {principle}
                         </span>
                       ))}
                       {system.keyPrinciples.length > 3 && (
-                        <span class="text-[10px] px-1.5 py-0.5 text-[#6a6260]">+{system.keyPrinciples.length - 3}</span>
+                        <span class="text-[10px] px-1.5 py-0.5 text-[#928374]">+{system.keyPrinciples.length - 3}</span>
                       )}
                     </div>
                   </div>
@@ -80,19 +80,19 @@ const systems = [...mobilityFlexibilityRegistry].sort((a, b) => a.name.localeCom
           </div>
 
           <!-- Empty State -->
-          <div id="emptyState" class="hidden text-center py-20 border border-dashed border-[#2a2a2e] rounded-lg bg-[#0e0e10]/20">
+          <div id="emptyState" class="hidden text-center py-20 border border-dashed border-[#3c3836] rounded-lg bg-[#282828]/20">
             <div class="text-4xl mb-4 opacity-50">🔍</div>
-            <h3 class="text-lg font-medium text-[#ddd6cc] mb-2">No systems found</h3>
-            <p class="text-[#6a6260] text-sm">Try adjusting your search terms</p>
+            <h3 class="text-lg font-medium text-[#ebdbb2] mb-2">No systems found</h3>
+            <p class="text-[#928374] text-sm">Try adjusting your search terms</p>
           </div>
 
           <!-- Stats Footer -->
-          <div class="mt-16 pt-6 border-t border-[#2a2a2e] flex flex-wrap justify-between items-center text-xs text-[#6a6260] font-mono">
+          <div class="mt-16 pt-6 border-t border-[#3c3836] flex flex-wrap justify-between items-center text-xs text-[#928374] font-mono">
             <div>
-              <span class="font-bold text-[#a89e92]">{systems.length}</span> Total Movement Systems
+              <span class="font-bold text-[#a89984]">{systems.length}</span> Total Movement Systems
             </div>
             <div>
-              Database: <span class="font-bold text-[#a89e92]">Decentralized</span>
+              Database: <span class="font-bold text-[#a89984]">Decentralized</span>
             </div>
           </div>
 

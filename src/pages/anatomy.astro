@@ -7,28 +7,28 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
   <>
     <PageNav currentPage="anatomy" />
 
-    <div class="min-h-screen bg-[#08080a] py-8 px-4 sm:px-6">
+    <div class="min-h-screen bg-[#1d2021] py-8 px-4 sm:px-6">
       <div class="max-w-6xl mx-auto" style="font-family: 'Courier New', Courier, monospace;">
         
         {/* Header */}
         <div class="mb-6">
-          <h1 class="text-3xl sm:text-4xl font-serif mb-2 text-[#ddd6cc]">
-            <span class="text-white">Muscle</span><span class="text-[#e0aa40] italic"> Anatomy</span><span class="text-[#ddd6cc]"> Reference</span>
+          <h1 class="text-3xl sm:text-4xl font-serif mb-2 text-[#ebdbb2]">
+            <span class="text-[#fbf1c7]">Muscle</span><span class="text-[#8ec07c] italic"> Anatomy</span><span class="text-[#ebdbb2]"> Reference</span>
           </h1>
-          <p class="text-[#6a6260] text-sm">Detailed muscle functions, exercises, and injury prevention</p>
+          <p class="text-[#928374] text-sm">Detailed muscle functions, exercises, and injury prevention</p>
         </div>
 
         {/* Toggle Buttons - Always Visible */}
-        <div class="flex gap-2 mb-6 sticky top-4 z-50 bg-[#08080a] pb-2">
+        <div class="flex gap-2 mb-6 sticky top-4 z-50 bg-[#1d2021] pb-2">
           <button 
             id="btn-anterior"
-            class="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-[#5a9870] text-white transition-all"
+            class="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-[#b8bb26] text-[#1d2021] transition-all"
           >
             Anterior (Front)
           </button>
           <button 
             id="btn-posterior"
-            class="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-[#1e1e22] text-[#6a6260] hover:bg-[#2a2a2e] transition-all"
+            class="flex-1 px-4 py-3 rounded-lg text-sm font-medium bg-[#3c3836] text-[#928374] hover:bg-[#3c3836] transition-all"
           >
             Posterior (Back)
           </button>
@@ -37,7 +37,7 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
         {/* Mobile Layout: Image on top, list below */}
         <div class="lg:hidden space-y-6">
           {/* Mobile Image Container */}
-          <div class="bg-[#0e0e10]/50 border border-[#2a2a2e] rounded-xl p-3">
+          <div class="bg-[#282828]/50 border border-[#3c3836] rounded-xl p-3">
             <div class="relative w-full h-[400px] overflow-hidden rounded-lg">
               <img 
                 id="mobile-img-anterior"
@@ -52,18 +52,18 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
                 class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 hidden"
               />
             </div>
-            <div class="text-center text-[10px] text-[#6a6260] mt-2">
+            <div class="text-center text-[10px] text-[#928374] mt-2">
               <span id="mobile-label">Anterior View (Front)</span>
             </div>
           </div>
 
           {/* Mobile Muscle List */}
           <div>
-            <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#2a2a2e]">
-              <h2 class="text-lg font-medium text-[#ddd6cc]">Muscle Details</h2>
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#3c3836]">
+              <h2 class="text-lg font-medium text-[#ebdbb2]">Muscle Details</h2>
               <span 
                 id="mobile-count" 
-                class="text-xs text-[#6a6260] bg-[#0e0e10] px-2 py-1 rounded"
+                class="text-xs text-[#928374] bg-[#282828] px-2 py-1 rounded"
                 data-anterior-count={anteriorMuscles.length}
                 data-posterior-count={posteriorMuscles.length}
               >
@@ -73,45 +73,45 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
             
             <div id="mobile-list-anterior" class="space-y-3">
               {anteriorMuscles.map(muscle => (
-                <details class="group border border-[#2a2a2e] rounded-xl bg-[#0e0e10]/20 overflow-hidden">
-                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#121214] select-none list-none">
+                <details class="group border border-[#3c3836] rounded-xl bg-[#282828]/20 overflow-hidden">
+                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#3c3836] select-none list-none">
                     <div class="flex items-center gap-3">
-                      <span class="w-2 h-2 rounded-full bg-[#5a9870]"></span>
-                      <span class="text-sm font-medium text-[#ddd6cc]">{muscle.name}</span>
+                      <span class="w-2 h-2 rounded-full bg-[#b8bb26]"></span>
+                      <span class="text-sm font-medium text-[#ebdbb2]">{muscle.name}</span>
                     </div>
-                    <svg class="w-5 h-5 text-[#6a6260] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-[#928374] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </summary>
-                  <div class="p-4 pt-0 border-t border-[#2a2a2e]/50">
+                  <div class="p-4 pt-0 border-t border-[#3c3836]/50">
                     <div class="space-y-4 mt-4">
                       <div>
-                        <h4 class="text-xs font-bold text-[#a89e92] uppercase mb-2">Function</h4>
-                        <p class="text-sm text-[#ddd6cc]">{muscle.function}</p>
+                        <h4 class="text-xs font-bold text-[#a89984] uppercase mb-2">Function</h4>
+                        <p class="text-sm text-[#ebdbb2]">{muscle.function}</p>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#5a9870] uppercase mb-2">Exercises</h4>
+                        <h4 class="text-xs font-bold text-[#b8bb26] uppercase mb-2">Exercises</h4>
                         <ul class="space-y-1">
                           {muscle.exercises.map(ex => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#5a9870] mt-1.5 flex-shrink-0"></span>{ex}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#b8bb26] mt-1.5 flex-shrink-0"></span>{ex}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#d86848] uppercase mb-2">Injuries</h4>
+                        <h4 class="text-xs font-bold text-[#fe8019] uppercase mb-2">Injuries</h4>
                         <ul class="space-y-1">
                           {muscle.injuries.map(injury => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#d86848] mt-1.5 flex-shrink-0"></span>{injury}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#fe8019] mt-1.5 flex-shrink-0"></span>{injury}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#e0aa40] uppercase mb-2">Pro Tip</h4>
-                        <p class="text-sm text-[#ddd6cc] italic bg-[#0e0e10]/50 p-3 rounded border border-[#2a2a2e]/50">"{muscle.notes}"</p>
+                        <h4 class="text-xs font-bold text-[#8ec07c] uppercase mb-2">Pro Tip</h4>
+                        <p class="text-sm text-[#ebdbb2] italic bg-[#282828]/50 p-3 rounded border border-[#3c3836]/50">"{muscle.notes}"</p>
                       </div>
                     </div>
                   </div>
@@ -121,45 +121,45 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
 
             <div id="mobile-list-posterior" class="space-y-3 hidden">
               {posteriorMuscles.map(muscle => (
-                <details class="group border border-[#2a2a2e] rounded-xl bg-[#0e0e10]/20 overflow-hidden">
-                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#121214] select-none list-none">
+                <details class="group border border-[#3c3836] rounded-xl bg-[#282828]/20 overflow-hidden">
+                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#3c3836] select-none list-none">
                     <div class="flex items-center gap-3">
-                      <span class="w-2 h-2 rounded-full bg-[#5a80a8]"></span>
-                      <span class="text-sm font-medium text-[#ddd6cc]">{muscle.name}</span>
+                      <span class="w-2 h-2 rounded-full bg-[#83a598]"></span>
+                      <span class="text-sm font-medium text-[#ebdbb2]">{muscle.name}</span>
                     </div>
-                    <svg class="w-5 h-5 text-[#6a6260] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-[#928374] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </summary>
-                  <div class="p-4 pt-0 border-t border-[#2a2a2e]/50">
+                  <div class="p-4 pt-0 border-t border-[#3c3836]/50">
                     <div class="space-y-4 mt-4">
                       <div>
-                        <h4 class="text-xs font-bold text-[#a89e92] uppercase mb-2">Function</h4>
-                        <p class="text-sm text-[#ddd6cc]">{muscle.function}</p>
+                        <h4 class="text-xs font-bold text-[#a89984] uppercase mb-2">Function</h4>
+                        <p class="text-sm text-[#ebdbb2]">{muscle.function}</p>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#5a9870] uppercase mb-2">Exercises</h4>
+                        <h4 class="text-xs font-bold text-[#b8bb26] uppercase mb-2">Exercises</h4>
                         <ul class="space-y-1">
                           {muscle.exercises.map(ex => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#5a9870] mt-1.5 flex-shrink-0"></span>{ex}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#b8bb26] mt-1.5 flex-shrink-0"></span>{ex}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#d86848] uppercase mb-2">Injuries</h4>
+                        <h4 class="text-xs font-bold text-[#fe8019] uppercase mb-2">Injuries</h4>
                         <ul class="space-y-1">
                           {muscle.injuries.map(injury => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#d86848] mt-1.5 flex-shrink-0"></span>{injury}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#fe8019] mt-1.5 flex-shrink-0"></span>{injury}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#e0aa40] uppercase mb-2">Pro Tip</h4>
-                        <p class="text-sm text-[#ddd6cc] italic bg-[#0e0e10]/50 p-3 rounded border border-[#2a2a2e]/50">"{muscle.notes}"</p>
+                        <h4 class="text-xs font-bold text-[#8ec07c] uppercase mb-2">Pro Tip</h4>
+                        <p class="text-sm text-[#ebdbb2] italic bg-[#282828]/50 p-3 rounded border border-[#3c3836]/50">"{muscle.notes}"</p>
                       </div>
                     </div>
                   </div>
@@ -173,7 +173,7 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
         <div class="hidden lg:grid lg:grid-cols-[400px_1fr] gap-8 items-start">
           {/* Left: Sticky Image */}
           <div class="sticky top-24">
-            <div class="bg-[#0e0e10]/50 border border-[#2a2a2e] rounded-xl p-3">
+            <div class="bg-[#282828]/50 border border-[#3c3836] rounded-xl p-3">
               <div class="relative w-full h-[700px] overflow-hidden rounded-lg">
                 <img 
                   id="desktop-img-anterior"
@@ -188,7 +188,7 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
                   class="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 hidden"
                 />
               </div>
-              <div class="text-center text-[10px] text-[#6a6260] mt-2">
+              <div class="text-center text-[10px] text-[#928374] mt-2">
                 <span id="desktop-label">Anterior View (Front)</span>
               </div>
             </div>
@@ -196,11 +196,11 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
 
           {/* Right: Scrollable List */}
           <div>
-            <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#2a2a2e] sticky top-24 bg-[#08080a] z-10">
-              <h2 class="text-lg font-medium text-[#ddd6cc]">Muscle Details</h2>
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-[#3c3836] sticky top-24 bg-[#1d2021] z-10">
+              <h2 class="text-lg font-medium text-[#ebdbb2]">Muscle Details</h2>
               <span 
                 id="desktop-count" 
-                class="text-xs text-[#6a6260] bg-[#0e0e10] px-2 py-1 rounded"
+                class="text-xs text-[#928374] bg-[#282828] px-2 py-1 rounded"
                 data-anterior-count={anteriorMuscles.length}
                 data-posterior-count={posteriorMuscles.length}
               >
@@ -210,48 +210,48 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
             
             <div id="desktop-list-anterior" class="space-y-3">
               {anteriorMuscles.map(muscle => (
-                <details class="group border border-[#2a2a2e] rounded-xl bg-[#0e0e10]/20 overflow-hidden">
-                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#121214] select-none list-none">
+                <details class="group border border-[#3c3836] rounded-xl bg-[#282828]/20 overflow-hidden">
+                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#3c3836] select-none list-none">
                     <div class="flex items-center gap-3">
-                      <span class="w-2 h-2 rounded-full bg-[#5a9870]"></span>
-                      <span class="text-base font-medium text-[#ddd6cc]">{muscle.name}</span>
+                      <span class="w-2 h-2 rounded-full bg-[#b8bb26]"></span>
+                      <span class="text-base font-medium text-[#ebdbb2]">{muscle.name}</span>
                     </div>
                     <div class="flex items-center gap-3">
-                      <span class="text-xs text-[#6a6260] bg-[#0e0e10] px-2 py-1 rounded border border-[#2a2a2e]">{muscle.side}</span>
-                      <svg class="w-5 h-5 text-[#6a6260] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span class="text-xs text-[#928374] bg-[#282828] px-2 py-1 rounded border border-[#3c3836]">{muscle.side}</span>
+                      <svg class="w-5 h-5 text-[#928374] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                       </svg>
                     </div>
                   </summary>
-                  <div class="p-4 pt-0 border-t border-[#2a2a2e]/50">
+                  <div class="p-4 pt-0 border-t border-[#3c3836]/50">
                     <div class="grid grid-cols-2 gap-6 mt-4">
                       <div class="col-span-2">
-                        <h4 class="text-xs font-bold text-[#a89e92] uppercase mb-2">Function</h4>
-                        <p class="text-sm text-[#ddd6cc]">{muscle.function}</p>
+                        <h4 class="text-xs font-bold text-[#a89984] uppercase mb-2">Function</h4>
+                        <p class="text-sm text-[#ebdbb2]">{muscle.function}</p>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#5a9870] uppercase mb-2">Exercises</h4>
+                        <h4 class="text-xs font-bold text-[#b8bb26] uppercase mb-2">Exercises</h4>
                         <ul class="space-y-1">
                           {muscle.exercises.map(ex => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#5a9870] mt-1.5 flex-shrink-0"></span>{ex}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#b8bb26] mt-1.5 flex-shrink-0"></span>{ex}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#d86848] uppercase mb-2">Injuries</h4>
+                        <h4 class="text-xs font-bold text-[#fe8019] uppercase mb-2">Injuries</h4>
                         <ul class="space-y-1">
                           {muscle.injuries.map(injury => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#d86848] mt-1.5 flex-shrink-0"></span>{injury}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#fe8019] mt-1.5 flex-shrink-0"></span>{injury}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div class="col-span-2">
-                        <h4 class="text-xs font-bold text-[#e0aa40] uppercase mb-2">Pro Tip</h4>
-                        <p class="text-sm text-[#ddd6cc] italic bg-[#0e0e10]/50 p-3 rounded border border-[#2a2a2e]/50">"{muscle.notes}"</p>
+                        <h4 class="text-xs font-bold text-[#8ec07c] uppercase mb-2">Pro Tip</h4>
+                        <p class="text-sm text-[#ebdbb2] italic bg-[#282828]/50 p-3 rounded border border-[#3c3836]/50">"{muscle.notes}"</p>
                       </div>
                     </div>
                   </div>
@@ -261,48 +261,48 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
 
             <div id="desktop-list-posterior" class="space-y-3 hidden">
               {posteriorMuscles.map(muscle => (
-                <details class="group border border-[#2a2a2e] rounded-xl bg-[#0e0e10]/20 overflow-hidden">
-                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#121214] select-none list-none">
+                <details class="group border border-[#3c3836] rounded-xl bg-[#282828]/20 overflow-hidden">
+                  <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-[#3c3836] select-none list-none">
                     <div class="flex items-center gap-3">
-                      <span class="w-2 h-2 rounded-full bg-[#5a80a8]"></span>
-                      <span class="text-base font-medium text-[#ddd6cc]">{muscle.name}</span>
+                      <span class="w-2 h-2 rounded-full bg-[#83a598]"></span>
+                      <span class="text-base font-medium text-[#ebdbb2]">{muscle.name}</span>
                     </div>
                     <div class="flex items-center gap-3">
-                      <span class="text-xs text-[#6a6260] bg-[#0e0e10] px-2 py-1 rounded border border-[#2a2a2e]">{muscle.side}</span>
-                      <svg class="w-5 h-5 text-[#6a6260] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span class="text-xs text-[#928374] bg-[#282828] px-2 py-1 rounded border border-[#3c3836]">{muscle.side}</span>
+                      <svg class="w-5 h-5 text-[#928374] group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                       </svg>
                     </div>
                   </summary>
-                  <div class="p-4 pt-0 border-t border-[#2a2a2e]/50">
+                  <div class="p-4 pt-0 border-t border-[#3c3836]/50">
                     <div class="grid grid-cols-2 gap-6 mt-4">
                       <div class="col-span-2">
-                        <h4 class="text-xs font-bold text-[#a89e92] uppercase mb-2">Function</h4>
-                        <p class="text-sm text-[#ddd6cc]">{muscle.function}</p>
+                        <h4 class="text-xs font-bold text-[#a89984] uppercase mb-2">Function</h4>
+                        <p class="text-sm text-[#ebdbb2]">{muscle.function}</p>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#5a9870] uppercase mb-2">Exercises</h4>
+                        <h4 class="text-xs font-bold text-[#b8bb26] uppercase mb-2">Exercises</h4>
                         <ul class="space-y-1">
                           {muscle.exercises.map(ex => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#5a9870] mt-1.5 flex-shrink-0"></span>{ex}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#b8bb26] mt-1.5 flex-shrink-0"></span>{ex}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 class="text-xs font-bold text-[#d86848] uppercase mb-2">Injuries</h4>
+                        <h4 class="text-xs font-bold text-[#fe8019] uppercase mb-2">Injuries</h4>
                         <ul class="space-y-1">
                           {muscle.injuries.map(injury => (
-                            <li class="text-sm text-[#ddd6cc] flex items-start gap-2">
-                              <span class="w-1 h-1 rounded-full bg-[#d86848] mt-1.5 flex-shrink-0"></span>{injury}
+                            <li class="text-sm text-[#ebdbb2] flex items-start gap-2">
+                              <span class="w-1 h-1 rounded-full bg-[#fe8019] mt-1.5 flex-shrink-0"></span>{injury}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div class="col-span-2">
-                        <h4 class="text-xs font-bold text-[#e0aa40] uppercase mb-2">Pro Tip</h4>
-                        <p class="text-sm text-[#ddd6cc] italic bg-[#0e0e10]/50 p-3 rounded border border-[#2a2a2e]/50">"{muscle.notes}"</p>
+                        <h4 class="text-xs font-bold text-[#8ec07c] uppercase mb-2">Pro Tip</h4>
+                        <p class="text-sm text-[#ebdbb2] italic bg-[#282828]/50 p-3 rounded border border-[#3c3836]/50">"{muscle.notes}"</p>
                       </div>
                     </div>
                   </div>
@@ -359,10 +359,10 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
           if (desktopCount) desktopCount.textContent = `${anteriorCount} muscles`;
           
           // Update Buttons
-          btnAnterior.style.backgroundColor = '#5a9870';
+          btnAnterior.style.backgroundColor = '#b8bb26';
           btnAnterior.style.color = 'white';
-          btnPosterior.style.backgroundColor = '#1e1e22';
-          btnPosterior.style.color = '#6a6260';
+          btnPosterior.style.backgroundColor = '#3c3836';
+          btnPosterior.style.color = '#928374';
         }
         
         function showPosterior() {
@@ -383,10 +383,10 @@ import { anteriorMuscles, posteriorMuscles } from '../data/anatomy.js';
           if (desktopCount) desktopCount.textContent = `${posteriorCount} muscles`;
           
           // Update Buttons
-          btnPosterior.style.backgroundColor = '#5a9870';
+          btnPosterior.style.backgroundColor = '#b8bb26';
           btnPosterior.style.color = 'white';
-          btnAnterior.style.backgroundColor = '#1e1e22';
-          btnAnterior.style.color = '#6a6260';
+          btnAnterior.style.backgroundColor = '#3c3836';
+          btnAnterior.style.color = '#928374';
         }
         
         btnAnterior.addEventListener('click', showAnterior);

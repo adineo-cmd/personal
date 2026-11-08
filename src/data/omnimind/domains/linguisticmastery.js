@@ -1,7 +1,7 @@
 export default {
   "label": "Linguistic & Verbal Mastery",
   "icon": "🗣️",
-  "color": "#d86848",
+  "color": "#fe8019",
   "group": "Social",
   "sub": "Rhetoric Architecture, Vocal Control, Deception Detection",
   "subdomains": [

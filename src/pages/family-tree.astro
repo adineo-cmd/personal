@@ -9,69 +9,69 @@ import { familyLineage } from '../data/family.js';
   <>
     <PageNavigation currentPage="family-tree" />
 
-    <div class="min-h-screen bg-[#08080a] relative font-['DM_Sans',sans-serif]">
+    <div class="min-h-screen bg-[#1d2021] relative font-['DM_Sans',sans-serif]">
       <!-- Noise texture overlay -->
       <div class="fixed inset-0 pointer-events-none z-[999] opacity-[0.035]" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27200%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.85%27 numOctaves=%274%27/%3E%3CfeColorMatrix type=%27saturate%27 values=%270%27/%3E%3C/filter%3E%3Crect width=%27200%27 height=%27200%27 filter=%27url(%23n)%27/%3E%3C/svg%3E');"></div>
       
       <div class="relative z-10 max-w-[1400px] mx-auto px-4 md:px-9 pb-25">
         
         <!-- Header -->
-        <header class="py-10 md:py-20 pb-8 md:pb-13 border-b border-[#2a2a2e]">
-          <p class="font-['DM_Mono',monospace] text-[10px] tracking-[0.3em] uppercase text-[#e0aa40] mb-5 flex items-center gap-2.5">
+        <header class="py-10 md:py-20 pb-8 md:pb-13 border-b border-[#3c3836]">
+          <p class="font-['DM_Mono',monospace] text-[10px] tracking-[0.3em] uppercase text-[#8ec07c] mb-5 flex items-center gap-2.5">
             Direct Lineage
-            <span class="w-[60px] h-px bg-[#e0aa40] opacity-40"></span>
+            <span class="w-[60px] h-px bg-[#8ec07c] opacity-40"></span>
           </p>
-          <h1 class="font-['Playfair_Display',serif] text-[48px] md:text-[64px] lg:text-[116px] font-black leading-[0.87] tracking-[-0.03em] text-white mb-4.5">
-            Family<br><span class="text-[#e0aa40] italic">Tree</span>
+          <h1 class="font-['Playfair_Display',serif] text-[48px] md:text-[64px] lg:text-[116px] font-black leading-[0.87] tracking-[-0.03em] text-[#fbf1c7] mb-4.5">
+            Family<br><span class="text-[#8ec07c] italic">Tree</span>
           </h1>
-          <p class="text-[14px] md:text-[15px] text-[#a89e92] max-w-[520px] leading-[1.7] font-light">
+          <p class="text-[14px] md:text-[15px] text-[#a89984] max-w-[520px] leading-[1.7] font-light">
             Direct lineage: paternal &amp; maternal lines, chronologically ordered. A record of where I come from.
           </p>
           
           <!-- Stats -->
-          <div class="grid grid-cols-2 md:grid-cols-4 border border-[#2a2a2e] mt-8 md:mt-10">
-            <div class="p-4 md:p-[18px] border-r border-b md:border-b-0 border-[#2a2a2e] hover:bg-[#121214] transition-colors">
-              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#e0aa40]">14</span>
-              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#6a6260]">Known Members</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 border border-[#3c3836] mt-8 md:mt-10">
+            <div class="p-4 md:p-[18px] border-r border-b md:border-b-0 border-[#3c3836] hover:bg-[#3c3836] transition-colors">
+              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#8ec07c]">14</span>
+              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#928374]">Known Members</span>
             </div>
-            <div class="p-4 md:p-[18px] border-r border-b md:border-b-0 border-[#2a2a2e] hover:bg-[#121214] transition-colors">
-              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#5a80a8]">4</span>
-              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#6a6260]">Generations</span>
+            <div class="p-4 md:p-[18px] border-r border-b md:border-b-0 border-[#3c3836] hover:bg-[#3c3836] transition-colors">
+              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#83a598]">4</span>
+              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#928374]">Generations</span>
             </div>
-            <div class="p-4 md:p-[18px] border-r border-b md:border-b-0 border-[#2a2a2e] hover:bg-[#121214] transition-colors">
-              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#5a9870]">50/50</span>
-              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#6a6260]">Pat / Mat</span>
+            <div class="p-4 md:p-[18px] border-r border-b md:border-b-0 border-[#3c3836] hover:bg-[#3c3836] transition-colors">
+              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#b8bb26]">50/50</span>
+              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#928374]">Pat / Mat</span>
             </div>
-            <div class="p-4 md:p-[18px] hover:bg-[#121214] transition-colors">
-              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#d86848]">AZM</span>
-              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#6a6260]">Origin · UP</span>
+            <div class="p-4 md:p-[18px] hover:bg-[#3c3836] transition-colors">
+              <span class="font-['Playfair_Display',serif] text-2xl md:text-[32px] font-bold leading-none block mb-1 text-[#fe8019]">AZM</span>
+              <span class="font-['DM_Mono',monospace] text-[9px] tracking-[0.18em] uppercase text-[#928374]">Origin · UP</span>
             </div>
           </div>
         </header>
 
         <!-- Toolbar -->
-        <div class="flex items-center gap-5 flex-wrap mt-8 md:mt-12 mb-6 md:mb-8 pb-5 border-b border-[#2a2a2e]">
+        <div class="flex items-center gap-5 flex-wrap mt-8 md:mt-12 mb-6 md:mb-8 pb-5 border-b border-[#3c3836]">
           <div class="flex gap-4 md:gap-8 flex-wrap flex-1">
-            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#6a6260] tracking-[0.06em]">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#5a80a8]"></div>
+            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#928374] tracking-[0.06em]">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#83a598]"></div>
               <span>Paternal</span>
             </div>
-            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#6a6260] tracking-[0.06em]">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#e0aa40]"></div>
+            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#928374] tracking-[0.06em]">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#8ec07c]"></div>
               <span>Maternal</span>
             </div>
-            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#6a6260] tracking-[0.06em]">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#5a9870]"></div>
+            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#928374] tracking-[0.06em]">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#b8bb26]"></div>
               <span>Self</span>
             </div>
-            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#6a6260] tracking-[0.06em]">
-              <div class="w-2.5 h-2.5 rounded-full border border-[#2a2a2e]"></div>
+            <div class="flex items-center gap-2 font-['DM_Mono',monospace] text-[10px] text-[#928374] tracking-[0.06em]">
+              <div class="w-2.5 h-2.5 rounded-full border border-[#3c3836]"></div>
               <span>Unknown</span>
             </div>
           </div>
           <div class="flex gap-px">
-            <button id="btnTree" class="view-btn active font-['DM_Mono',monospace] text-[10px] tracking-[0.1em] uppercase py-2.25 px-4 border border-[#e0aa40] bg-[rgba(224,170,64,0.06)] text-[#e0aa40] cursor-pointer transition-all" data-view="tree">⊛ Tree</button>
-            <button id="btnList" class="view-btn font-['DM_Mono',monospace] text-[10px] tracking-[0.1em] uppercase py-2.25 px-4 border border-[#2a2a2e] bg-transparent text-[#6a6260] cursor-pointer transition-all hover:text-[#e0aa40] hover:border-[#e0aa40]" data-view="list">≡ List</button>
+            <button id="btnTree" class="view-btn active font-['DM_Mono',monospace] text-[10px] tracking-[0.1em] uppercase py-2.25 px-4 border border-[#8ec07c] bg-[rgba(142,192,124,0.06)] text-[#8ec07c] cursor-pointer transition-all" data-view="tree">⊛ Tree</button>
+            <button id="btnList" class="view-btn font-['DM_Mono',monospace] text-[10px] tracking-[0.1em] uppercase py-2.25 px-4 border border-[#3c3836] bg-transparent text-[#928374] cursor-pointer transition-all hover:text-[#8ec07c] hover:border-[#8ec07c]" data-view="list">≡ List</button>
           </div>
         </div>
 
@@ -83,10 +83,10 @@ import { familyLineage } from '../data/family.js';
             <!-- G4 - Great Grandparents (8 people) -->
             <div class="gen-row flex justify-start items-start relative z-10 mb-12 md:mb-20 pl-8 md:pl-16" id="rG4">
               {familyLineage[0]?.members.map((member, idx) => (
-                <div id={`nG4_${idx}`} class={`pnode bg-[#121214] border border-[#1e1e22] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#2a2a2e] hover:bg-[#161618] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#5a80a8]' : member.side === 'maternal' ? 'border-t-[#e0aa40]' : 'border-t-[#5a9870]'}`}>
-                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(90,128,168,0.7)]' : member.side === 'maternal' ? 'text-[rgba(224,170,64,0.65)]' : 'text-[rgba(90,152,112,0.7)]'}`}>{member.role}</div>
-                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-white leading-[1.25] mb-1.5">{member.name}</div>
-                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#e0aa40]">{member.place}</div>
+                <div id={`nG4_${idx}`} class={`pnode bg-[#3c3836] border border-[#3c3836] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#3c3836] hover:bg-[#282828] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#83a598]' : member.side === 'maternal' ? 'border-t-[#8ec07c]' : 'border-t-[#b8bb26]'}`}>
+                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(131,165,152,0.7)]' : member.side === 'maternal' ? 'text-[rgba(142,192,124,0.65)]' : 'text-[rgba(184,187,38,0.7)]'}`}>{member.role}</div>
+                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-[#fbf1c7] leading-[1.25] mb-1.5">{member.name}</div>
+                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#8ec07c]">{member.place}</div>
                 </div>
               ))}
             </div>
@@ -94,10 +94,10 @@ import { familyLineage } from '../data/family.js';
             <!-- G3 - Grandparents (4 people) -->
             <div class="gen-row flex justify-center items-start relative z-10 mb-12 md:mb-20 gap-12 md:gap-24" id="rG3">
               {familyLineage[1]?.members.map((member, idx) => (
-                <div id={`nG3_${idx}`} class={`pnode bg-[#121214] border border-[#1e1e22] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#2a2a2e] hover:bg-[#161618] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#5a80a8]' : member.side === 'maternal' ? 'border-t-[#e0aa40]' : 'border-t-[#5a9870]'}`}>
-                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(90,128,168,0.7)]' : member.side === 'maternal' ? 'text-[rgba(224,170,64,0.65)]' : 'text-[rgba(90,152,112,0.7)]'}`}>{member.role}</div>
-                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-white leading-[1.25] mb-1.5">{member.name}</div>
-                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#e0aa40]">{member.place}</div>
+                <div id={`nG3_${idx}`} class={`pnode bg-[#3c3836] border border-[#3c3836] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#3c3836] hover:bg-[#282828] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#83a598]' : member.side === 'maternal' ? 'border-t-[#8ec07c]' : 'border-t-[#b8bb26]'}`}>
+                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(131,165,152,0.7)]' : member.side === 'maternal' ? 'text-[rgba(142,192,124,0.65)]' : 'text-[rgba(184,187,38,0.7)]'}`}>{member.role}</div>
+                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-[#fbf1c7] leading-[1.25] mb-1.5">{member.name}</div>
+                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#8ec07c]">{member.place}</div>
                 </div>
               ))}
             </div>
@@ -105,10 +105,10 @@ import { familyLineage } from '../data/family.js';
             <!-- G2 - Parents (2 people) -->
             <div class="gen-row flex justify-center items-start relative z-10 mb-12 md:mb-20 gap-[120px] md:gap-[200px]" id="rG2">
               {familyLineage[2]?.members.map((member, idx) => (
-                <div id={`nG2_${idx}`} class={`pnode bg-[#121214] border border-[#1e1e22] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#2a2a2e] hover:bg-[#161618] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#5a80a8]' : member.side === 'maternal' ? 'border-t-[#e0aa40]' : 'border-t-[#5a9870]'}`}>
-                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(90,128,168,0.7)]' : member.side === 'maternal' ? 'text-[rgba(224,170,64,0.65)]' : 'text-[rgba(90,152,112,0.7)]'}`}>{member.role}</div>
-                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-white leading-[1.25] mb-1.5">{member.name}</div>
-                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#6a6260]">{member.born}</div>
+                <div id={`nG2_${idx}`} class={`pnode bg-[#3c3836] border border-[#3c3836] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#3c3836] hover:bg-[#282828] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#83a598]' : member.side === 'maternal' ? 'border-t-[#8ec07c]' : 'border-t-[#b8bb26]'}`}>
+                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(131,165,152,0.7)]' : member.side === 'maternal' ? 'text-[rgba(142,192,124,0.65)]' : 'text-[rgba(184,187,38,0.7)]'}`}>{member.role}</div>
+                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-[#fbf1c7] leading-[1.25] mb-1.5">{member.name}</div>
+                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#928374]">{member.born}</div>
                 </div>
               ))}
             </div>
@@ -116,10 +116,10 @@ import { familyLineage } from '../data/family.js';
             <!-- G1 - Self & Siblings (2 people) -->
             <div class="gen-row flex justify-center items-start relative z-10 gap-4" id="rG1">
               {familyLineage[3]?.members.map((member, idx) => (
-                <div id={`nG1_${idx}`} class={`pnode bg-[#121214] border border-[#1e1e22] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#2a2a2e] hover:bg-[#161618] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#5a80a8]' : member.side === 'maternal' ? 'border-t-[#e0aa40]' : 'border-t-[#5a9870]'}`}>
-                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(90,128,168,0.7)]' : member.side === 'maternal' ? 'text-[rgba(224,170,64,0.65)]' : 'text-[rgba(90,152,112,0.7)]'}`}>{member.role}</div>
-                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-white leading-[1.25] mb-1.5">{member.name}</div>
-                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#e0aa40]">{member.born}</div>
+                <div id={`nG1_${idx}`} class={`pnode bg-[#3c3836] border border-[#3c3836] p-3 w-[160px] md:w-[180px] flex-shrink-0 relative transition-all cursor-default mx-1 hover:border-[#3c3836] hover:bg-[#282828] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(0,0,0,0.5)] hover:z-20 border-t-2 ${member.side === 'paternal' ? 'border-t-[#83a598]' : member.side === 'maternal' ? 'border-t-[#8ec07c]' : 'border-t-[#b8bb26]'}`}>
+                  <div class={`font-['DM_Mono',monospace] text-[7px] tracking-[0.08em] uppercase leading-[1.4] mb-1.5 ${member.side === 'paternal' ? 'text-[rgba(131,165,152,0.7)]' : member.side === 'maternal' ? 'text-[rgba(142,192,124,0.65)]' : 'text-[rgba(184,187,38,0.7)]'}`}>{member.role}</div>
+                  <div class="font-['Playfair_Display',serif] text-[14px] md:text-[15px] font-bold text-[#fbf1c7] leading-[1.25] mb-1.5">{member.name}</div>
+                  <div class="font-['DM_Mono',monospace] text-[8px] text-[#8ec07c]">{member.born}</div>
                 </div>
               ))}
             </div>
@@ -130,30 +130,30 @@ import { familyLineage } from '../data/family.js';
         <div id="listView" class="view-section hidden">
           {familyLineage.map((gen, genIdx) => (
             <div class="gen-section mb-10 md:mb-14 opacity-0" style={`animation: fadeIn 0.6s forwards ${0.05 + genIdx * 0.07}s`}>
-              <div class="gen-head flex items-center gap-3.5 pb-3.5 border-b border-[#2a2a2e] mb-4">
-                <span class="font-['Playfair_Display',serif] text-[40px] md:text-[52px] font-black text-[#2a2a2e] leading-none tracking-[-0.04em] select-none">G{4 - genIdx}</span>
+              <div class="gen-head flex items-center gap-3.5 pb-3.5 border-b border-[#3c3836] mb-4">
+                <span class="font-['Playfair_Display',serif] text-[40px] md:text-[52px] font-black text-[#3c3836] leading-none tracking-[-0.04em] select-none">G{4 - genIdx}</span>
                 <div>
-                  <span class="font-['DM_Mono',monospace] text-[10px] tracking-[0.2em] uppercase text-[#e0aa40] block">{gen.generation}</span>
-                  <span class="text-[12px] md:text-[13px] text-[#6a6260] italic">{gen.subtitle}</span>
+                  <span class="font-['DM_Mono',monospace] text-[10px] tracking-[0.2em] uppercase text-[#8ec07c] block">{gen.generation}</span>
+                  <span class="text-[12px] md:text-[13px] text-[#928374] italic">{gen.subtitle}</span>
                 </div>
-                <div class="flex-1 h-px bg-gradient-to-r from-[#2a2a2e] to-transparent"></div>
+                <div class="flex-1 h-px bg-gradient-to-r from-[#3c3836] to-transparent"></div>
               </div>
               
               <div class="pgrid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                 {gen.members.map((member, idx) => (
-                  <div class={`lcard bg-[#121214] border border-[#1e1e22] p-4 md:p-5 relative transition-all cursor-default hover:bg-[#161618] hover:border-[#2a2a2e] border-t-2 ${member.side === 'paternal' ? 'border-t-[#5a80a8]' : member.side === 'maternal' ? 'border-t-[#e0aa40]' : 'border-t-[#5a9870]'}`}>
-                    <div class={`font-['DM_Mono',monospace] text-[8px] tracking-[0.13em] uppercase mb-2 leading-[1.5] ${member.side === 'paternal' ? 'text-[rgba(90,128,168,0.65)]' : member.side === 'maternal' ? 'text-[rgba(224,170,64,0.6)]' : 'text-[rgba(90,152,112,0.7)]'}`}>{member.role}</div>
-                    <div class="font-['Playfair_Display',serif] text-[18px] md:text-[22px] font-bold text-white mb-3 md:mb-4 leading-[1.2] tracking-[-0.01em]">{member.name}</div>
+                  <div class={`lcard bg-[#3c3836] border border-[#3c3836] p-4 md:p-5 relative transition-all cursor-default hover:bg-[#282828] hover:border-[#3c3836] border-t-2 ${member.side === 'paternal' ? 'border-t-[#83a598]' : member.side === 'maternal' ? 'border-t-[#8ec07c]' : 'border-t-[#b8bb26]'}`}>
+                    <div class={`font-['DM_Mono',monospace] text-[8px] tracking-[0.13em] uppercase mb-2 leading-[1.5] ${member.side === 'paternal' ? 'text-[rgba(131,165,152,0.65)]' : member.side === 'maternal' ? 'text-[rgba(142,192,124,0.6)]' : 'text-[rgba(184,187,38,0.7)]'}`}>{member.role}</div>
+                    <div class="font-['Playfair_Display',serif] text-[18px] md:text-[22px] font-bold text-[#fbf1c7] mb-3 md:mb-4 leading-[1.2] tracking-[-0.01em]">{member.name}</div>
                     <div class="flex flex-col gap-1.5">
                       <div class="flex items-baseline">
-                        <span class="text-[#3a3836] w-12 flex-shrink-0 font-['DM_Mono',monospace] text-[9px] tracking-[0.06em]">Born</span>
-                        <span class="flex-1 max-w-[20px] border-b border-dotted border-[#2a2a2e] mx-2 my-0"></span>
-                        <span class="text-[12px] text-[#a89e92]">{member.born}</span>
+                        <span class="text-[#504945] w-12 flex-shrink-0 font-['DM_Mono',monospace] text-[9px] tracking-[0.06em]">Born</span>
+                        <span class="flex-1 max-w-[20px] border-b border-dotted border-[#3c3836] mx-2 my-0"></span>
+                        <span class="text-[12px] text-[#a89984]">{member.born}</span>
                       </div>
                       <div class="flex items-baseline">
-                        <span class="text-[#3a3836] w-12 flex-shrink-0 font-['DM_Mono',monospace] text-[9px] tracking-[0.06em]">Place</span>
-                        <span class="flex-1 max-w-[20px] border-b border-dotted border-[#2a2a2e] mx-2 my-0"></span>
-                        <span class="text-[12px] text-[#e0aa40] font-['DM_Mono',monospace] text-[10px]">{member.place}</span>
+                        <span class="text-[#504945] w-12 flex-shrink-0 font-['DM_Mono',monospace] text-[9px] tracking-[0.06em]">Place</span>
+                        <span class="flex-1 max-w-[20px] border-b border-dotted border-[#3c3836] mx-2 my-0"></span>
+                        <span class="text-[12px] text-[#8ec07c] font-['DM_Mono',monospace] text-[10px]">{member.place}</span>
                       </div>
                     </div>
                   </div>
@@ -164,57 +164,57 @@ import { familyLineage } from '../data/family.js';
         </div>
 
         <!-- Heritage Breakdown -->
-        <div class="heritage bg-[#0e0e10] border border-[#2a2a2e] p-5 md:p-7 mt-8 md:mt-14">
-          <div class="h-title font-['Playfair_Display',serif] text-[20px] md:text-[22px] font-bold text-white mb-1">Heritage Breakdown</div>
-          <div class="h-sub text-[11px] md:text-[12px] text-[#6a6260] italic mb-4 md:mb-5.5">Paternal vs maternal lineage by known members</div>
+        <div class="heritage bg-[#282828] border border-[#3c3836] p-5 md:p-7 mt-8 md:mt-14">
+          <div class="h-title font-['Playfair_Display',serif] text-[20px] md:text-[22px] font-bold text-[#fbf1c7] mb-1">Heritage Breakdown</div>
+          <div class="h-sub text-[11px] md:text-[12px] text-[#928374] italic mb-4 md:mb-5.5">Paternal vs maternal lineage by known members</div>
           
           <div class="dna-bar flex h-[10px] rounded-sm overflow-hidden mb-2.5">
-            <div class="dna-p bg-gradient-to-r from-[#5a80a8] to-[rgba(90,128,168,0.5)] flex-1"></div>
-            <div class="dna-m bg-gradient-to-r from-[rgba(224,170,64,0.5)] to-[#e0aa40] flex-1"></div>
+            <div class="dna-p bg-gradient-to-r from-[#83a598] to-[rgba(131,165,152,0.5)] flex-1"></div>
+            <div class="dna-m bg-gradient-to-r from-[rgba(142,192,124,0.5)] to-[#8ec07c] flex-1"></div>
           </div>
           
           <div class="dna-lbls flex flex-col md:flex-row md:justify-between mb-4 md:mb-6 gap-1">
-            <span class="dl font-['DM_Mono',monospace] text-[9px] tracking-[0.1em] uppercase text-[#5a80a8]">Paternal · Yadav · 50%</span>
-            <span class="dl font-['DM_Mono',monospace] text-[9px] tracking-[0.1em] uppercase text-[#e0aa40]">50% · Yadav / Singh · Maternal</span>
+            <span class="dl font-['DM_Mono',monospace] text-[9px] tracking-[0.1em] uppercase text-[#83a598]">Paternal · Yadav · 50%</span>
+            <span class="dl font-['DM_Mono',monospace] text-[9px] tracking-[0.1em] uppercase text-[#8ec07c]">50% · Yadav / Singh · Maternal</span>
           </div>
           
           <div class="og grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-1">
-            <div class="oc bg-[#0e0e10] border border-[#1e1e22] p-3 md:p-[14px] transition-all hover:bg-[#161618] hover:border-[#2a2a2e]">
-              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#6a6260] mb-1.5">Family Origin</div>
-              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-white">Azamgarh</div>
-              <div class="oc-sub text-[11px] text-[#6a6260] italic mt-0.5">Uttar Pradesh, India</div>
+            <div class="oc bg-[#282828] border border-[#3c3836] p-3 md:p-[14px] transition-all hover:bg-[#282828] hover:border-[#3c3836]">
+              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#928374] mb-1.5">Family Origin</div>
+              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-[#fbf1c7]">Azamgarh</div>
+              <div class="oc-sub text-[11px] text-[#928374] italic mt-0.5">Uttar Pradesh, India</div>
             </div>
-            <div class="oc bg-[#0e0e10] border border-[#1e1e22] p-3 md:p-[14px] transition-all hover:bg-[#161618] hover:border-[#2a2a2e]">
-              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#6a6260] mb-1.5">Paternal Surname</div>
-              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-white">Yadav</div>
-              <div class="oc-sub text-[11px] text-[#6a6260] italic mt-0.5">Both paternal sides</div>
+            <div class="oc bg-[#282828] border border-[#3c3836] p-3 md:p-[14px] transition-all hover:bg-[#282828] hover:border-[#3c3836]">
+              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#928374] mb-1.5">Paternal Surname</div>
+              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-[#fbf1c7]">Yadav</div>
+              <div class="oc-sub text-[11px] text-[#928374] italic mt-0.5">Both paternal sides</div>
             </div>
-            <div class="oc bg-[#0e0e10] border border-[#1e1e22] p-3 md:p-[14px] transition-all hover:bg-[#161618] hover:border-[#2a2a2e]">
-              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#6a6260] mb-1.5">Maternal Surname</div>
-              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-white">Singh / Yadav</div>
-              <div class="oc-sub text-[11px] text-[#6a6260] italic mt-0.5">Ram Awadh Singh lineage</div>
+            <div class="oc bg-[#282828] border border-[#3c3836] p-3 md:p-[14px] transition-all hover:bg-[#282828] hover:border-[#3c3836]">
+              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#928374] mb-1.5">Maternal Surname</div>
+              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-[#fbf1c7]">Singh / Yadav</div>
+              <div class="oc-sub text-[11px] text-[#928374] italic mt-0.5">Ram Awadh Singh lineage</div>
             </div>
-            <div class="oc bg-[#0e0e10] border border-[#1e1e22] p-3 md:p-[14px] transition-all hover:bg-[#161618] hover:border-[#2a2a2e]">
-              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#6a6260] mb-1.5">Known Members</div>
-              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-white">14</div>
-              <div class="oc-sub text-[11px] text-[#6a6260] italic mt-0.5">across 4 generations</div>
+            <div class="oc bg-[#282828] border border-[#3c3836] p-3 md:p-[14px] transition-all hover:bg-[#282828] hover:border-[#3c3836]">
+              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#928374] mb-1.5">Known Members</div>
+              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-[#fbf1c7]">14</div>
+              <div class="oc-sub text-[11px] text-[#928374] italic mt-0.5">across 4 generations</div>
             </div>
-            <div class="oc bg-[#0e0e10] border border-[#1e1e22] p-3 md:p-[14px] transition-all hover:bg-[#161618] hover:border-[#2a2a2e]">
-              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#6a6260] mb-1.5">Generations Mapped</div>
-              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-white">4</div>
-              <div class="oc-sub text-[11px] text-[#6a6260] italic mt-0.5">G4 → G1 · complete</div>
+            <div class="oc bg-[#282828] border border-[#3c3836] p-3 md:p-[14px] transition-all hover:bg-[#282828] hover:border-[#3c3836]">
+              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#928374] mb-1.5">Generations Mapped</div>
+              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-[#fbf1c7]">4</div>
+              <div class="oc-sub text-[11px] text-[#928374] italic mt-0.5">G4 → G1 · complete</div>
             </div>
-            <div class="oc bg-[#0e0e10] border border-[#1e1e22] p-3 md:p-[14px] transition-all hover:bg-[#161618] hover:border-[#2a2a2e]">
-              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#6a6260] mb-1.5">Unknown Members</div>
-              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-white">7</div>
-              <div class="oc-sub text-[11px] text-[#6a6260] italic mt-0.5">to be discovered</div>
+            <div class="oc bg-[#282828] border border-[#3c3836] p-3 md:p-[14px] transition-all hover:bg-[#282828] hover:border-[#3c3836]">
+              <div class="oc-lbl font-['DM_Mono',monospace] text-[8px] tracking-[0.15em] uppercase text-[#928374] mb-1.5">Unknown Members</div>
+              <div class="oc-val font-['Playfair_Display',serif] text-[16px] md:text-[17px] font-bold text-[#fbf1c7]">7</div>
+              <div class="oc-sub text-[11px] text-[#928374] italic mt-0.5">to be discovered</div>
             </div>
           </div>
         </div>
 
         <!-- Footer -->
-        <footer class="mt-12 md:mt-20 pt-6 border-t border-[#2a2a2e] font-['DM_Mono',monospace] text-[10px] tracking-[0.1em] text-[#6a6260] flex flex-col md:flex-row justify-between gap-2">
-          <a href="/" class="hover:text-[#a89e92] transition-colors">← back to home</a>
+        <footer class="mt-12 md:mt-20 pt-6 border-t border-[#3c3836] font-['DM_Mono',monospace] text-[10px] tracking-[0.1em] text-[#928374] flex flex-col md:flex-row justify-between gap-2">
+          <a href="/" class="hover:text-[#a89984] transition-colors">← back to home</a>
           <span>~/family-tree · 4 generations · Azamgarh, UP</span>
         </footer>
       </div>
@@ -231,9 +231,9 @@ import { familyLineage } from '../data/family.js';
       }
       
       .view-btn.active {
-        border-color: #e0aa40;
-        color: #e0aa40;
-        background: rgba(224, 170, 64, 0.06);
+        border-color: #8ec07c;
+        color: #8ec07c;
+        background: rgba(142, 192, 124, 0.06);
       }
       
       .tree-canvas {
@@ -284,8 +284,8 @@ import { familyLineage } from '../data/family.js';
         svg.style.width = width + 'px';
         svg.style.height = height + 'px';
 
-        const paternalColor = '#5a80a8';
-        const maternalColor = '#e0aa40';
+        const paternalColor = '#83a598';
+        const maternalColor = '#8ec07c';
 
         function getMidpoint(element, canvasEl) {
           if (!element) return null;
@@ -433,7 +433,7 @@ import { familyLineage } from '../data/family.js';
             const hBarY = mf.bot + 10;
             
             // Draw horizontal bar between parents
-            drawHBar(mf.x, mm.x, hBarY, '#9a9070');
+            drawHBar(mf.x, mm.x, hBarY, '#bdae93');
             
             // Draw vertical line down from center of hBar
             const vLineBottom = Math.min(ms.top, br.top) - 5;
@@ -442,7 +442,7 @@ import { familyLineage } from '../data/family.js';
             vLine.setAttribute('y1', hBarY);
             vLine.setAttribute('x2', midX);
             vLine.setAttribute('y2', vLineBottom);
-            vLine.setAttribute('stroke', '#9a9070');
+            vLine.setAttribute('stroke', '#bdae93');
             vLine.setAttribute('stroke-width', '1.5');
             vLine.setAttribute('opacity', '0.45');
             vLine.style.animation = `draw 1s ease ${delay}s forwards`;
@@ -450,10 +450,10 @@ import { familyLineage } from '../data/family.js';
             delay += 0.1;
             
             // Draw curve to Self
-            drawCurve(midX, vLineBottom, ms.x, ms.top - 5, '#9a9070', delay++);
+            drawCurve(midX, vLineBottom, ms.x, ms.top - 5, '#bdae93', delay++);
             
             // Draw curve to Brother
-            drawCurve(midX, vLineBottom, br.x, br.top - 5, '#9a9070', delay++);
+            drawCurve(midX, vLineBottom, br.x, br.top - 5, '#bdae93', delay++);
           }
         } else if (g2Nodes.length >= 2 && g1Nodes.length >= 1) {
            // Fallback if only 1 child exists
@@ -462,8 +462,8 @@ import { familyLineage } from '../data/family.js';
            const ms = getMidpoint(g1Nodes[0], canvas);
            if (mf && mm && ms) {
              const midX = (mf.x + mm.x) / 2;
-             drawHBar(mf.x, mm.x, mf.bot + 10, '#9a9070');
-             drawCurve(midX, mf.bot + 10, ms.x, ms.top - 5, '#9a9070', delay++);
+             drawHBar(mf.x, mm.x, mf.bot + 10, '#bdae93');
+             drawCurve(midX, mf.bot + 10, ms.x, ms.top - 5, '#bdae93', delay++);
            }
         }
         

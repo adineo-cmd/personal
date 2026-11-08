@@ -1,7 +1,7 @@
 export default {
   "label": "Identity & Belief Architecture",
   "icon": "⚙️",
-  "color": "#9070a0",
+  "color": "#d3869b",
   "group": "Domains",
   "sub": "Belief Systems, Identity Shift",
   "subdomains": [

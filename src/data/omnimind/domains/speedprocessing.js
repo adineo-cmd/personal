@@ -1,7 +1,7 @@
 export default {
   "label": "Speed Reading & Info Processing",
   "icon": "🚀",
-  "color": "#409898",
+  "color": "#8ec07c",
   "group": "Domains",
   "sub": "Visual, Comprehension",
   "subdomains": [

@@ -1,7 +1,7 @@
 export default {
   "label": "Metrics & Tracking",
   "icon": "📊",
-  "color": "#d09030",
+  "color": "#fe8019",
   "group": "Foundation",
   "sub": "Cognitive, Emotional, Physical Integration",
   "subdomains": [

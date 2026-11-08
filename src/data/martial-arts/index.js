@@ -50,7 +50,7 @@ function renderUniversalBanner() {
   ];
 
   return `
-    <section id="universal-pinned" class="sticky top-0 z-50 mb-10 -mx-6 px-6 py-5 bg-[#08080a]/95 backdrop-blur-md border-y-2 border-slate-500/40 shadow-[0_4px_20px_rgba(100,116,139,0.15)]">
+    <section id="universal-pinned" class="sticky top-0 z-50 mb-10 -mx-6 px-6 py-5 bg-[#1d2021]/95 backdrop-blur-md border-y-2 border-slate-500/40 shadow-[0_4px_20px_rgba(100,116,139,0.15)]">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
           <div class="flex items-center gap-3">
@@ -75,7 +75,7 @@ function renderUniversalBanner() {
           </div>
           <div class="grid gap-2 md:grid-cols-3">
             ${sections.map(s => `
-              <a href="#${s.key}" class="group block p-3 rounded-lg bg-[#0e0e10]/60 border border-slate-500/20 hover:border-slate-500/50 hover:bg-[#121214] transition-all">
+              <a href="#${s.key}" class="group block p-3 rounded-lg bg-[#282828]/60 border border-slate-500/20 hover:border-slate-500/50 hover:bg-[#3c3836] transition-all">
                 <div class="flex items-center gap-2 mb-1">
                   <span class="text-lg">${s.icon}</span>
                   <span class="text-[12px] font-medium text-slate-300 group-hover:text-slate-100">${s.label}</span>
@@ -104,15 +104,15 @@ function renderUniversalBanner() {
 
 function renderStyleCard(style) {
   return `
-    <div class="style-card-link group block p-5 rounded-xl border border-[#2a2a2e] bg-[#0e0e10]/30 hover:bg-[#121214] hover:border-[#3a3a3e] transition-all cursor-pointer" data-style-id="${style.id}">
+    <div class="style-card-link group block p-5 rounded-xl border border-[#3c3836] bg-[#282828]/30 hover:bg-[#3c3836] hover:border-[#504945] transition-all cursor-pointer" data-style-id="${style.id}">
       <div class="flex items-start gap-3 mb-3">
         <span class="text-3xl">${style.icon}</span>
         <div class="flex-1 min-w-0">
-          <h3 class="text-[15px] font-medium text-[#ddd6cc] group-hover:text-white truncate">${style.name}</h3>
-          <p class="text-[10px] text-[#6a6260] mt-0.5">${style.origin}</p>
+          <h3 class="text-[15px] font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] truncate">${style.name}</h3>
+          <p class="text-[10px] text-[#928374] mt-0.5">${style.origin}</p>
         </div>
       </div>
-      <p class="text-[11px] text-[#a89e92] leading-relaxed line-clamp-3">${style.description}</p>
+      <p class="text-[11px] text-[#a89984] leading-relaxed line-clamp-3">${style.description}</p>
       <div class="flex flex-wrap gap-1 mt-3">
         ${(style.keyPrinciples || []).slice(0, 2).map(p => 
           `<span class="text-[9px] px-1.5 py-0.5 rounded-full border ${style.color} truncate max-w-[140px]">${p}</span>`
@@ -130,12 +130,12 @@ function renderApp() {
   
   if (currentView === 'directory') {
     app.innerHTML = `
-      <div class="min-h-screen bg-[#08080a] text-[#ddd6cc]">
+      <div class="min-h-screen bg-[#1d2021] text-[#ebdbb2]">
         <div class="max-w-7xl mx-auto px-6 pt-20 pb-16">
           ${renderUniversalBanner()}
           <header class="mb-10">
-            <h2 class="text-2xl font-medium text-[#ddd6cc] mb-1">Martial Arts Directory</h2>
-            <p class="text-[12px] text-[#6a6260]">${martialArtsRegistry.length} styles available</p>
+            <h2 class="text-2xl font-medium text-[#ebdbb2] mb-1">Martial Arts Directory</h2>
+            <p class="text-[12px] text-[#928374]">${martialArtsRegistry.length} styles available</p>
           </header>
           <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             ${martialArtsRegistry.map(renderStyleCard).join('')}
@@ -163,24 +163,24 @@ function renderApp() {
     const { html } = renderStylePage(currentStyle);
     
     app.innerHTML = `
-      <div class="min-h-screen bg-[#08080a] text-[#ddd6cc]">
+      <div class="min-h-screen bg-[#1d2021] text-[#ebdbb2]">
         <div class="max-w-7xl mx-auto px-6 pt-8 pb-16">
           
           <!-- Back Button -->
-          <button id="back-to-dir" class="mb-6 text-[12px] px-3 py-1.5 rounded-full border border-[#2a2a2e] bg-[#0e0e10]/50 text-[#a89e92] hover:bg-[#121214] hover:text-white transition-colors flex items-center gap-2">
+          <button id="back-to-dir" class="mb-6 text-[12px] px-3 py-1.5 rounded-full border border-[#3c3836] bg-[#282828]/50 text-[#a89984] hover:bg-[#3c3836] hover:text-[#fbf1c7] transition-colors flex items-center gap-2">
             ← Back to Directory
           </button>
           
           <!-- Style Header -->
-          <header class="mb-8 pb-6 border-b border-[#2a2a2e]">
+          <header class="mb-8 pb-6 border-b border-[#3c3836]">
             <div class="flex items-center gap-4 mb-4">
               <span class="text-5xl">${currentStyle.icon}</span>
               <div>
-                <h1 class="text-3xl font-bold text-[#ddd6cc] tracking-tight">${currentStyle.name}</h1>
-                <p class="text-[13px] text-[#6a6260] mt-1">${currentStyle.origin}</p>
+                <h1 class="text-3xl font-bold text-[#ebdbb2] tracking-tight">${currentStyle.name}</h1>
+                <p class="text-[13px] text-[#928374] mt-1">${currentStyle.origin}</p>
               </div>
             </div>
-            <p class="text-[14px] text-[#a89e92] leading-relaxed max-w-3xl">${currentStyle.description}</p>
+            <p class="text-[14px] text-[#a89984] leading-relaxed max-w-3xl">${currentStyle.description}</p>
             ${html.principles || ''}
           </header>
 

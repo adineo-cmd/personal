@@ -1,7 +1,7 @@
 export default {
   "label": "Integration Practices",
   "icon": "🔄",
-  "color": "#7060c0",
+  "color": "#d3869b",
   "group": "Foundation",
   "sub": "Mind Body Sync, Holistic Development",
   "subdomains": [

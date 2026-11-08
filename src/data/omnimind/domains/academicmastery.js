@@ -1,7 +1,7 @@
 export default {
   "label": "Academic Mastery",
   "icon": "🎓",
-  "color": "#3090a8",
+  "color": "#83a598",
   "group": "Domains",
   "sub": "Conceptual Decoding, Procedural Fluency, Cross Domain Synthesis",
   "subdomains": [

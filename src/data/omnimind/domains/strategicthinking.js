@@ -1,7 +1,7 @@
 export default {
   "label": "Strategic Thinking",
   "icon": "♟️",
-  "color": "#5a80a8",
+  "color": "#83a598",
   "group": "Cognition",
   "sub": "Decision Making, Pattern Recognition",
   "subdomains": [

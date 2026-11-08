@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNavigation from '../components/PageNavigation.astro';
+
+// Deeper archives — moved off the home page. Create & Learn remain on /#explore.
+const modes = [
+  {
+    id: 'body',
+    num: '01',
+    title: 'Body',
+    tag: 'taking care of myself',
+    accent: '#fe8019',
+    items: [
+      { label: 'exercise routine', path: 'exercise', name: 'Exercise' },
+      { label: 'home training skills', path: 'hometraining', name: 'Home Training' },
+      { label: 'martial arts encyclopedia', path: 'martialarts', name: 'Martial Arts' },
+      { label: 'mobility & flexibility', path: 'mobility', name: 'Mobility' },
+      { label: 'anatomy & injury guide', path: 'anatomy', name: 'Anatomy' },
+      { label: 'daily routine', path: 'routine', name: 'Daily Routine' },
+    ]
+  },
+  {
+    id: 'mind',
+    num: '02',
+    title: 'Mind',
+    tag: 'mental training & cognitive mastery',
+    accent: '#b8bb26',
+    items: [
+      { label: 'universal mastery system', path: 'mind', name: 'Mind Training' },
+    ]
+  },
+  {
+    id: 'tools',
+    num: '03',
+    title: 'Tools',
+    tag: 'things I use',
+    accent: '#83a598',
+    items: [
+      { label: 'computer & gear', path: 'gear', name: 'Gear' },
+      { label: 'cool links', path: 'links', name: 'Links' },
+      { label: 'progress, achievements', path: 'timeline', name: 'Timeline' },
+    ]
+  },
+  {
+    id: 'roots',
+    num: '04',
+    title: 'Roots',
+    tag: 'where I come from',
+    accent: '#d3869b',
+    items: [
+      { label: 'family tree, lineage', path: 'family-tree', name: 'Family Tree' },
+      { label: 'miscellaneous', path: 'misc', name: 'Misc' },
+    ]
+  },
+];
+---
+
+<BaseLayout title="Explore | Aditya Yadav" description="Body, mind, tools & roots — the deeper archives: fitness, martial arts, mind training, gear, timeline, family tree and misc.">
+  <>
+    <PageNavigation currentPage="explore" />
+
+    <div
+      class="min-h-screen bg-[#1d2021] text-[#ebdbb2] relative"
+      style={{
+        backgroundImage: `url('/images/debian_grey_swirl.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#1d2021',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div class="absolute inset-0 bg-[#1d2021]/80"></div>
+
+      <div class="max-w-6xl mx-auto px-4 py-12 relative z-10">
+        <!-- Header -->
+        <header class="mb-12">
+          <h1 class="text-5xl md:text-6xl font-serif mb-2">
+            <span class="text-[#fbf1c7]">Exp</span><span class="text-[#8ec07c] italic">lore</span>
+          </h1>
+          <p class="text-[#a89984] text-base max-w-2xl">
+            The deeper archives — body, mind, tools & roots. Everything that shapes the day-to-day, and everything that came before it.
+          </p>
+        </header>
+
+        <div class="flex flex-col gap-10 md:gap-14">
+          {modes.map((mode) => (
+            <section id={mode.id} class="scroll-mt-24">
+              <!-- Mode header -->
+              <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+                <div class="flex items-baseline gap-3 md:gap-4">
+                  <span class="font-mono text-xs text-[#8ec07c]/80 tracking-widest">{mode.num}</span>
+                  <h2 class="text-2xl md:text-3xl font-serif tracking-tight" style={`color: ${mode.accent}`}>
+                    {mode.title}
+                  </h2>
+                </div>
+                <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap">{mode.tag}</span>
+              </div>
+
+              <!-- Items grid -->
+              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {mode.items.map((item) => (
+                  <a
+                    href={`/${item.path}`}
+                    class="mode-card group block border border-[#3c3836] bg-[#282828]/60 hover:bg-[#3c3836]/60 transition-all duration-300 px-5 py-4"
+                    style={`--accent: ${mode.accent}`}
+                  >
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] transition-colors">
+                        {item.name}
+                      </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="15" height="15" viewBox="0 0 24 24"
+                        fill="none" stroke-width="2"
+                        class="mode-arrow flex-shrink-0 transition-all duration-300"
+                      >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </div>
+                    <span class="text-xs md:text-sm text-[#a89984] group-hover:text-[#ebdbb2] transition-colors">
+                      {item.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <!-- Back to the surface -->
+        <div class="mt-14 pt-6 border-t border-[#3c3836] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#928374] font-mono">
+          <span>~/explore — body · mind · tools · roots</span>
+          <a href="/#explore" class="hover:text-[#8ec07c] transition-colors underline decoration-[#504945] underline-offset-4">
+            ← back to create & learn
+          </a>
+        </div>
+      </div>
+    </div>
+  </>
+</BaseLayout>
+
+<style>
+  .mode-card:hover {
+    border-color: var(--accent);
+  }
+  .mode-arrow {
+    stroke: var(--accent);
+    opacity: 0;
+  }
+  .mode-card:hover .mode-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+</style>

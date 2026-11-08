@@ -1,7 +1,7 @@
 export default {
   "label": "Resource & Strategic Leverage",
   "icon": "💡",
-  "color": "#d09030",
+  "color": "#fe8019",
   "group": "Cognition",
   "sub": "Economic Psychology, Resource Allocation, Value Creation",
   "subdomains": [

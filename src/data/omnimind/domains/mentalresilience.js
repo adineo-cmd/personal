@@ -1,7 +1,7 @@
 export default {
   "label": "Mental Resilience",
   "icon": "🔥",
-  "color": "#d86848",
+  "color": "#fe8019",
   "group": "Core",
   "sub": "Stress Inoculation, Emotional Mastery, Grit & Perseverance",
   "subdomains": [

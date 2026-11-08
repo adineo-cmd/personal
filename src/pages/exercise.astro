@@ -8,36 +8,36 @@ import { exerciseLibrary, categoryColors, difficultyColors } from '../data/exerc
 function renderWeightsDay(day) {
   if (!day) return '';
   const getBadge = (type) => {
-    const map = { s: 'bg-[#5a9870]/10 text-[#5a9870]', h: 'bg-[#5a80a8]/10 text-[#5a80a8]', l: 'bg-[#e0aa40]/10 text-[#e0aa40]', r: 'bg-[#2a2a2e] text-[#6a6260]' };
-    return map[type] || 'bg-[#2a2a2e] text-[#6a6260]';
+    const map = { s: 'bg-[#b8bb26]/10 text-[#b8bb26]', h: 'bg-[#83a598]/10 text-[#83a598]', l: 'bg-[#8ec07c]/10 text-[#8ec07c]', r: 'bg-[#3c3836] text-[#928374]' };
+    return map[type] || 'bg-[#3c3836] text-[#928374]';
   };
   const getSecBadge = (k) => {
     const map = {
-      s: {t:'strength', c:'bg-[#5a9870]/10 text-[#5a9870]'},
-      h: {t:'hypertrophy', c:'bg-[#5a80a8]/10 text-[#5a80a8]'},
-      b: {t:'structural balance', c:'bg-[#d86848]/10 text-[#d86848]'},
-      n: {t:'hypertrophy finisher', c:'bg-[#e0aa40]/10 text-[#e0aa40]'},
-      i: {t:'isolation', c:'bg-[#2a2a2e] text-[#6a6260]'}
+      s: {t:'strength', c:'bg-[#b8bb26]/10 text-[#b8bb26]'},
+      h: {t:'hypertrophy', c:'bg-[#83a598]/10 text-[#83a598]'},
+      b: {t:'structural balance', c:'bg-[#fe8019]/10 text-[#fe8019]'},
+      n: {t:'hypertrophy finisher', c:'bg-[#8ec07c]/10 text-[#8ec07c]'},
+      i: {t:'isolation', c:'bg-[#3c3836] text-[#928374]'}
     };
-    return map[k] || {t:'section', c:'bg-[#2a2a2e] text-[#6a6260]'};
+    return map[k] || {t:'section', c:'bg-[#3c3836] text-[#928374]'};
   };
   const getBorder = (k) => {
-    const map = {s:'border-l-[#5a9870]/50', h:'border-l-[#5a80a8]/50', b:'border-l-[#d86848]/50', n:'border-l-[#e0aa40]/50'};
+    const map = {s:'border-l-[#b8bb26]/50', h:'border-l-[#83a598]/50', b:'border-l-[#fe8019]/50', n:'border-l-[#8ec07c]/50'};
     return map[k] || '';
   };
   const countEx = day.sections.filter(s => s.k !== 'w').reduce((a, s) => a + s.ex.length, 0);
   let h = '';
-  if (day.type !== 'r') h += `<div class="text-[10px] text-[#6a6260] mb-3">Working exercises: <span class="text-[#a89e92] font-medium">${countEx}</span> — warmup excluded</div>`;
-  h += `<div class="mb-4 pb-3.5 border-b border-[#2a2a2e]/50"><span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full mb-0.5 ${getBadge(day.type)}">${day.label}</span><p class="text-lg font-medium text-[#ddd6cc] mt-1 mb-0.5">${day.full}</p><p class="text-[13px] text-[#6a6260] m-0">${day.focus}</p></div>`;
-  h += `<div class="text-[11px] text-[#6a6260] p-2.5 mb-4 border border-[#2a2a2e] rounded-lg bg-[#0e0e10]/30">${day.note}</div>`;
+  if (day.type !== 'r') h += `<div class="text-[10px] text-[#928374] mb-3">Working exercises: <span class="text-[#a89984] font-medium">${countEx}</span> — warmup excluded</div>`;
+  h += `<div class="mb-4 pb-3.5 border-b border-[#3c3836]/50"><span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full mb-0.5 ${getBadge(day.type)}">${day.label}</span><p class="text-lg font-medium text-[#ebdbb2] mt-1 mb-0.5">${day.full}</p><p class="text-[13px] text-[#928374] m-0">${day.focus}</p></div>`;
+  h += `<div class="text-[11px] text-[#928374] p-2.5 mb-4 border border-[#3c3836] rounded-lg bg-[#282828]/30">${day.note}</div>`;
   day.sections.forEach(sec => {
     const badge = getSecBadge(sec.k);
-    h += `<div class="border border-[#2a2a2e] rounded-lg p-2.5 mb-2 bg-[#0e0e10]/30 ${getBorder(sec.k)} border-l-2">`;
-    h += `<div class="flex items-center gap-2 mb-2 flex-wrap"><span class="text-[13px] font-medium text-[#ddd6cc]">${sec.t}</span><span class="text-[10px] px-2 py-0.5 rounded-full ${badge.c}">${badge.t}</span>${sec.note ? `<span class="text-[11px] text-[#6a6260] flex-1">${sec.note}</span>` : ''}</div>`;
+    h += `<div class="border border-[#3c3836] rounded-lg p-2.5 mb-2 bg-[#282828]/30 ${getBorder(sec.k)} border-l-2">`;
+    h += `<div class="flex items-center gap-2 mb-2 flex-wrap"><span class="text-[13px] font-medium text-[#ebdbb2]">${sec.t}</span><span class="text-[10px] px-2 py-0.5 rounded-full ${badge.c}">${badge.t}</span>${sec.note ? `<span class="text-[11px] text-[#928374] flex-1">${sec.note}</span>` : ''}</div>`;
     sec.ex.forEach(e => {
-      h += `<div class="grid grid-cols-[1fr_auto_auto] gap-2 items-start py-1.5 border-b border-[#2a2a2e]/50 last:border-0 last:pb-0"><div><div class="text-[13px] text-[#ddd6cc]">${e.n}${e.add ? `<span class="inline-block text-[9px] px-1.5 py-0.5 rounded-full bg-[#5a9870]/10 text-[#5a9870] ml-1 align-middle">added</span>` : ''}${e.chg ? `<span class="inline-block text-[9px] px-1.5 py-0.5 rounded-full bg-[#e0aa40]/10 text-[#e0aa40] ml-1 align-middle">updated</span>` : ''}</div>${e.sub ? `<div class="text-[11px] text-[#6a6260] mt-0.5">${e.sub}</div>` : ''}</div>`;
+      h += `<div class="grid grid-cols-[1fr_auto_auto] gap-2 items-start py-1.5 border-b border-[#3c3836]/50 last:border-0 last:pb-0"><div><div class="text-[13px] text-[#ebdbb2]">${e.n}${e.add ? `<span class="inline-block text-[9px] px-1.5 py-0.5 rounded-full bg-[#b8bb26]/10 text-[#b8bb26] ml-1 align-middle">added</span>` : ''}${e.chg ? `<span class="inline-block text-[9px] px-1.5 py-0.5 rounded-full bg-[#8ec07c]/10 text-[#8ec07c] ml-1 align-middle">updated</span>` : ''}</div>${e.sub ? `<div class="text-[11px] text-[#928374] mt-0.5">${e.sub}</div>` : ''}</div>`;
       let setsDisplay = e.s ? (e.s.includes('×') ? e.s + ' ' + e.r : e.s + ' × ' + e.r) : e.r;
-      h += `<div class="text-[12px] font-medium text-[#ddd6cc] text-right whitespace-nowrap">${setsDisplay}</div><div class="text-[11px] text-[#6a6260] text-right whitespace-nowrap min-w-[72px]">${e.w}</div></div>`;
+      h += `<div class="text-[12px] font-medium text-[#ebdbb2] text-right whitespace-nowrap">${setsDisplay}</div><div class="text-[11px] text-[#928374] text-right whitespace-nowrap min-w-[72px]">${e.w}</div></div>`;
     });
     h += `</div>`;
   });
@@ -49,41 +49,41 @@ function renderCalContent(viewId) {
   if (viewId === 'overview') {
     let h = '';
     calisthenicsData.overview.rules.forEach(r => {
-      const colors = { purple: 'border-l-[#f0cc72]/50', green: 'border-l-[#5a9870]/50', amber: 'border-l-[#e0aa40]/50', blue: 'border-l-[#5a80a8]/50', red: 'border-l-[#d86848]/50' };
-      const textColors = { purple: 'text-[#f0cc72]', green: 'text-[#5a9870]', amber: 'text-[#e0aa40]', blue: 'text-[#5a80a8]', red: 'text-[#d86848]' };
-      h += `<div class="border border-[#2a2a2e] rounded-lg p-2.5 mb-2 bg-[#0e0e10]/30 ${colors[r.c]} border-l-2"><div class="text-[10px] font-medium mb-1 ${textColors[r.c]}">${r.la}</div><div class="text-[13px] text-[#ddd6cc]">${r.t}</div><div class="text-[11px] text-[#6a6260] mt-1">${r.s}</div></div>`;
+      const colors = { purple: 'border-l-[#8ec07c]/50', green: 'border-l-[#b8bb26]/50', amber: 'border-l-[#8ec07c]/50', blue: 'border-l-[#83a598]/50', red: 'border-l-[#fe8019]/50' };
+      const textColors = { purple: 'text-[#8ec07c]', green: 'text-[#b8bb26]', amber: 'text-[#8ec07c]', blue: 'text-[#83a598]', red: 'text-[#fe8019]' };
+      h += `<div class="border border-[#3c3836] rounded-lg p-2.5 mb-2 bg-[#282828]/30 ${colors[r.c]} border-l-2"><div class="text-[10px] font-medium mb-1 ${textColors[r.c]}">${r.la}</div><div class="text-[13px] text-[#ebdbb2]">${r.t}</div><div class="text-[11px] text-[#928374] mt-1">${r.s}</div></div>`;
     });
     return h;
   } 
   if (viewId === 'phases') {
-    let h = `<div class="text-[14px] font-medium text-[#ddd6cc] mb-3">3-phase progression roadmap</div>`;
+    let h = `<div class="text-[14px] font-medium text-[#ebdbb2] mb-3">3-phase progression roadmap</div>`;
     calisthenicsData.phases.forEach(p => {
-      h += `<div class="border border-[#2a2a2e] rounded-lg p-2.5 mb-2 bg-[#0e0e10]/30"><span class="inline-block text-[10px] px-2.5 py-0.5 rounded-full mb-1 ${p.bc}">${p.badge} — ${p.title}</span><div class="text-[11px] text-[#a89e92] leading-relaxed">${p.desc}</div><div class="mt-2 text-[11px] text-[#6a6260] font-medium">${p.goal}</div></div>`;
+      h += `<div class="border border-[#3c3836] rounded-lg p-2.5 mb-2 bg-[#282828]/30"><span class="inline-block text-[10px] px-2.5 py-0.5 rounded-full mb-1 ${p.bc}">${p.badge} — ${p.title}</span><div class="text-[11px] text-[#a89984] leading-relaxed">${p.desc}</div><div class="mt-2 text-[11px] text-[#928374] font-medium">${p.goal}</div></div>`;
     });
     return h;
   }
   const day = calisthenicsData.days[viewId];
   if (!day) return '';
   const getBadge = (type) => {
-    const map = { s: 'bg-[#5a9870]/10 text-[#5a9870]', h: 'bg-[#5a80a8]/10 text-[#5a80a8]', l: 'bg-[#e0aa40]/10 text-[#e0aa40]', k: 'bg-[#f0cc72]/10 text-[#f0cc72]', r: 'bg-[#2a2a2e] text-[#6a6260]' };
-    return map[type] || 'bg-[#2a2a2e] text-[#6a6260]';
+    const map = { s: 'bg-[#b8bb26]/10 text-[#b8bb26]', h: 'bg-[#83a598]/10 text-[#83a598]', l: 'bg-[#8ec07c]/10 text-[#8ec07c]', k: 'bg-[#8ec07c]/10 text-[#8ec07c]', r: 'bg-[#3c3836] text-[#928374]' };
+    return map[type] || 'bg-[#3c3836] text-[#928374]';
   };
   const getSecBadge = (k) => {
-    const map = { s: {t:'strength', c:'bg-[#5a9870]/10 text-[#5a9870]'}, h: {t:'hypertrophy', c:'bg-[#5a80a8]/10 text-[#5a80a8]'}, b: {t:'structural balance', c:'bg-[#d86848]/10 text-[#d86848]'}, k: {t:'calisthenics skill', c:'bg-[#f0cc72]/10 text-[#f0cc72]'}, n: {t:'hypertrophy finisher', c:'bg-[#e0aa40]/10 text-[#e0aa40]'}, i: {t:'isolation / core', c:'bg-[#2a2a2e] text-[#6a6260]'} };
-    return map[k] || {t:'section', c:'bg-[#2a2a2e] text-[#6a6260]'};
+    const map = { s: {t:'strength', c:'bg-[#b8bb26]/10 text-[#b8bb26]'}, h: {t:'hypertrophy', c:'bg-[#83a598]/10 text-[#83a598]'}, b: {t:'structural balance', c:'bg-[#fe8019]/10 text-[#fe8019]'}, k: {t:'calisthenics skill', c:'bg-[#8ec07c]/10 text-[#8ec07c]'}, n: {t:'hypertrophy finisher', c:'bg-[#8ec07c]/10 text-[#8ec07c]'}, i: {t:'isolation / core', c:'bg-[#3c3836] text-[#928374]'} };
+    return map[k] || {t:'section', c:'bg-[#3c3836] text-[#928374]'};
   };
   const getBorder = (k) => {
-    const map = {s:'border-l-[#5a9870]/50', h:'border-l-[#5a80a8]/50', b:'border-l-[#d86848]/50', k:'border-l-[#f0cc72]/50', n:'border-l-[#e0aa40]/50'};
+    const map = {s:'border-l-[#b8bb26]/50', h:'border-l-[#83a598]/50', b:'border-l-[#fe8019]/50', k:'border-l-[#8ec07c]/50', n:'border-l-[#8ec07c]/50'};
     return map[k] || '';
   };
-  let h = `<div class="text-[11px] text-[#6a6260] p-2.5 mb-4 border border-[#2a2a2e] rounded-lg bg-[#0e0e10]/30">${day.note}</div><div class="mb-4 pb-3.5 border-b border-[#2a2a2e]/50"><span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full mb-0.5 ${getBadge(day.type)}">${day.label}</span><p class="text-[13px] text-[#6a6260] m-0">${day.focus}</p></div>`;
+  let h = `<div class="text-[11px] text-[#928374] p-2.5 mb-4 border border-[#3c3836] rounded-lg bg-[#282828]/30">${day.note}</div><div class="mb-4 pb-3.5 border-b border-[#3c3836]/50"><span class="inline-block text-[11px] px-2.5 py-0.5 rounded-full mb-0.5 ${getBadge(day.type)}">${day.label}</span><p class="text-[13px] text-[#928374] m-0">${day.focus}</p></div>`;
   day.sections.forEach(sec => {
     const badge = getSecBadge(sec.k);
-    h += `<div class="border border-[#2a2a2e] rounded-lg p-2.5 mb-2 bg-[#0e0e10]/30 ${getBorder(sec.k)} border-l-2"><div class="flex items-center gap-2 mb-2 flex-wrap"><span class="text-[13px] font-medium text-[#ddd6cc]">${sec.t}</span><span class="text-[10px] px-2 py-0.5 rounded-full ${badge.c}">${badge.t}</span>${sec.note ? `<span class="text-[11px] text-[#6a6260] flex-1">${sec.note}</span>` : ''}</div>`;
+    h += `<div class="border border-[#3c3836] rounded-lg p-2.5 mb-2 bg-[#282828]/30 ${getBorder(sec.k)} border-l-2"><div class="flex items-center gap-2 mb-2 flex-wrap"><span class="text-[13px] font-medium text-[#ebdbb2]">${sec.t}</span><span class="text-[10px] px-2 py-0.5 rounded-full ${badge.c}">${badge.t}</span>${sec.note ? `<span class="text-[11px] text-[#928374] flex-1">${sec.note}</span>` : ''}</div>`;
     sec.ex.forEach(e => {
-      h += `<div class="grid grid-cols-[1fr_auto_auto] gap-2 items-start py-1.5 border-b border-[#2a2a2e]/50 last:border-0 last:pb-0"><div><div class="text-[13px] text-[#ddd6cc]">${e.n}${e.cal ? `<span class="inline-block text-[9px] px-1.5 py-0.5 rounded-full bg-[#f0cc72]/10 text-[#f0cc72] ml-1 align-middle">calisthenics</span>` : ''}</div>${e.sub ? `<div class="text-[11px] text-[#6a6260] mt-0.5">${e.sub}</div>` : ''}</div>`;
+      h += `<div class="grid grid-cols-[1fr_auto_auto] gap-2 items-start py-1.5 border-b border-[#3c3836]/50 last:border-0 last:pb-0"><div><div class="text-[13px] text-[#ebdbb2]">${e.n}${e.cal ? `<span class="inline-block text-[9px] px-1.5 py-0.5 rounded-full bg-[#8ec07c]/10 text-[#8ec07c] ml-1 align-middle">calisthenics</span>` : ''}</div>${e.sub ? `<div class="text-[11px] text-[#928374] mt-0.5">${e.sub}</div>` : ''}</div>`;
       let setsDisplay = e.s ? (e.s.includes('×') ? e.s + ' ' + e.r : e.s + ' × ' + e.r) : e.r;
-      h += `<div class="text-[12px] font-medium text-[#ddd6cc] text-right whitespace-nowrap">${setsDisplay}</div><div class="text-[11px] text-[#6a6260] text-right whitespace-nowrap min-w-[80px]">${e.w}</div></div>`;
+      h += `<div class="text-[12px] font-medium text-[#ebdbb2] text-right whitespace-nowrap">${setsDisplay}</div><div class="text-[11px] text-[#928374] text-right whitespace-nowrap min-w-[80px]">${e.w}</div></div>`;
     });
     h += `</div>`;
   });
@@ -95,22 +95,22 @@ function renderExerciseLibrary2() {
   let h = '';
   exerciseLibrary.categories.forEach(cat => {
     h += `<div class="mb-8">`;
-    h += `<div class="flex items-center gap-2 mb-4"><h3 class="text-xl font-medium text-[#ddd6cc]">${cat.icon} ${cat.muscle}</h3><div class="h-px flex-1 bg-[#2a2a2e]"></div><span class="text-xs text-[#6a6260]">${cat.exercises.length} exercises</span></div>`;
+    h += `<div class="flex items-center gap-2 mb-4"><h3 class="text-xl font-medium text-[#ebdbb2]">${cat.icon} ${cat.muscle}</h3><div class="h-px flex-1 bg-[#3c3836]"></div><span class="text-xs text-[#928374]">${cat.exercises.length} exercises</span></div>`;
     h += `<div class="grid gap-3 md:grid-cols-2">`;
     cat.exercises.forEach(ex => {
-      h += `<div class="border border-[#2a2a2e] rounded-lg p-4 bg-[#0e0e10]/30 hover:bg-[#121214] transition-colors">`;
-      h += `<div class="flex items-start justify-between mb-3"><h4 class="text-[15px] font-medium text-[#ddd6cc]">${ex.name}</h4><span class="text-[10px] px-2 py-0.5 rounded-full border ${difficultyColors[ex.difficulty]?.border || 'border-[#2a2a2e]'} ${difficultyColors[ex.difficulty]?.bg || 'bg-[#1e1e22]'} ${difficultyColors[ex.difficulty]?.text || 'text-[#6a6260]'}">${ex.difficulty}</span></div>`;
-      h += `<div class="text-[11px] text-[#6a6260] mb-2 flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Equipment: <span class="text-[#a89e92]">${ex.machine}</span></div>`;
+      h += `<div class="border border-[#3c3836] rounded-lg p-4 bg-[#282828]/30 hover:bg-[#3c3836] transition-colors">`;
+      h += `<div class="flex items-start justify-between mb-3"><h4 class="text-[15px] font-medium text-[#ebdbb2]">${ex.name}</h4><span class="text-[10px] px-2 py-0.5 rounded-full border ${difficultyColors[ex.difficulty]?.border || 'border-[#3c3836]'} ${difficultyColors[ex.difficulty]?.bg || 'bg-[#3c3836]'} ${difficultyColors[ex.difficulty]?.text || 'text-[#928374]'}">${ex.difficulty}</span></div>`;
+      h += `<div class="text-[11px] text-[#928374] mb-2 flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Equipment: <span class="text-[#a89984]">${ex.machine}</span></div>`;
       h += `<div class="flex flex-wrap gap-1.5 mb-3">`;
       ex.categories.forEach(catName => {
-        const c = categoryColors[catName] || {bg:'bg-[#1e1e22]', text:'text-[#6a6260]', border:'border-[#2a2a2e]'};
+        const c = categoryColors[catName] || {bg:'bg-[#3c3836]', text:'text-[#928374]', border:'border-[#3c3836]'};
         h += `<span class="text-[10px] px-2 py-0.5 rounded-full border ${c.border} ${c.bg} ${c.text}">${catName.charAt(0).toUpperCase() + catName.slice(1)}</span>`;
       });
       h += `</div>`;
-      if(ex.scienceNote) h += `<div class="text-[11px] text-[#f0cc72]/80 mb-3 italic border-l-2 border-[#f0cc72]/30 pl-2">🧬 ${ex.scienceNote}</div>`;
-      h += `<div class="space-y-1.5"><div class="text-[11px] font-medium text-[#a89e92] mb-2">How to do it:</div>`;
+      if(ex.scienceNote) h += `<div class="text-[11px] text-[#8ec07c]/80 mb-3 italic border-l-2 border-[#8ec07c]/30 pl-2">🧬 ${ex.scienceNote}</div>`;
+      h += `<div class="space-y-1.5"><div class="text-[11px] font-medium text-[#a89984] mb-2">How to do it:</div>`;
       ex.instructions.forEach((step, idx) => {
-        h += `<div class="text-[12px] text-[#6a6260] flex gap-2"><span class="text-[#6a6260] font-mono text-[10px] mt-0.5">${idx + 1}.</span><span>${step}</span></div>`;
+        h += `<div class="text-[12px] text-[#928374] flex gap-2"><span class="text-[#928374] font-mono text-[10px] mt-0.5">${idx + 1}.</span><span>${step}</span></div>`;
       });
       h += `</div></div>`;
     });
@@ -130,21 +130,21 @@ const library2Template = renderExerciseLibrary2();
   <>
     <PageNav currentPage="exercise" />
 
-    <div class="min-h-screen bg-[#08080a]">
-      <div class="text-[#a89e92] py-16 px-6" style="font-family: 'Courier New', Courier, monospace;">
+    <div class="min-h-screen bg-[#1d2021]">
+      <div class="text-[#a89984] py-16 px-6" style="font-family: 'Courier New', Courier, monospace;">
         <div class="max-w-5xl mx-auto">
-          <h1 class="text-5xl font-serif mb-6 text-[#ddd6cc]">
-            <span class="text-white">Exer</span><span class="text-[#e0aa40] italic">cise</span>
+          <h1 class="text-5xl font-serif mb-6 text-[#ebdbb2]">
+            <span class="text-[#fbf1c7]">Exer</span><span class="text-[#8ec07c] italic">cise</span>
           </h1>
-          <p class="text-xs text-[#6a6260] mb-2">Updated: February 04, 2026</p>
-          <p class="text-[#a89e92] text-sm mb-6 leading-relaxed">
+          <p class="text-xs text-[#928374] mb-2">Updated: February 04, 2026</p>
+          <p class="text-[#a89984] text-sm mb-6 leading-relaxed">
             My fitness journey — running, cycling, swimming, strength training, 
             and yoga. Tracking progress, setting goals, and staying active.
           </p>
 
           <div class="mb-8">
             <a href="/exercise.pdf" download
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#121214] text-[#ddd6cc] rounded-md hover:bg-[#161618] transition-colors text-xs font-medium border border-[#2a2a2e]">
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#3c3836] text-[#ebdbb2] rounded-md hover:bg-[#282828] transition-colors text-xs font-medium border border-[#3c3836]">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                 <polyline points="7 10 12 15 17 10" />
@@ -155,13 +155,13 @@ const library2Template = renderExerciseLibrary2();
           </div>
 
           {/* ================= WEIGHTS SECTION ================= */}
-          <h2 class="text-2xl font-medium text-[#ddd6cc] mb-4 mt-2">️ Hybrid Strength Program</h2>
+          <h2 class="text-2xl font-medium text-[#ebdbb2] mb-4 mt-2">️ Hybrid Strength Program</h2>
           
           <div class="flex flex-wrap gap-1.5 mb-4" id="weightsNav">
             {weightsData.days.map((day, i) => {
               const label = day.label.split('—')[0].trim();
               return (
-                <button class={`px-3 py-1.5 text-xs rounded-full border border-[#2a2a2e] bg-transparent text-[#6a6260] hover:bg-[#121214] transition-colors cursor-pointer weights-tab ${i === 0 ? 'bg-[#121214] text-[#ddd6cc] border-[#2a2a2e] font-medium' : ''}`} data-idx={i}>
+                <button class={`px-3 py-1.5 text-xs rounded-full border border-[#3c3836] bg-transparent text-[#928374] hover:bg-[#3c3836] transition-colors cursor-pointer weights-tab ${i === 0 ? 'bg-[#3c3836] text-[#ebdbb2] border-[#3c3836] font-medium' : ''}`} data-idx={i}>
                   {day.name}
                   <span class="block text-[10px] opacity-65">{label}</span>
                 </button>
@@ -169,38 +169,38 @@ const library2Template = renderExerciseLibrary2();
             })}
           </div>
 
-          <div class="flex flex-wrap gap-2 mb-4 p-2 border border-[#2a2a2e] rounded-lg bg-[#0e0e10]/50">
-            <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#5a9870]"></span>Strength</span>
-            <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#5a80a8]"></span>Hypertrophy</span>
-            <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#d86848]"></span>Structural balance</span>
-            <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#e0aa40]"></span>Hypertrophy finisher</span>
+          <div class="flex flex-wrap gap-2 mb-4 p-2 border border-[#3c3836] rounded-lg bg-[#282828]/50">
+            <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#b8bb26]"></span>Strength</span>
+            <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#83a598]"></span>Hypertrophy</span>
+            <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#fe8019]"></span>Structural balance</span>
+            <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#8ec07c]"></span>Hypertrophy finisher</span>
           </div>
 
           <div id="weightsContent"><div set:html={weightsTemplates[0]}></div></div>
           {weightsData.days.map((_, i) => (<template id={`weights-tmpl-${i}`} set:html={weightsTemplates[i]}></template>))}
 
           {/* ================= CALISTHENICS SECTION ================= */}
-          <div class="mt-12 pt-8 border-t border-[#2a2a2e]">
-            <h2 class="text-2xl font-medium text-[#ddd6cc] mb-4">🤸 Calisthenics & Skill Integration</h2>
-            <p class="text-[#6a6260] text-sm mb-6 leading-relaxed">
+          <div class="mt-12 pt-8 border-t border-[#3c3836]">
+            <h2 class="text-2xl font-medium text-[#ebdbb2] mb-4">🤸 Calisthenics & Skill Integration</h2>
+            <p class="text-[#928374] text-sm mb-6 leading-relaxed">
               Hybrid calisthenics and weights program integrating bodyweight skills into the arms chest back legs routine. 
               Skill work always first, weights second, isolation last.
             </p>
             
             <div class="flex flex-wrap gap-1.5 mb-4" id="calNav">
               {calisthenicsData.views.map((view, i) => (
-                <button class={`px-3 py-1.5 text-xs rounded-full border border-[#2a2a2e] bg-transparent text-[#6a6260] hover:bg-[#121214] transition-colors cursor-pointer cal-tab ${i === 0 ? 'bg-[#121214] text-[#ddd6cc] border-[#2a2a2e] font-medium' : ''}`} data-idx={i}>
+                <button class={`px-3 py-1.5 text-xs rounded-full border border-[#3c3836] bg-transparent text-[#928374] hover:bg-[#3c3836] transition-colors cursor-pointer cal-tab ${i === 0 ? 'bg-[#3c3836] text-[#ebdbb2] border-[#3c3836] font-medium' : ''}`} data-idx={i}>
                   {view.label}
                 </button>
               ))}
             </div>
 
-            <div class="flex flex-wrap gap-2 mb-4 p-2 border border-[#2a2a2e] rounded-lg bg-[#0e0e10]/50">
-              <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#5a9870]"></span>Strength</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#5a80a8]"></span>Hypertrophy</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#d86848]"></span>Structural balance</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#f0cc72]"></span>Calisthenics skill</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#6a6260]"><span class="w-2 h-2 rounded-full bg-[#e0aa40]"></span>Hypertrophy finisher</span>
+            <div class="flex flex-wrap gap-2 mb-4 p-2 border border-[#3c3836] rounded-lg bg-[#282828]/50">
+              <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#b8bb26]"></span>Strength</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#83a598]"></span>Hypertrophy</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#fe8019]"></span>Structural balance</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#8ec07c]"></span>Calisthenics skill</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#928374]"><span class="w-2 h-2 rounded-full bg-[#8ec07c]"></span>Hypertrophy finisher</span>
             </div>
 
             <div id="calContent"><div set:html={calTemplates[0]}></div></div>
@@ -208,15 +208,15 @@ const library2Template = renderExerciseLibrary2();
           </div>
 
           {/* ================= GUIDE SECTION ================= */}
-          <div class="mt-12 pt-8 border-t border-[#2a2a2e]">
-            <h2 class="text-2xl font-medium text-[#ddd6cc] mb-4">📊 Exercise Order & Progression Guide</h2>
-            <p class="text-[#6a6260] text-sm mb-6 leading-relaxed">
+          <div class="mt-12 pt-8 border-t border-[#3c3836]">
+            <h2 class="text-2xl font-medium text-[#ebdbb2] mb-4">📊 Exercise Order & Progression Guide</h2>
+            <p class="text-[#928374] text-sm mb-6 leading-relaxed">
               Exercise order and weight progression guide for every session. Hit the top of your rep range → add weight. Miss the bottom → keep it.
             </p>
 
             <div class="flex flex-wrap gap-1.5 mb-4" id="guideNav">
               {guideViews.map((view, i) => (
-                <button class={`px-3 py-1.5 text-xs rounded-full border border-[#2a2a2e] bg-transparent text-[#6a6260] hover:bg-[#121214] transition-colors cursor-pointer guide-tab ${i === 0 ? 'bg-[#121214] text-[#ddd6cc] border-[#2a2a2e] font-medium' : ''}`} data-idx={i}>
+                <button class={`px-3 py-1.5 text-xs rounded-full border border-[#3c3836] bg-transparent text-[#928374] hover:bg-[#3c3836] transition-colors cursor-pointer guide-tab ${i === 0 ? 'bg-[#3c3836] text-[#ebdbb2] border-[#3c3836] font-medium' : ''}`} data-idx={i}>
                   {view.label}
                 </button>
               ))}
@@ -227,19 +227,19 @@ const library2Template = renderExerciseLibrary2();
           </div>
 
           {/* ================= EXERCISE 2 LIBRARY SECTION ================= */}
-          <div class="mt-12 pt-8 border-t border-[#2a2a2e]">
-            <h2 class="text-2xl font-medium text-[#ddd6cc] mb-4">📚 Complete Exercise Library (Science-Based)</h2>
-            <p class="text-[#6a6260] text-sm mb-8 leading-relaxed">
+          <div class="mt-12 pt-8 border-t border-[#3c3836]">
+            <h2 class="text-2xl font-medium text-[#ebdbb2] mb-4">📚 Complete Exercise Library (Science-Based)</h2>
+            <p class="text-[#928374] text-sm mb-8 leading-relaxed">
               Browse all exercises organized by muscle group. Each includes step-by-step instructions, equipment needed, difficulty rating, and biomechanical notes.
             </p>
 
-            <div class="flex flex-wrap gap-2 mb-8 p-3 border border-[#2a2a2e] rounded-lg bg-[#0e0e10]/50">
-              <span class="text-[11px] text-[#6a6260] mr-2">Categories:</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#a89e92]"><span class="w-2 h-2 rounded-full bg-[#5a9870]"></span>Weights</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#a89e92]"><span class="w-2 h-2 rounded-full bg-[#5a80a8]"></span>Free Hand</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#a89e92]"><span class="w-2 h-2 rounded-full bg-[#d86848]"></span>Compound</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#a89e92]"><span class="w-2 h-2 rounded-full bg-[#e0aa40]"></span>Isolation</span>
-              <span class="flex items-center gap-1.5 text-[11px] text-[#a89e92]"><span class="w-2 h-2 rounded-full bg-[#f0cc72]"></span>Calisthenics</span>
+            <div class="flex flex-wrap gap-2 mb-8 p-3 border border-[#3c3836] rounded-lg bg-[#282828]/50">
+              <span class="text-[11px] text-[#928374] mr-2">Categories:</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#a89984]"><span class="w-2 h-2 rounded-full bg-[#b8bb26]"></span>Weights</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#a89984]"><span class="w-2 h-2 rounded-full bg-[#83a598]"></span>Free Hand</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#a89984]"><span class="w-2 h-2 rounded-full bg-[#fe8019]"></span>Compound</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#a89984]"><span class="w-2 h-2 rounded-full bg-[#8ec07c]"></span>Isolation</span>
+              <span class="flex items-center gap-1.5 text-[11px] text-[#a89984]"><span class="w-2 h-2 rounded-full bg-[#8ec07c]"></span>Calisthenics</span>
             </div>
 
             <div id="library2Content">
@@ -250,9 +250,9 @@ const library2Template = renderExerciseLibrary2();
         </div>
       </div>
 
-      <div class="border-t border-[#2a2a2e]/50 py-6">
+      <div class="border-t border-[#3c3836]/50 py-6">
         <div class="max-w-5xl mx-auto px-6">
-          <a href="/" class="flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-sm">
+          <a href="/" class="flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
             </svg>
@@ -271,14 +271,14 @@ const library2Template = renderExerciseLibrary2();
             const idx = this.getAttribute('data-idx');
             document.querySelectorAll('.weights-tab').forEach((t, i) => {
               if (i == idx) { 
-                t.style.backgroundColor = '#121214';
-                t.style.color = '#ddd6cc';
-                t.style.borderColor = '#2a2a2e';
+                t.style.backgroundColor = '#3c3836';
+                t.style.color = '#ebdbb2';
+                t.style.borderColor = '#3c3836';
                 t.style.fontWeight = '500';
               } else { 
                 t.style.backgroundColor = 'transparent';
-                t.style.color = '#6a6260';
-                t.style.borderColor = '#2a2a2e';
+                t.style.color = '#928374';
+                t.style.borderColor = '#3c3836';
                 t.style.fontWeight = 'normal';
               }
             });
@@ -293,14 +293,14 @@ const library2Template = renderExerciseLibrary2();
             const idx = this.getAttribute('data-idx');
             document.querySelectorAll('.cal-tab').forEach((t, i) => {
               if (i == idx) { 
-                t.style.backgroundColor = '#121214';
-                t.style.color = '#ddd6cc';
-                t.style.borderColor = '#2a2a2e';
+                t.style.backgroundColor = '#3c3836';
+                t.style.color = '#ebdbb2';
+                t.style.borderColor = '#3c3836';
                 t.style.fontWeight = '500';
               } else { 
                 t.style.backgroundColor = 'transparent';
-                t.style.color = '#6a6260';
-                t.style.borderColor = '#2a2a2e';
+                t.style.color = '#928374';
+                t.style.borderColor = '#3c3836';
                 t.style.fontWeight = 'normal';
               }
             });
@@ -315,14 +315,14 @@ const library2Template = renderExerciseLibrary2();
             const idx = this.getAttribute('data-idx');
             document.querySelectorAll('.guide-tab').forEach((t, i) => {
               if (i == idx) { 
-                t.style.backgroundColor = '#121214';
-                t.style.color = '#ddd6cc';
-                t.style.borderColor = '#2a2a2e';
+                t.style.backgroundColor = '#3c3836';
+                t.style.color = '#ebdbb2';
+                t.style.borderColor = '#3c3836';
                 t.style.fontWeight = '500';
               } else { 
                 t.style.backgroundColor = 'transparent';
-                t.style.color = '#6a6260';
-                t.style.borderColor = '#2a2a2e';
+                t.style.color = '#928374';
+                t.style.borderColor = '#3c3836';
                 t.style.fontWeight = 'normal';
               }
             });

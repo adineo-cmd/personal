@@ -1,7 +1,7 @@
 export default {
   "label": "Strategic Dominance",
   "icon": "👑",
-  "color": "#e0aa40",
+  "color": "#8ec07c",
   "group": "Cognition",
   "sub": "Power Dynamics, Leverage Architecture",
   "subdomains": [

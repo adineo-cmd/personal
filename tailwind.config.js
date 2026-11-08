@@ -6,7 +6,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'zinc-950': '#09090b',
+        'zinc-950': '#1d2021',
+        'zinc-400': '#a89984',
       },
       fontFamily: {
         mono: ['Courier New', 'Courier', 'monospace'],

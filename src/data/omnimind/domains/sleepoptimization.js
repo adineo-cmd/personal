@@ -1,7 +1,7 @@
 export default {
   "label": "Lucid Dreaming & Sleep Optimization",
   "icon": "🌙",
-  "color": "#7060c0",
+  "color": "#d3869b",
   "group": "Foundation",
   "sub": "Lucid Dreaming, Sleep Quality",
   "subdomains": [

@@ -13,41 +13,41 @@ import { writings } from '../../data/writings.js';
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      backgroundColor: '#08080a',
+      backgroundColor: '#1d2021',
     }}
   >
     {/* Semi-transparent overlay for readability */}
-    <div class="absolute inset-0 bg-[#08080a]/80"></div>
+    <div class="absolute inset-0 bg-[#1d2021]/80"></div>
 
     {/* Content */}
     <div 
-      class="relative z-10 text-[#a89e92]" 
+      class="relative z-10 text-[#a89984]" 
       style="font-family: 'Courier New', Courier, monospace;"
     >
       <PageNavigation currentPage="writings" />
 
       <div class="py-16 px-6">
         <div class="max-w-5xl mx-auto">
-          <h1 class="text-5xl font-serif mb-3 text-[#ddd6cc]">
-            <span class="text-white">Wri</span><span class="text-[#e0aa40] italic">tings</span>
+          <h1 class="text-5xl font-serif mb-3 text-[#ebdbb2]">
+            <span class="text-[#fbf1c7]">Wri</span><span class="text-[#8ec07c] italic">tings</span>
           </h1>
-          <p class="text-[#6a6260] text-sm mb-12">
+          <p class="text-[#928374] text-sm mb-12">
             Collected essays, notes, and experiments.
           </p>
 
           <div class="space-y-8">
             {writings.map((writing) => (
-              <article class="border-b border-[#2a2a2e]/50 pb-8 last:border-0 hover:opacity-80 transition-opacity group">
+              <article class="border-b border-[#3c3836]/50 pb-8 last:border-0 hover:opacity-80 transition-opacity group">
                 <a href={`/writings/${writing.slug}`} class="block">
                   <div class="flex gap-6">
-                    <div class="text-xs text-[#6a6260] w-16 flex-shrink-0 pt-1">
+                    <div class="text-xs text-[#928374] w-16 flex-shrink-0 pt-1">
                       {writing.date}
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-medium text-[#ddd6cc] mb-2 group-hover:text-white transition-colors underline decoration-[#e0aa40]/30 group-hover:decoration-[#e0aa40] underline-offset-4">
+                      <h3 class="text-lg font-medium text-[#ebdbb2] mb-2 group-hover:text-[#fbf1c7] transition-colors underline decoration-[#8ec07c]/30 group-hover:decoration-[#8ec07c] underline-offset-4">
                         {writing.title}
                       </h3>
-                      <p class="text-sm text-[#a89e92] leading-relaxed">
+                      <p class="text-sm text-[#a89984] leading-relaxed">
                         {writing.description}
                       </p>
                     </div>
@@ -60,11 +60,11 @@ import { writings } from '../../data/writings.js';
       </div>
 
       {/* Back Button */}
-      <div class="border-t border-[#2a2a2e]/50 py-6">
+      <div class="border-t border-[#3c3836]/50 py-6">
         <div class="max-w-5xl mx-auto px-6">
           <a
             href="/"
-            class="flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-sm"
+            class="flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-sm"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="19" y1="12" x2="5" y2="12" />

@@ -5,9 +5,9 @@ import { homeTrainingDB } from '../data/homeTraining.js';
 
 // ================= RENDERER FOR HOME TRAINING CATEGORIES =================
 function renderHomeCategory(catKey, catData) {
-  let h = `<div class="mb-6"><h3 class="text-lg font-medium text-[#ddd6cc] mb-1">${catData.name}</h3><p class="text-sm text-[#6a6260] mb-4">${catData.description}</p>`;
+  let h = `<div class="mb-6"><h3 class="text-lg font-medium text-[#ebdbb2] mb-1">${catData.name}</h3><p class="text-sm text-[#928374] mb-4">${catData.description}</p>`;
   if(catData.equipment) {
-    h += `<div class="text-[11px] text-[#6a6260] mb-4 p-2 bg-[#0e0e10]/50 rounded border border-[#2a2a2e]">🛠️ Recommended: ${catData.equipment.join(', ')}</div>`;
+    h += `<div class="text-[11px] text-[#928374] mb-4 p-2 bg-[#282828]/50 rounded border border-[#3c3836]">🛠️ Recommended: ${catData.equipment.join(', ')}</div>`;
   }
   
   const levels = ['foundations', 'level1', 'level2', 'level3', 'level4'];
@@ -15,7 +15,7 @@ function renderHomeCategory(catKey, catData) {
   levels.forEach((lvl, i) => {
     const data = catData[lvl];
     if(!data) return;
-    h += `<button class="level-tab px-3 py-1.5 text-xs rounded-full border border-[#2a2a2e] ${i===0 ? 'bg-[#121214] text-[#ddd6cc] border-[#2a2a2e] font-medium' : 'bg-transparent text-[#6a6260]'} cursor-pointer hover:bg-[#121214] transition-colors" data-cat="${catKey}" data-lvl="${lvl}">${data.name} (Lvl ${data.level})</button>`;
+    h += `<button class="level-tab px-3 py-1.5 text-xs rounded-full border border-[#3c3836] ${i===0 ? 'bg-[#3c3836] text-[#ebdbb2] border-[#3c3836] font-medium' : 'bg-transparent text-[#928374]'} cursor-pointer hover:bg-[#3c3836] transition-colors" data-cat="${catKey}" data-lvl="${lvl}">${data.name} (Lvl ${data.level})</button>`;
   });
   h += `</div>`;
   
@@ -24,22 +24,22 @@ function renderHomeCategory(catKey, catData) {
     if(!data) return;
     const isActive = i === 0;
     h += `<div class="level-content ${isActive ? '' : 'hidden'}" data-cat="${catKey}" data-lvl="${lvl}">`;
-    h += `<div class="mb-4 p-3 border border-[#2a2a2e] rounded-lg bg-[#0e0e10]/30"><div class="text-[11px] font-medium text-[#a89e92]">Prerequisites: <span class="text-[#ddd6cc]">${data.prerequisites}</span></div><div class="text-[11px] font-medium text-[#a89e92] mt-1">Mastery Goal: <span class="text-[#ddd6cc]">${data.masteryGoal}</span></div></div>`;
+    h += `<div class="mb-4 p-3 border border-[#3c3836] rounded-lg bg-[#282828]/30"><div class="text-[11px] font-medium text-[#a89984]">Prerequisites: <span class="text-[#ebdbb2]">${data.prerequisites}</span></div><div class="text-[11px] font-medium text-[#a89984] mt-1">Mastery Goal: <span class="text-[#ebdbb2]">${data.masteryGoal}</span></div></div>`;
     h += `<div class="grid gap-3 md:grid-cols-2">`;
     
     data.skills.forEach(skill => {
-      h += `<div class="border border-[#2a2a2e] rounded-lg p-4 bg-[#0e0e10]/30 hover:bg-[#121214] transition-colors">`;
-      h += `<div class="flex justify-between items-start mb-2"><h4 class="text-[15px] font-medium text-[#ddd6cc]">${skill.name}</h4><span class="text-[10px] px-2 py-0.5 rounded-full bg-[#1e1e22] text-[#6a6260] border border-[#2a2a2e]">${skill.difficulty}</span></div>`;
-      h += `<div class="text-[11px] text-[#6a6260] mb-2">🎯 Target: <span class="text-[#ddd6cc]">${skill.targetReps || skill.targetTime || skill.targetPractice}</span></div>`;
-      h += `<div class="text-[11px] text-[#6a6260] mb-3"> Muscles: <span class="text-[#a89e92]">${skill.muscles.join(', ')}</span></div>`;
-      if(skill.scienceNote) h += `<div class="text-[11px] text-[#5a9870]/80 mb-3 italic border-l-2 border-[#5a9870]/30 pl-2">🧬 ${skill.scienceNote}</div>`;
+      h += `<div class="border border-[#3c3836] rounded-lg p-4 bg-[#282828]/30 hover:bg-[#3c3836] transition-colors">`;
+      h += `<div class="flex justify-between items-start mb-2"><h4 class="text-[15px] font-medium text-[#ebdbb2]">${skill.name}</h4><span class="text-[10px] px-2 py-0.5 rounded-full bg-[#3c3836] text-[#928374] border border-[#3c3836]">${skill.difficulty}</span></div>`;
+      h += `<div class="text-[11px] text-[#928374] mb-2">🎯 Target: <span class="text-[#ebdbb2]">${skill.targetReps || skill.targetTime || skill.targetPractice}</span></div>`;
+      h += `<div class="text-[11px] text-[#928374] mb-3"> Muscles: <span class="text-[#a89984]">${skill.muscles.join(', ')}</span></div>`;
+      if(skill.scienceNote) h += `<div class="text-[11px] text-[#b8bb26]/80 mb-3 italic border-l-2 border-[#b8bb26]/30 pl-2">🧬 ${skill.scienceNote}</div>`;
       
-      h += `<div class="space-y-1 mb-3"><div class="text-[11px] font-medium text-[#a89e92]">Instructions:</div>`;
+      h += `<div class="space-y-1 mb-3"><div class="text-[11px] font-medium text-[#a89984]">Instructions:</div>`;
       skill.instructions.forEach((step, idx) => {
-        h += `<div class="text-[12px] text-[#6a6260] flex gap-2"><span class="text-[#6a6260] font-mono text-[10px]">${idx+1}.</span><span>${step}</span></div>`;
+        h += `<div class="text-[12px] text-[#928374] flex gap-2"><span class="text-[#928374] font-mono text-[10px]">${idx+1}.</span><span>${step}</span></div>`;
       });
       h += `</div>`;
-      h += `<div class="text-[11px] text-[#e0aa40]/80 border-t border-[#2a2a2e] pt-2 mt-2">⬆️ Next: ${skill.progression}</div>`;
+      h += `<div class="text-[11px] text-[#8ec07c]/80 border-t border-[#3c3836] pt-2 mt-2">⬆️ Next: ${skill.progression}</div>`;
       h += `</div>`;
     });
     
@@ -59,22 +59,22 @@ const mobilityHTML = renderHomeCategory('mobility', homeTrainingDB.mobility);
   <>
     <PageNav currentPage="hometraining" />
 
-    <div class="min-h-screen bg-[#08080a]">
-      <div class="text-[#a89e92] py-16 px-6" style="font-family: 'Courier New', Courier, monospace;">
+    <div class="min-h-screen bg-[#1d2021]">
+      <div class="text-[#a89984] py-16 px-6" style="font-family: 'Courier New', Courier, monospace;">
         <div class="max-w-5xl mx-auto">
-          <h1 class="text-5xl font-serif mb-6 text-[#ddd6cc]">
-            <span class="text-white">Home</span><span class="text-[#e0aa40] italic"> Training</span>
+          <h1 class="text-5xl font-serif mb-6 text-[#ebdbb2]">
+            <span class="text-[#fbf1c7]">Home</span><span class="text-[#8ec07c] italic"> Training</span>
           </h1>
-          <p class="text-xs text-[#6a6260] mb-2">Updated: February 04, 2026</p>
-          <p class="text-[#a89e92] text-sm mb-6 leading-relaxed">
+          <p class="text-xs text-[#928374] mb-2">Updated: February 04, 2026</p>
+          <p class="text-[#a89984] text-sm mb-6 leading-relaxed">
             Progressive skill trees for calisthenics, martial arts fundamentals, and mobility/stretching. 
             All designed for home practice with minimal equipment. Master each level before advancing.
           </p>
 
-          <div class="flex flex-wrap gap-2 mb-8 border-b border-[#2a2a2e] pb-4" id="mainNav">
-            <button class="main-tab px-4 py-2 text-sm rounded-lg border border-[#2a2a2e] bg-[#121214] text-[#ddd6cc] font-medium cursor-pointer" data-tab="calisthenics">🤸 Calisthenics</button>
-            <button class="main-tab px-4 py-2 text-sm rounded-lg border border-[#2a2a2e] bg-transparent text-[#6a6260] hover:bg-[#121214] transition-colors cursor-pointer" data-tab="martialarts">🥋 Martial Arts</button>
-            <button class="main-tab px-4 py-2 text-sm rounded-lg border border-[#2a2a2e] bg-transparent text-[#6a6260] hover:bg-[#121214] transition-colors cursor-pointer" data-tab="mobility">🧘 Mobility & Stretching</button>
+          <div class="flex flex-wrap gap-2 mb-8 border-b border-[#3c3836] pb-4" id="mainNav">
+            <button class="main-tab px-4 py-2 text-sm rounded-lg border border-[#3c3836] bg-[#3c3836] text-[#ebdbb2] font-medium cursor-pointer" data-tab="calisthenics">🤸 Calisthenics</button>
+            <button class="main-tab px-4 py-2 text-sm rounded-lg border border-[#3c3836] bg-transparent text-[#928374] hover:bg-[#3c3836] transition-colors cursor-pointer" data-tab="martialarts">🥋 Martial Arts</button>
+            <button class="main-tab px-4 py-2 text-sm rounded-lg border border-[#3c3836] bg-transparent text-[#928374] hover:bg-[#3c3836] transition-colors cursor-pointer" data-tab="mobility">🧘 Mobility & Stretching</button>
           </div>
 
           <div id="calisthenics-section" class="main-content">
@@ -88,21 +88,21 @@ const mobilityHTML = renderHomeCategory('mobility', homeTrainingDB.mobility);
           </div>
 
           {/* Mastery Criteria Reference */}
-          <div class="mt-12 pt-8 border-t border-[#2a2a2e]">
-            <h3 class="text-xl font-medium text-[#ddd6cc] mb-4">📏 How to Know You're Ready to Progress</h3>
+          <div class="mt-12 pt-8 border-t border-[#3c3836]">
+            <h3 class="text-xl font-medium text-[#ebdbb2] mb-4">📏 How to Know You're Ready to Progress</h3>
             <div class="grid gap-3 md:grid-cols-2">
-              <div class="border border-[#2a2a2e] rounded-lg p-4 bg-[#0e0e10]/30">
-                <div class="text-[13px] font-medium text-[#ddd6cc] mb-2">✅ Mastery Checklist</div>
-                <ul class="text-[12px] text-[#a89e92] space-y-1">
+              <div class="border border-[#3c3836] rounded-lg p-4 bg-[#282828]/30">
+                <div class="text-[13px] font-medium text-[#ebdbb2] mb-2">✅ Mastery Checklist</div>
+                <ul class="text-[12px] text-[#a89984] space-y-1">
                   <li>• Perfect form for all target reps/sets</li>
                   <li>• Can pause 2s at hardest point</li>
                   <li>• Completed consistently for 3 sessions</li>
                   <li>• No joint pain or excessive soreness</li>
                 </ul>
               </div>
-              <div class="border border-[#2a2a2e] rounded-lg p-4 bg-[#0e0e10]/30">
-                <div class="text-[13px] font-medium text-[#ddd6cc] mb-2">⚠️ Deload & Recovery</div>
-                <ul class="text-[12px] text-[#a89e92] space-y-1">
+              <div class="border border-[#3c3836] rounded-lg p-4 bg-[#282828]/30">
+                <div class="text-[13px] font-medium text-[#ebdbb2] mb-2">⚠️ Deload & Recovery</div>
+                <ul class="text-[12px] text-[#a89984] space-y-1">
                   <li>• Reduce volume 50% every 4-6 weeks</li>
                   <li>• At least 1 full rest day weekly</li>
                   <li>• 7-9 hours sleep for adaptation</li>
@@ -114,9 +114,9 @@ const mobilityHTML = renderHomeCategory('mobility', homeTrainingDB.mobility);
         </div>
       </div>
 
-      <div class="border-t border-[#2a2a2e]/50 py-6">
+      <div class="border-t border-[#3c3836]/50 py-6">
         <div class="max-w-5xl mx-auto px-6">
-          <a href="/" class="flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-sm">
+          <a href="/" class="flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
             </svg>
@@ -136,13 +136,13 @@ const mobilityHTML = renderHomeCategory('mobility', homeTrainingDB.mobility);
             
             document.querySelectorAll('.main-tab').forEach(t => {
               t.style.backgroundColor = 'transparent';
-              t.style.color = '#6a6260';
-              t.style.borderColor = '#2a2a2e';
+              t.style.color = '#928374';
+              t.style.borderColor = '#3c3836';
               t.style.fontWeight = 'normal';
             });
-            this.style.backgroundColor = '#121214';
-            this.style.color = '#ddd6cc';
-            this.style.borderColor = '#2a2a2e';
+            this.style.backgroundColor = '#3c3836';
+            this.style.color = '#ebdbb2';
+            this.style.borderColor = '#3c3836';
             this.style.fontWeight = '500';
             
             document.querySelectorAll('.main-content').forEach(c => c.classList.add('hidden'));
@@ -159,13 +159,13 @@ const mobilityHTML = renderHomeCategory('mobility', homeTrainingDB.mobility);
             // Update tab styles for this category
             document.querySelectorAll(`.level-tab[data-cat="${cat}"]`).forEach(t => {
               t.style.backgroundColor = 'transparent';
-              t.style.color = '#6a6260';
-              t.style.borderColor = '#2a2a2e';
+              t.style.color = '#928374';
+              t.style.borderColor = '#3c3836';
               t.style.fontWeight = 'normal';
             });
-            this.style.backgroundColor = '#121214';
-            this.style.color = '#ddd6cc';
-            this.style.borderColor = '#2a2a2e';
+            this.style.backgroundColor = '#3c3836';
+            this.style.color = '#ebdbb2';
+            this.style.borderColor = '#3c3836';
             this.style.fontWeight = '500';
             
             // Show/hide level content

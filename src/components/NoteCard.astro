@@ -12,14 +12,14 @@ const { slug, title, date, excerpt, tags } = Astro.props;
 
 <a 
   href={`/notes/${slug}/`}
-  class="block p-6 bg-[#0e0e10]/60 backdrop-blur-sm border border-[#2a2a2e] rounded-lg hover:border-[#2a2a2e] hover:bg-[#121214] transition-all duration-300 group"
+  class="block p-6 bg-[#282828]/60 backdrop-blur-sm border border-[#3c3836] rounded-lg hover:border-[#3c3836] hover:bg-[#3c3836] transition-all duration-300 group"
 >
   <div class="flex items-start justify-between">
     <div class="flex-1">
-      <h3 class="text-xl font-medium text-[#ddd6cc] group-hover:text-white transition-colors mb-2">
+      <h3 class="text-xl font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] transition-colors mb-2">
         {title}
       </h3>
-      <p class="text-[#6a6260] text-sm mb-3">
+      <p class="text-[#928374] text-sm mb-3">
         {new Date(date).toLocaleDateString('en-US', { 
           year: 'numeric', 
           month: 'long', 
@@ -27,13 +27,13 @@ const { slug, title, date, excerpt, tags } = Astro.props;
         })}
       </p>
       {excerpt && (
-        <p class="text-[#a89e92] text-sm leading-relaxed group-hover:text-[#ddd6cc] transition-colors">
+        <p class="text-[#a89984] text-sm leading-relaxed group-hover:text-[#ebdbb2] transition-colors">
           {excerpt}
         </p>
       )}
     </div>
     <div class="ml-4 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#6a6260] group-hover:text-[#e0aa40]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[#928374] group-hover:text-[#8ec07c]">
         <line x1="5" y1="12" x2="19" y2="12"></line>
         <polyline points="12 5 19 12 12 19"></polyline>
       </svg>
@@ -45,7 +45,7 @@ const { slug, title, date, excerpt, tags } = Astro.props;
       {tags.map((tag, index) => (
         <span 
           key={index}
-          class="text-xs px-2 py-0.5 bg-[#1e1e22] text-[#6a6260] border border-[#2a2a2e] rounded hover:bg-[#1e1e22] hover:text-[#e0aa40] transition-colors"
+          class="text-xs px-2 py-0.5 bg-[#3c3836] text-[#928374] border border-[#3c3836] rounded hover:bg-[#3c3836] hover:text-[#8ec07c] transition-colors"
         >
           {tag}
         </span>

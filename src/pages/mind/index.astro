@@ -15,13 +15,13 @@ const totalTechniques = getTotalTechniqueCount(domains);
 <BaseLayout title="OmniMind | Universal Mastery System" description="The ultimate integrated cognitive framework — 22 domains, 170+ techniques.">
   <style is:global>
     :root {
-      --bg: #08080a; --surf: #0e0e10; --card: #121214; --card2: #161618;
-      --b1: #1e1e22; --b2: #2a2a2e;
-      --t1: #ddd6cc; --t2: #a89e92; --mu: #6a6260; --dim: #3a3836;
-      --gold: #e0aa40; --gold2: #f0cc72;
-      --coral: #d86848; --sage: #5a9870; --slate: #5a80a8;
-      --mauve: #9070a0; --rose: #c06080; --teal: #409898;
-      --violet: #7060c0; --amber: #d09030; --cyan: #3090a8;
+      --bg: #1d2021; --surf: #282828; --card: #3c3836; --card2: #282828;
+      --b1: #3c3836; --b2: #3c3836;
+      --t1: #ebdbb2; --t2: #a89984; --mu: #928374; --dim: #504945;
+      --gold: #8ec07c; --gold2: #8ec07c;
+      --coral: #fe8019; --sage: #b8bb26; --slate: #83a598;
+      --mauve: #d3869b; --rose: #d3869b; --teal: #8ec07c;
+      --violet: #d3869b; --amber: #fe8019; --cyan: #83a598;
     }
     body { background: var(--bg); color: var(--t1); font-family: 'DM Sans', sans-serif; }
   </style>
@@ -41,7 +41,7 @@ const totalTechniques = getTotalTechniqueCount(domains);
     .sb-top { padding: 28px 20px 20px; border-bottom: 1px solid var(--b1); }
     .sb-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
     .sb-icon { font-size: 22px; }
-    .sb-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #fff; }
+    .sb-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #fbf1c7; }
     .sb-sub { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mu); margin-top: 2px; }
 
     .sb-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
@@ -71,7 +71,7 @@ const totalTechniques = getTotalTechniqueCount(domains);
       border-left: 2px solid transparent; text-decoration: none; color: var(--t2);
     }
     .nav-item:hover { background: var(--card); color: var(--t2); }
-    .nav-item.active { background: rgba(224, 170, 64, 0.07); border-left-color: var(--gold); color: var(--gold); }
+    .nav-item.active { background: rgba(142, 192, 124, 0.07); border-left-color: var(--gold); color: var(--gold); }
     .ni-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; }
     .ni-label { font-size: 12.5px; flex: 1; }
     .ni-count { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--dim); }
@@ -91,7 +91,7 @@ const totalTechniques = getTotalTechniqueCount(domains);
     h1.hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(52px, 6vw, 84px); font-weight: 900;
-      line-height: 0.88; letter-spacing: -0.03em; color: #fff; margin-bottom: 16px;
+      line-height: 0.88; letter-spacing: -0.03em; color: #fbf1c7; margin-bottom: 16px;
     }
     h1.hero-title em { color: var(--gold); font-style: italic; }
     .hero-desc { font-size: 14px; color: var(--t2); max-width: 640px; line-height: 1.75; margin-bottom: 24px; }
@@ -113,7 +113,7 @@ const totalTechniques = getTotalTechniqueCount(domains);
     }
     .sec-icon { font-size: 26px; }
     .sec-info { flex: 1; }
-    .sec-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #fff; }
+    .sec-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #fbf1c7; }
     .sec-sub { font-size: 13px; color: var(--mu); font-style: italic; margin-top: 2px; }
     .sec-badge {
       font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em;
@@ -147,7 +147,7 @@ const totalTechniques = getTotalTechniqueCount(domains);
     }
     .ov-card:hover { background: var(--card2); border-color: var(--b2); transform: translateY(-3px); }
     .ov-icon { font-size: 22px; margin-bottom: 10px; display: block; }
-    .ov-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .ov-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #fbf1c7; margin-bottom: 4px; }
     .ov-sub { font-size: 12px; color: var(--mu); font-style: italic; margin-bottom: 10px; }
     .ov-cnt { font-family: 'DM Mono', monospace; font-size: 9px; color: var(--dim); }
 

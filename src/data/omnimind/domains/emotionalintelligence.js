@@ -1,7 +1,7 @@
 export default {
   "label": "Emotional Intelligence",
   "icon": "❤️",
-  "color": "#c06080",
+  "color": "#d3869b",
   "group": "Core",
   "sub": "Self Awareness, Social Perception",
   "subdomains": [

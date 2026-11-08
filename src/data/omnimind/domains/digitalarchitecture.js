@@ -1,7 +1,7 @@
 export default {
   "label": "Digital & Data Architecture",
   "icon": "🖥️",
-  "color": "#3090a8",
+  "color": "#83a598",
   "group": "Domains",
   "sub": "Data Fluency, Information Filtering, Cyber Awareness",
   "subdomains": [

@@ -1,7 +1,7 @@
 export default {
   "label": "Situational Control",
   "icon": "🧭",
-  "color": "#5a9870",
+  "color": "#b8bb26",
   "group": "Cognition",
   "sub": "Environmental Mapping, Chaos Navigation, Universal Control",
   "subdomains": [

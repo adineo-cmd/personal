@@ -1,7 +1,7 @@
 export default {
   "label": "Neuro-Biological Optimization",
   "icon": "💊",
-  "color": "#d09030",
+  "color": "#fe8019",
   "group": "Foundation",
   "sub": "Sleep Recovery, Nutrition Cognition, Nervous System Tuning",
   "subdomains": [

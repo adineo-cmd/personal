@@ -1,7 +1,7 @@
 export default {
   "label": "Hyper-Memory Systems",
   "icon": "🗝️",
-  "color": "#c06080",
+  "color": "#d3869b",
   "group": "Domains",
   "sub": "Encoding, Retention, Recall",
   "subdomains": [

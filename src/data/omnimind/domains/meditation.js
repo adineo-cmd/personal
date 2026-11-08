@@ -1,7 +1,7 @@
 export default {
   "label": "Meditation & Mindfulness",
   "icon": "🧘",
-  "color": "#409898",
+  "color": "#8ec07c",
   "group": "Core",
   "sub": "Mindfulness, Concentration",
   "subdomains": [

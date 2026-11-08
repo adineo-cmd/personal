@@ -7,24 +7,24 @@ import { gearData } from '../data/gear.js';
   <>
     <PageNav currentPage="gear" />
 
-    <div class="min-h-screen bg-[#08080a] text-[#a89e92]">
+    <div class="min-h-screen bg-[#1d2021] text-[#a89984]">
       {/* Hero Section */}
-      <div class="border-b border-[#2a2a2e]/50 py-16 px-6">
+      <div class="border-b border-[#3c3836]/50 py-16 px-6">
         <div class="max-w-6xl mx-auto">
           <h1 class="text-7xl font-bold mb-4 tracking-tight">
-            <span class="text-white">Ge</span><span class="text-[#e0aa40] italic">ar</span>
+            <span class="text-[#fbf1c7]">Ge</span><span class="text-[#8ec07c] italic">ar</span>
           </h1>
           
-          <p class="text-[#6a6260] text-sm mb-6 italic font-mono">
+          <p class="text-[#928374] text-sm mb-6 italic font-mono">
             My personal homelab, machines, and software stack. This reflects my current setup as of February 2026.
           </p>
           
           <div class="flex flex-wrap gap-4 text-xs font-mono">
-            <span class="text-[#6a6260]">UPDATED <span class="text-[#e0aa40]">Feb 03, 2026</span></span>
-            <span class="text-[#3a3836]">•</span>
-            <span class="text-[#6a6260]">MACHINES <span class="text-[#e0aa40]">2</span></span>
-            <span class="text-[#3a3836]">•</span>
-            <span class="text-[#6a6260]">OS <span class="text-[#5a9870]">Ubuntu</span></span>
+            <span class="text-[#928374]">UPDATED <span class="text-[#8ec07c]">Feb 03, 2026</span></span>
+            <span class="text-[#504945]">•</span>
+            <span class="text-[#928374]">MACHINES <span class="text-[#8ec07c]">2</span></span>
+            <span class="text-[#504945]">•</span>
+            <span class="text-[#928374]">OS <span class="text-[#b8bb26]">Ubuntu</span></span>
           </div>
         </div>
       </div>
@@ -33,11 +33,11 @@ import { gearData } from '../data/gear.js';
       <div class="py-16 px-6">
         <div class="max-w-6xl mx-auto">
           <div class="mb-8">
-            <h2 class="text-3xl font-medium text-white mb-2">
-              <span class="text-[#e0aa40] text-sm mr-2">01</span>
+            <h2 class="text-3xl font-medium text-[#fbf1c7] mb-2">
+              <span class="text-[#8ec07c] text-sm mr-2">01</span>
               My Machines
             </h2>
-            <p class="text-[#6a6260] text-sm">
+            <p class="text-[#928374] text-sm">
               This includes computers for my personal use as well as homelab/server things.
             </p>
           </div>
@@ -46,23 +46,23 @@ import { gearData } from '../data/gear.js';
           <div class="grid md:grid-cols-2 gap-6">
             {gearData.sections[0].items.map((machine, index) => (
               <div 
-                class={`border rounded-sm p-6 ${index === 0 ? 'border-[#e0aa40]/30 bg-[#e0aa40]/5' : 'border-[#5a9870]/30 bg-[#5a9870]/5'}`}
+                class={`border rounded-sm p-6 ${index === 0 ? 'border-[#8ec07c]/30 bg-[#8ec07c]/5' : 'border-[#b8bb26]/30 bg-[#b8bb26]/5'}`}
                 key={index}
               >
-                <div class={`text-xs font-mono mb-3 ${index === 0 ? 'text-[#e0aa40]' : 'text-[#5a9870]'}`}>
+                <div class={`text-xs font-mono mb-3 ${index === 0 ? 'text-[#8ec07c]' : 'text-[#b8bb26]'}`}>
                   {index === 0 ? 'LAPTOP · DAILY DRIVER' : 'DESKTOP · HOMELAB'}
                 </div>
 
-                <h3 class="text-2xl font-medium text-white mb-2">{machine.text}</h3>
-                <p class="text-[#6a6260] text-sm mb-6">{machine.description}</p>
+                <h3 class="text-2xl font-medium text-[#fbf1c7] mb-2">{machine.text}</h3>
+                <p class="text-[#928374] text-sm mb-6">{machine.description}</p>
 
                 <div class="space-y-3 text-sm">
                   {machine.items.map((spec, specIndex) => {
                     const [label, value] = spec.text.split(': ');
                     return (
-                      <div class="flex justify-between border-b border-[#2a2a2e]/50 pb-2 last:border-0">
-                        <span class="text-[#6a6260]">{label}</span>
-                        <span class="text-[#ddd6cc] text-right">{value}</span>
+                      <div class="flex justify-between border-b border-[#3c3836]/50 pb-2 last:border-0">
+                        <span class="text-[#928374]">{label}</span>
+                        <span class="text-[#ebdbb2] text-right">{value}</span>
                       </div>
                     );
                   })}
@@ -71,8 +71,8 @@ import { gearData } from '../data/gear.js';
                 <div class="mt-6">
                   <span class={`inline-block px-3 py-1 text-xs font-mono rounded-sm border ${
                     index === 0 
-                      ? 'border-[#5a9870]/30 text-[#5a9870] bg-[#5a9870]/10' 
-                      : 'border-[#e0aa40]/30 text-[#e0aa40] bg-[#e0aa40]/10'
+                      ? 'border-[#b8bb26]/30 text-[#b8bb26] bg-[#b8bb26]/10' 
+                      : 'border-[#8ec07c]/30 text-[#8ec07c] bg-[#8ec07c]/10'
                   }`}>
                     • {machine.items.find(item => item.text.startsWith('OS:'))?.text.replace('OS: ', '')}
                   </span>
@@ -84,34 +84,34 @@ import { gearData } from '../data/gear.js';
       </div>
 
       {/* Software Stack Section */}
-      <div class="py-16 px-6 border-t border-[#2a2a2e]/50">
+      <div class="py-16 px-6 border-t border-[#3c3836]/50">
         <div class="max-w-6xl mx-auto">
           <div class="mb-12">
-            <h2 class="text-3xl font-medium text-white mb-2">
-              <span class="text-[#e0aa40] text-sm mr-2">02</span>
+            <h2 class="text-3xl font-medium text-[#fbf1c7] mb-2">
+              <span class="text-[#8ec07c] text-sm mr-2">02</span>
               Software Stack
             </h2>
           </div>
 
           {/* Mobile Phone & Other Services - Top Row */}
-          <div class="grid md:grid-cols-2 gap-px bg-[#2a2a2e]/50 border border-[#2a2a2e]/50 mb-px">
+          <div class="grid md:grid-cols-2 gap-px bg-[#3c3836]/50 border border-[#3c3836]/50 mb-px">
             {/* Mobile Phone */}
-            <div class="bg-[#08080a] p-6">
-              <h3 class="text-xs font-mono text-[#e0aa40] mb-4 tracking-wider">MOBILE PHONE</h3>
+            <div class="bg-[#1d2021] p-6">
+              <h3 class="text-xs font-mono text-[#8ec07c] mb-4 tracking-wider">MOBILE PHONE</h3>
               <ul class="space-y-3">
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Phone</span>
-                  <span class="text-[#6a6260] text-xs">Realme 13 5G</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Phone</span>
+                  <span class="text-[#928374] text-xs">Realme 13 5G</span>
                 </li>
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>OS</span>
-                  <span class="text-[#6a6260] text-xs">Realme UI</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>OS</span>
+                  <span class="text-[#928374] text-xs">Realme UI</span>
                 </li>
                 <li class="text-sm">
-                  <div class="text-[#ddd6cc] mb-2"><span class="text-[#e0aa40] mr-2">•</span>Apps:</div>
+                  <div class="text-[#ebdbb2] mb-2"><span class="text-[#8ec07c] mr-2">•</span>Apps:</div>
                   <ul class="pl-6 space-y-1">
                     {gearData.sections[1].items.find(i => i.children)?.children.map((app, idx) => (
-                      <li key={idx} class="text-[#6a6260] text-xs">• {app.text}</li>
+                      <li key={idx} class="text-[#928374] text-xs">• {app.text}</li>
                     ))}
                   </ul>
                 </li>
@@ -119,130 +119,130 @@ import { gearData } from '../data/gear.js';
             </div>
 
             {/* Other Services */}
-            <div class="bg-[#08080a] p-6 border-l border-[#2a2a2e]/50">
-              <h3 class="text-xs font-mono text-[#e0aa40] mb-4 tracking-wider">OTHER SERVICES</h3>
+            <div class="bg-[#1d2021] p-6 border-l border-[#3c3836]/50">
+              <h3 class="text-xs font-mono text-[#8ec07c] mb-4 tracking-wider">OTHER SERVICES</h3>
               <ul class="space-y-3">
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Code Hosting</span>
-                  <span class="text-[#6a6260] text-xs">GitHub</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Code Hosting</span>
+                  <span class="text-[#928374] text-xs">GitHub</span>
                 </li>
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Email</span>
-                  <span class="text-[#6a6260] text-xs">Google</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Email</span>
+                  <span class="text-[#928374] text-xs">Google</span>
                 </li>
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Search</span>
-                  <span class="text-[#6a6260] text-xs">DuckDuckGo (sometimes)</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Search</span>
+                  <span class="text-[#928374] text-xs">DuckDuckGo (sometimes)</span>
                 </li>
                 <li class="text-sm">
-                  <div class="text-[#ddd6cc] mb-2"><span class="text-[#e0aa40] mr-2">•</span>VPN:</div>
+                  <div class="text-[#ebdbb2] mb-2"><span class="text-[#8ec07c] mr-2">•</span>VPN:</div>
                   <ul class="pl-6 space-y-1">
                     {gearData.sections[2].items.find(i => i.children)?.children.map((vpn, idx) => (
-                      <li key={idx} class="text-[#6a6260] text-xs">• {vpn.text}</li>
+                      <li key={idx} class="text-[#928374] text-xs">• {vpn.text}</li>
                     ))}
                   </ul>
                 </li>
                 <li class="flex justify-between items-center text-sm">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>VPS</span>
-                  <span class="text-[#6a6260] text-xs">Oracle Cloud Free Tier</span>
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>VPS</span>
+                  <span class="text-[#928374] text-xs">Oracle Cloud Free Tier</span>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Firewall/Router & General Software Tools - Bottom Row */}
-          <div class="grid md:grid-cols-3 gap-px bg-[#2a2a2e]/50 border border-[#2a2a2e]/50">
+          <div class="grid md:grid-cols-3 gap-px bg-[#3c3836]/50 border border-[#3c3836]/50">
             {/* Firewall/Router */}
-            <div class="bg-[#08080a] p-6">
-              <h3 class="text-xs font-mono text-[#e0aa40] mb-4 tracking-wider">FIREWALL/ROUTER</h3>
-              <p class="text-[#6a6260] text-xs mb-4 leading-relaxed">
+            <div class="bg-[#1d2021] p-6">
+              <h3 class="text-xs font-mono text-[#8ec07c] mb-4 tracking-wider">FIREWALL/ROUTER</h3>
+              <p class="text-[#928374] text-xs mb-4 leading-relaxed">
                 I use my D-Link router for home networking with the stock firmware provided by the manufacturer.
               </p>
               <ul class="space-y-3">
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Model</span>
-                  <span class="text-[#6a6260] text-xs">D-Link DIR-825</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Model</span>
+                  <span class="text-[#928374] text-xs">D-Link DIR-825</span>
                 </li>
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Hardware Version</span>
-                  <span class="text-[#6a6260] text-xs">G1</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Hardware Version</span>
+                  <span class="text-[#928374] text-xs">G1</span>
                 </li>
-                <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Firmware Version</span>
-                  <span class="text-[#6a6260] text-xs">7</span>
+                <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Firmware Version</span>
+                  <span class="text-[#928374] text-xs">7</span>
                 </li>
                 <li class="flex justify-between items-center text-sm">
-                  <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>OS</span>
-                  <span class="text-[#6a6260] text-xs">Proprietary firmware</span>
+                  <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>OS</span>
+                  <span class="text-[#928374] text-xs">Proprietary firmware</span>
                 </li>
               </ul>
             </div>
 
             {/* General Software Tools - spanning 2 columns */}
-            <div class="bg-[#08080a] p-6 border-l border-[#2a2a2e]/50 md:col-span-2">
-              <h3 class="text-xs font-mono text-[#e0aa40] mb-4 tracking-wider">GENERAL SOFTWARE TOOLS</h3>
-              <p class="text-[#6a6260] text-xs mb-4">
+            <div class="bg-[#1d2021] p-6 border-l border-[#3c3836]/50 md:col-span-2">
+              <h3 class="text-xs font-mono text-[#8ec07c] mb-4 tracking-wider">GENERAL SOFTWARE TOOLS</h3>
+              <p class="text-[#928374] text-xs mb-4">
                 Software that I use for practical purposes, mostly on my laptop.
               </p>
               <div class="grid md:grid-cols-2 gap-6">
                 <ul class="space-y-3">
-                  <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Browser</span>
-                    <span class="text-[#6a6260] text-xs">Tor & Zen</span>
+                  <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                    <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Browser</span>
+                    <span class="text-[#928374] text-xs">Tor & Zen</span>
                   </li>
-                  <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Documents</span>
-                    <span class="text-[#6a6260] text-xs">LibreOffice</span>
+                  <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                    <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Documents</span>
+                    <span class="text-[#928374] text-xs">LibreOffice</span>
                   </li>
-                  <li class="text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <div class="text-[#ddd6cc] mb-2"><span class="text-[#e0aa40] mr-2">•</span>Editors:</div>
+                  <li class="text-sm border-b border-[#3c3836]/50 pb-2">
+                    <div class="text-[#ebdbb2] mb-2"><span class="text-[#8ec07c] mr-2">•</span>Editors:</div>
                     <ul class="pl-6 space-y-1">
                       {gearData.sections[4].items.find(i => i.text.startsWith('Editors:'))?.children.map((editor, idx) => (
-                        <li key={idx} class="text-[#6a6260] text-xs">• {editor.text}</li>
+                        <li key={idx} class="text-[#928374] text-xs">• {editor.text}</li>
                       ))}
                     </ul>
                   </li>
-                  <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Notes</span>
-                    <span class="text-[#6a6260] text-xs">website itself!!!</span>
+                  <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                    <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Notes</span>
+                    <span class="text-[#928374] text-xs">website itself!!!</span>
                   </li>
-                  <li class="flex justify-between items-center text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Password Manager</span>
-                    <span class="text-[#6a6260] text-xs">google password manager</span>
+                  <li class="flex justify-between items-center text-sm border-b border-[#3c3836]/50 pb-2">
+                    <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Password Manager</span>
+                    <span class="text-[#928374] text-xs">google password manager</span>
                   </li>
                   <li class="flex justify-between items-center text-sm">
-                    <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Shell</span>
-                    <span class="text-[#6a6260] text-xs">bash</span>
+                    <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Shell</span>
+                    <span class="text-[#928374] text-xs">bash</span>
                   </li>
                 </ul>
                 <ul class="space-y-3">
-                  <li class="text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <div class="text-[#ddd6cc] mb-2"><span class="text-[#e0aa40] mr-2">•</span>Terminals:</div>
+                  <li class="text-sm border-b border-[#3c3836]/50 pb-2">
+                    <div class="text-[#ebdbb2] mb-2"><span class="text-[#8ec07c] mr-2">•</span>Terminals:</div>
                     <ul class="pl-6 space-y-1">
                       {gearData.sections[4].items.find(i => i.text.startsWith('Terminals:'))?.children.map((term, idx) => (
-                        <li key={idx} class="text-[#6a6260] text-xs">• {term.text}</li>
+                        <li key={idx} class="text-[#928374] text-xs">• {term.text}</li>
                       ))}
                     </ul>
                   </li>
-                  <li class="text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <div class="text-[#ddd6cc] mb-2"><span class="text-[#e0aa40] mr-2">•</span>AI Tools:</div>
+                  <li class="text-sm border-b border-[#3c3836]/50 pb-2">
+                    <div class="text-[#ebdbb2] mb-2"><span class="text-[#8ec07c] mr-2">•</span>AI Tools:</div>
                     <ul class="pl-6 space-y-1">
                       {gearData.sections[4].items.find(i => i.text.startsWith('AI Tools:'))?.children.map((ai, idx) => (
-                        <li key={idx} class="text-[#6a6260] text-xs">• {ai.text}</li>
+                        <li key={idx} class="text-[#928374] text-xs">• {ai.text}</li>
                       ))}
                     </ul>
                   </li>
-                  <li class="text-sm border-b border-[#2a2a2e]/50 pb-2">
-                    <div class="text-[#ddd6cc] mb-2"><span class="text-[#e0aa40] mr-2">•</span>AI Agent:</div>
+                  <li class="text-sm border-b border-[#3c3836]/50 pb-2">
+                    <div class="text-[#ebdbb2] mb-2"><span class="text-[#8ec07c] mr-2">•</span>AI Agent:</div>
                     <ul class="pl-6 space-y-1">
                       {gearData.sections[4].items.find(i => i.text.startsWith('AI Agent:'))?.children.map((agent, idx) => (
-                        <li key={idx} class="text-[#6a6260] text-xs">• {agent.text}</li>
+                        <li key={idx} class="text-[#928374] text-xs">• {agent.text}</li>
                       ))}
                     </ul>
                   </li>
                   <li class="flex justify-between items-center text-sm">
-                    <span class="text-[#ddd6cc]"><span class="text-[#e0aa40] mr-2">•</span>Terminal Multiplexer</span>
-                    <span class="text-[#6a6260] text-xs">tmux</span>
+                    <span class="text-[#ebdbb2]"><span class="text-[#8ec07c] mr-2">•</span>Terminal Multiplexer</span>
+                    <span class="text-[#928374] text-xs">tmux</span>
                   </li>
                 </ul>
               </div>
@@ -252,26 +252,26 @@ import { gearData } from '../data/gear.js';
       </div>
 
       {/* Footer */}
-      <div class="border-t border-[#2a2a2e]/50 py-8 px-6 mt-16">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-[#6a6260]">
+      <div class="border-t border-[#3c3836]/50 py-8 px-6 mt-16">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono text-[#928374]">
           <div>
-            <span class="text-[#e0aa40]">~/gear</span> — last updated <span class="text-[#6a6260]">Feb 2026</span>
+            <span class="text-[#8ec07c]">~/gear</span> — last updated <span class="text-[#928374]">Feb 2026</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-[#3a3836]">built with</span>
-            <span class="text-[#6a6260]">html</span>
-            <span class="text-[#3a3836]">&</span>
-            <span class="text-[#6a6260]">css</span>
+            <span class="text-[#504945]">built with</span>
+            <span class="text-[#928374]">html</span>
+            <span class="text-[#504945]">&</span>
+            <span class="text-[#928374]">css</span>
           </div>
         </div>
       </div>
 
       {/* Back Link */}
-      <div class="border-t border-[#2a2a2e]/50 py-6 px-6">
+      <div class="border-t border-[#3c3836]/50 py-6 px-6">
         <div class="max-w-6xl mx-auto">
           <a
             href="/"
-            class="flex items-center gap-2 text-[#6a6260] hover:text-[#e0aa40] transition-colors text-sm"
+            class="flex items-center gap-2 text-[#928374] hover:text-[#8ec07c] transition-colors text-sm"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
@@ -291,16 +291,16 @@ import { gearData } from '../data/gear.js';
   }
   
   ::-webkit-scrollbar-track {
-    background: #08080a;
+    background: #1d2021;
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2e;
+    background: #3c3836;
     border-radius: 4px;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #3a3836;
+    background: #504945;
   }
 
   a {

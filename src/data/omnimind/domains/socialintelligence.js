@@ -1,7 +1,7 @@
 export default {
   "label": "Social Intelligence & Influence",
   "icon": "🎭",
-  "color": "#7060c0",
+  "color": "#d3869b",
   "group": "Social",
   "sub": "Rapport Engineering, Frame Control, Human Reading",
   "subdomains": [
