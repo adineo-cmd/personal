@@ -1,0 +1,398 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageNavigation from '../components/PageNavigation.astro';
+import { universalData, lowerTier, middleTier, upperTier } from '../data/minimalism/index.js';
+
+const tiers = [lowerTier, middleTier, upperTier];
+
+const stackRows = universalData.longevityStack.items;
+const roomCats = universalData.roomEssentials.categories;
+const carryCats = universalData.carryEssentials.categories;
+const modes = universalData.sevenModesOfLife.modes;
+
+// Normalize each mode's heterogeneous data keys for rendering
+const arrayKeysToSkip = new Set(['id', 'name', 'icon', 'bestFor', 'adjustTip']);
+const humanize = (key) =>
+  key
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (c) => c.toUpperCase())
+    .trim()
+    .toLowerCase()
+    .replace(/^./, (c) => c.toUpperCase());
+
+const modeBlocks = modes.map((mode) => ({
+  ...mode,
+  blocks: Object.entries(mode)
+    .filter(([key, value]) => !arrayKeysToSkip.has(key) && Array.isArray(value) && value.length > 0)
+    .map(([key, value]) => ({ label: humanize(key), items: value })),
+}));
+
+const totalItems = roomCats.reduce((n, c) => n + c.items.length, 0) + carryCats.reduce((n, c) => n + c.items.length, 0);
+---
+
+<BaseLayout
+  title="Minimalism | Aditya Yadav"
+  description="Realistic minimalism for longevity, travel and freedom — the complete framework: philosophy, 7 modes of life, income-tier playbooks, the full room and carry master lists, and the longevity stack."
+>
+  <>
+    <PageNavigation currentPage="minimalism" />
+
+    <div
+      class="min-h-screen bg-[#1d2021] text-[#ebdbb2] relative"
+      style={{
+        backgroundImage: `url('/images/gruvbox_grid.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#1d2021',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div class="absolute inset-0 bg-[#1d2021]/85"></div>
+
+      <div class="max-w-6xl mx-auto px-4 py-12 relative z-10">
+        <!-- Header -->
+        <header class="mb-10">
+          <h1 class="text-5xl md:text-6xl font-serif mb-2">
+            <span class="text-[#fbf1c7]">Mini</span><span class="text-[#8ec07c] italic">malism</span>
+          </h1>
+          <p class="text-[#a89984] text-base max-w-2xl">
+            Own less. Move more. Eat simply. Sleep well. Connect deeply. A complete, realistic framework for
+            longevity, travel and a good life — adapted to any income, any mode, anywhere.
+          </p>
+        </header>
+
+        <!-- Stats strip -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#3c3836] border border-[#3c3836] mb-10">
+          <div class="bg-[#1d2021] p-5">
+            <div class="text-3xl font-serif text-[#8ec07c] mb-1">3</div>
+            <div class="text-[10px] text-[#928374] tracking-wider uppercase">Income tiers</div>
+          </div>
+          <div class="bg-[#1d2021] p-5">
+            <div class="text-3xl font-serif text-[#fe8019] mb-1">7</div>
+            <div class="text-[10px] text-[#928374] tracking-wider uppercase">Modes of life</div>
+          </div>
+          <div class="bg-[#1d2021] p-5">
+            <div class="text-3xl font-serif text-[#83a598] mb-1">{totalItems}</div>
+            <div class="text-[10px] text-[#928374] tracking-wider uppercase">Items on the master lists</div>
+          </div>
+          <div class="bg-[#1d2021] p-5">
+            <div class="text-3xl font-serif text-[#d3869b] mb-1">72h</div>
+            <div class="text-[10px] text-[#928374] tracking-wider uppercase">Adjust anywhere framework</div>
+          </div>
+        </div>
+
+        <!-- Core philosophy -->
+        <section class="mb-12 border-l-4 border-[#8ec07c]/40 pl-5 md:pl-6">
+          <h2 class="text-[10px] text-[#8ec07c] tracking-widest uppercase mb-3">Core Philosophy</h2>
+          <div class="space-y-2">
+            {universalData.corePhilosophy.map((line) => (
+              <p class="text-[#a89984] text-sm md:text-base leading-relaxed">{line}</p>
+            ))}
+          </div>
+        </section>
+
+        <!-- ============ TIER TABS (pure CSS) ============ -->
+        <section class="mb-14">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">Pick your tier</h2>
+            <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap">same principles, different budgets</span>
+          </div>
+
+          <div class="tiers">
+            <input type="radio" name="tier" id="tier-lower" class="tier-radio" checked />
+            <input type="radio" name="tier" id="tier-middle" class="tier-radio" />
+            <input type="radio" name="tier" id="tier-upper" class="tier-radio" />
+
+            <!-- Tab labels -->
+            <div class="tier-tabs flex flex-wrap gap-2 mb-8 -mt-1">
+              {tiers.map((tier) => (
+                <label
+                  for={`tier-${tier.id}`}
+                  class="tier-tab cursor-pointer select-none text-sm px-4 py-2 border border-[#3c3836] bg-[#282828]/60 text-[#a89984] transition-colors"
+                  style={`--tier-accent: ${tier.accent}`}
+                >
+                  {tier.title.replace(' Minimalism', '')}
+                  <span class="hidden sm:inline text-[#928374]"> · {tier.budgetRange}</span>
+                </label>
+              ))}
+            </div>
+
+            <!-- Panels -->
+            <div class="tier-panels">
+              {tiers.map((tier) => (
+                <div id={`panel-${tier.id}`} class="tier-panel" style={`--tier-accent: ${tier.accent}`}>
+                  <p class="text-[#a89984] italic text-sm md:text-base mb-8 max-w-3xl border-l-2 border-[var(--tier-accent)]/40 pl-4">
+                    {tier.philosophy}
+                  </p>
+
+                  <div class="grid md:grid-cols-2 gap-4">
+                    {tier.sections.map((section) => (
+                      <div class="border border-[#3c3836] bg-[#282828]/60 p-5 hover:border-[var(--tier-accent)]/60 transition-colors">
+                        <h3 class="text-sm font-bold text-[var(--tier-accent)] uppercase tracking-wide mb-3">
+                          {section.title}
+                        </h3>
+                        <ul class="space-y-2">
+                          {section.items.map((item) => (
+                            <li class="flex gap-2 text-[#a89984] text-sm leading-relaxed">
+                              <span class="text-[var(--tier-accent)]/70 flex-shrink-0 select-none">›</span>
+                              <span class="group-hover:text-[#ebdbb2]">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div class="grid md:grid-cols-2 gap-4 mt-4">
+                    <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+                      <h3 class="text-sm font-bold text-[#ebdbb2] uppercase tracking-wide mb-3">Pro tips</h3>
+                      <ul class="space-y-2">
+                        {tier.proTips.map((tip) => (
+                          <li class="flex gap-2 text-[#a89984] text-sm leading-relaxed">
+                            <span class="text-[var(--tier-accent)]/70 flex-shrink-0 select-none">✦</span>
+                            <span>{tip}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+                      <div class="flex items-baseline justify-between mb-3">
+                        <h3 class="text-sm font-bold text-[#ebdbb2] uppercase tracking-wide">One-bag weight target</h3>
+                        <span class="font-serif text-2xl text-[var(--tier-accent)]">{tier.weightTargets.totalCarry}</span>
+                      </div>
+                      <div class="space-y-1.5">
+                        {tier.weightTargets.breakdown.map((row) => (
+                          <div class="flex justify-between text-sm text-[#a89984] border-b border-[#3c3836]/60 pb-1.5">
+                            <span>{row.category}</span>
+                            <span class="font-mono text-[#928374]">{row.weight}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ UNIVERSAL LONGEVITY ============ -->
+        <section class="mb-14">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">Universal longevity</h2>
+            <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap">works in every mode, at every income</span>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+              <h3 class="text-sm font-bold text-[#fe8019] uppercase tracking-wide mb-3">
+                {universalData.universalLongevityProtocol.title}
+              </h3>
+              <ol class="space-y-2">
+                {universalData.universalLongevityProtocol.items.map((item, i) => (
+                  <li class="flex gap-3 text-[#a89984] text-sm leading-relaxed">
+                    <span class="font-mono text-[10px] text-[#fe8019]/70 pt-0.5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+              <h3 class="text-sm font-bold text-[#83a598] uppercase tracking-wide mb-3">{universalData.longevityStack.title}</h3>
+              <div class="space-y-1.5">
+                {stackRows.map((row) => (
+                  <div class="flex justify-between gap-3 text-sm border-b border-[#3c3836]/60 pb-1.5">
+                    <span class="text-[#a89984]">{row.text}</span>
+                    <span class="text-[#928374] whitespace-nowrap font-mono text-xs">
+                      {row.cost} <span class="ml-1">{row.impact}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ ROOM MASTER LIST ============ -->
+        <section class="mb-14">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">{universalData.roomEssentials.title}</h2>
+            <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap hidden sm:block">{universalData.roomEssentials.subtitle}</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            {roomCats.map((cat) => (
+              <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+                <h3 class="text-sm font-bold text-[#ebdbb2] uppercase tracking-wide mb-3">
+                  <span class="mr-2">{cat.icon}</span>{cat.name}
+                </h3>
+                <ul class="space-y-2">
+                  {cat.items.map((item) => (
+                    <li class="flex gap-2 text-[#a89984] text-sm leading-relaxed">
+                      <span class="text-[#8ec07c]/60 flex-shrink-0 select-none">·</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ============ CARRY MASTER LIST ============ -->
+        <section class="mb-14">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">{universalData.carryEssentials.title}</h2>
+            <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap hidden sm:block">{universalData.carryEssentials.subtitle}</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            {carryCats.map((cat) => (
+              <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+                <h3 class="text-sm font-bold text-[#ebdbb2] uppercase tracking-wide mb-3">
+                  <span class="mr-2">{cat.icon}</span>{cat.name}
+                </h3>
+                <ul class="space-y-2">
+                  {cat.items.map((item) => (
+                    <li class="flex gap-2 text-[#a89984] text-sm leading-relaxed">
+                      <span class="text-[#8ec07c]/60 flex-shrink-0 select-none">·</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ============ 7 MODES OF LIFE ============ -->
+        <section class="mb-14">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">{universalData.sevenModesOfLife.title}</h2>
+            <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap hidden sm:block">the logistics change, the biology doesn't</span>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            {modeBlocks.map((mode, i) => (
+              <div class="border border-[#3c3836] bg-[#282828]/60 p-5 hover:border-[#8ec07c]/50 transition-colors">
+                <div class="flex items-baseline gap-3 mb-1">
+                  <span class="font-mono text-[10px] text-[#8ec07c]/80">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 class="text-lg font-serif text-[#ebdbb2]">
+                    <span class="mr-2">{mode.icon}</span>{mode.name}
+                  </h3>
+                </div>
+                <p class="text-xs text-[#928374] italic mb-4">best for: {mode.bestFor}</p>
+
+                <div class="space-y-4">
+                  {mode.blocks.map((block) => (
+                    <div>
+                      <h4 class="text-[10px] text-[#83a598] uppercase tracking-widest mb-1.5">{block.label}</h4>
+                      <ul class="space-y-1.5">
+                        {block.items.map((item) =>
+                          typeof item === 'string' ? (
+                            <li class="flex gap-2 text-sm text-[#a89984] leading-relaxed">
+                              <span class="text-[#8ec07c]/60 flex-shrink-0 select-none">·</span>
+                              <span>{item}</span>
+                            </li>
+                          ) : (
+                            <div class="flex justify-between gap-3 text-sm border-b border-[#3c3836]/50 pb-1">
+                              <span class="text-[#a89984]">{item.item ?? item.region ?? item.system}</span>
+                              <span class="text-[#928374] text-right">{item.spec ?? item.monthly ?? item.why ?? item.setup ?? item.cost ?? ''}</span>
+                            </div>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                {mode.adjustTip && (
+                  <p class="mt-4 text-xs text-[#bdae93] border-l-2 border-[#8ec07c]/40 pl-3 italic leading-relaxed">
+                    adjust anywhere: {mode.adjustTip}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ============ 72H FRAMEWORK ============ -->
+        <section class="mb-14">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">{universalData.adjustmentFramework.title}</h2>
+          </div>
+          <div class="grid md:grid-cols-3 gap-4">
+            {universalData.adjustmentFramework.phases.map((phase, i) => (
+              <div class="border border-[#3c3836] bg-[#282828]/60 p-5">
+                <div class="font-mono text-[10px] text-[#d3869b]/80 tracking-widest mb-2">PHASE {i + 1}</div>
+                <h3 class="text-base font-serif text-[#ebdbb2] mb-3">{phase.name}</h3>
+                <ul class="space-y-2">
+                  {phase.items.map((item) => (
+                    <li class="flex gap-2 text-sm text-[#a89984] leading-relaxed">
+                      <span class="text-[#d3869b]/70 flex-shrink-0 select-none">·</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p class="mt-4 text-sm text-[#bdae93] border-l-2 border-[#8ec07c]/40 pl-4 italic">
+            {universalData.adjustmentFramework.goldenRule}
+          </p>
+        </section>
+
+        <!-- ============ GOLDEN RULES ============ -->
+        <section class="mb-12">
+          <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+            <h2 class="text-2xl md:text-3xl font-serif tracking-tight text-[#8ec07c]">The golden rules</h2>
+            <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap hidden sm:block">the beautiful irony: less stuff = longer life</span>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-x-8">
+            {universalData.goldenRules.map((rule, i) => (
+              <div class="flex items-baseline gap-3 py-2.5 border-b border-[#3c3836]/60">
+                <span class="font-mono text-[10px] text-[#8ec07c]/80 flex-shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-sm md:text-base text-[#a89984]">{rule}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-[#3c3836] pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#928374] font-mono">
+          <span>~/minimalism — own less, live more</span>
+          <a href="/explore" class="hover:text-[#8ec07c] transition-colors underline decoration-[#504945] underline-offset-4">
+            ← back to explore
+          </a>
+        </footer>
+      </div>
+    </div>
+  </>
+</BaseLayout>
+
+<style>
+  /* Pure-CSS tier tabs — no JavaScript */
+  .tier-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .tier-panel {
+    display: none;
+  }
+  #tier-lower:checked ~ .tier-panels #panel-lower,
+  #tier-middle:checked ~ .tier-panels #panel-middle,
+  #tier-upper:checked ~ .tier-panels #panel-upper {
+    display: block;
+  }
+  .tier-tab:hover {
+    color: #ebdbb2;
+    border-color: var(--tier-accent);
+  }
+  #tier-lower:checked ~ .tier-tabs label[for='tier-lower'],
+  #tier-middle:checked ~ .tier-tabs label[for='tier-middle'],
+  #tier-upper:checked ~ .tier-tabs label[for='tier-upper'] {
+    background-color: color-mix(in srgb, var(--tier-accent) 14%, transparent);
+    border-color: var(--tier-accent);
+    color: var(--tier-accent);
+  }
+</style>
