@@ -1,81 +1,256 @@
 ---
 import { personalInfo } from '../data/content.js';
+
+const flyoutGroups = [
+  {
+    id: 'create',
+    title: 'create',
+    accent: '#8ec07c',
+    items: [
+      { name: 'Writings', label: 'blogs, thoughts', path: 'writings' },
+      { name: 'Projects', label: 'projects, experiments', path: 'projects' },
+      { name: 'Photos', label: 'photographs', path: 'photos' },
+    ]
+  },
+  {
+    id: 'learn',
+    title: 'learn',
+    accent: '#8ec07c',
+    items: [
+      { name: 'Library', label: 'books, reads', path: 'library' },
+      { name: 'Notes', label: 'notes & ideas', path: 'notes' },
+      { name: 'List 100', label: 'goals, wishes', path: 'list100' },
+    ]
+  },
+  {
+    id: 'body',
+    title: 'body',
+    accent: '#fe8019',
+    items: [
+      { name: 'Exercise', label: 'exercise routine', path: 'exercise' },
+      { name: 'Home Training', label: 'home training skills', path: 'hometraining' },
+      { name: 'Martial Arts', label: 'martial arts encyclopedia', path: 'martialarts' },
+      { name: 'Mobility', label: 'mobility & flexibility', path: 'mobility' },
+      { name: 'Anatomy', label: 'anatomy & injury guide', path: 'anatomy' },
+      { name: 'Daily Routine', label: 'daily routine', path: 'routine' },
+    ]
+  },
+  {
+    id: 'mind',
+    title: 'mind',
+    accent: '#b8bb26',
+    items: [
+      { name: 'Mind Training', label: 'universal mastery system', path: 'mind' },
+    ]
+  },
+  {
+    id: 'tools',
+    title: 'tools',
+    accent: '#83a598',
+    items: [
+      { name: 'Gear', label: 'computer & gear', path: 'gear' },
+      { name: 'Minimalism', label: 'minimalist living framework', path: 'minimalism' },
+      { name: 'Links', label: 'cool links', path: 'links' },
+      { name: 'Timeline', label: 'progress, achievements', path: 'timeline' },
+    ]
+  },
+  {
+    id: 'roots',
+    title: 'roots',
+    accent: '#d3869b',
+    items: [
+      { name: 'Family Tree', label: 'family tree, lineage', path: 'family-tree' },
+      { name: 'Misc', label: 'miscellaneous', path: 'misc' },
+    ]
+  },
+];
+
+const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
 ---
 
 <>
-  <nav class="fixed top-0 w-full bg-[#1d2021]/95 backdrop-blur-sm border-b border-[#3c3836] z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="/" class="text-sm text-[#ebdbb2] hover:text-[#fbf1c7] transition-colors">
-        {personalInfo.username}
+  <nav id="topNav" class="fixed top-0 w-full z-50 bg-[#1d2021]/90 backdrop-blur-md border-b border-[#3c3836] transition-colors duration-300">
+    <div class="nav-progress absolute bottom-[-1px] left-0 h-[2px] bg-[#8ec07c] z-10" id="navProgress" style="width: 0%"></div>
+    <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+      <a href="/" class="font-mono text-sm text-[#ebdbb2] hover:text-[#8ec07c] transition-colors">
+        <span class="text-[#928374]">~/</span>{personalInfo.username}
       </a>
 
-      <button 
-        id="mobileMenuButton" 
+      <button
+        id="mobileMenuButton"
         class="md:hidden text-[#a89984] hover:text-[#ebdbb2] cursor-pointer bg-transparent border-none p-0"
         aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
 
-      <div class="hidden md:flex gap-8 text-sm">
+      <div class="hidden md:flex items-center gap-8 text-sm">
         <a href="/" class="nav-link capitalize transition-all relative text-[#928374] hover:text-[#ebdbb2]" data-section="home">Home</a>
         <a href="/#about" class="nav-link capitalize transition-all relative text-[#928374] hover:text-[#ebdbb2]" data-section="about">About</a>
-        <a href="/explore" class="nav-link capitalize transition-all relative text-[#928374] hover:text-[#ebdbb2]" data-section="explore">Explore</a>
+        <div class="relative" id="exploreFlyout">
+          <button
+            type="button"
+            id="exploreFlyoutButton"
+            class="nav-link capitalize transition-all relative text-[#928374] hover:text-[#ebdbb2] cursor-pointer bg-transparent border-none flex items-center gap-1.5 text-sm"
+            data-section="explore"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls="exploreFlyoutMenu"
+          >
+            Explore
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flyout-chevron transition-transform duration-200">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div
+            id="exploreFlyoutMenu"
+            class="flyout-menu hidden absolute right-0 top-full mt-3 w-[min(620px,calc(100vw-3rem))] p-5 md:p-6 bg-[#1d2021] border border-[#3c3836] shadow-2xl"
+          >
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-5">
+              {flyoutGroups.map((group) => (
+                <div>
+                  <h3 class="font-mono text-[10px] uppercase tracking-widest mb-2.5" style={`color: ${group.accent}`}>
+                    <span class="opacity-60">/</span>{group.title}
+                  </h3>
+                  <ul class="space-y-1">
+                    {group.items.map((item) => (
+                      <li>
+                        <a href={`${root}/${item.path}`} class="flyout-item block px-2 py-1.5 rounded-sm transition-colors group/item">
+                          <span class="text-[13px] text-[#ebdbb2] group-hover/item:text-[#8ec07c] transition-colors">{item.name}</span>
+                          <span class="block text-[10px] text-[#928374] group-hover/item:text-[#a89984] transition-colors">{item.label}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div class="mt-5 pt-4 border-t border-[#3c3836] flex justify-between items-center">
+              <span class="font-mono text-[10px] text-[#928374]">19 sections across 6 shelves</span>
+              <a href="/explore" class="font-mono text-[11px] text-[#8ec07c] hover:text-[#fbf1c7] transition-colors">open the archive →</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
-  <nav class="mobile-menu fixed top-16 left-0 right-0 bg-[#282828] border-t border-[#3c3836] md:hidden opacity-0 invisible transition-all duration-300 z-40" id="mobileMenu">
-    <a href="/" class="mobile-link block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-[#a89984] hover:bg-[#3c3836] hover:text-[#ebdbb2]">Home</a>
-    <a href="/#about" class="mobile-link block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-[#a89984] hover:bg-[#3c3836] hover:text-[#ebdbb2]">About</a>
-    <a href="/explore" class="mobile-link block w-full text-left px-6 py-3 capitalize text-sm transition-colors text-[#a89984] hover:bg-[#3c3836] hover:text-[#ebdbb2]">Explore</a>
+  <nav class="mobile-menu fixed top-16 left-0 right-0 bg-[#1d2021] border-t border-[#3c3836] md:hidden opacity-0 invisible transition-all duration-300 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto" id="mobileMenu">
+    <div class="px-5 py-4 space-y-4">
+      <div class="flex gap-6">
+        <a href="/" class="mobile-link text-sm text-[#a89984] hover:text-[#ebdbb2] transition-colors">home</a>
+        <a href="/#about" class="mobile-link text-sm text-[#a89984] hover:text-[#ebdbb2] transition-colors">about</a>
+      </div>
+      {flyoutGroups.map((group) => (
+        <div>
+          <h3 class="font-mono text-[10px] uppercase tracking-widest mb-1.5" style={`color: ${group.accent}`}>
+            <span class="opacity-60">/</span>{group.title}
+          </h3>
+          <div class="grid grid-cols-2 gap-x-4">
+            {group.items.map((item) => (
+              <a href={`${root}/${item.path}`} class="mobile-link block py-1.5 text-[13px] text-[#ebdbb2] hover:text-[#8ec07c] transition-colors">
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+      <a href="/explore" class="mobile-link block border border-[#3c3836] px-4 py-3 text-center font-mono text-xs text-[#8ec07c] hover:border-[#8ec07c]/50 transition-colors">
+        open the archive →
+      </a>
+    </div>
   </nav>
 
-  <!-- Overlay for mobile menu -->
   <div class="mobile-overlay fixed inset-0 bg-[#1d2021]/80 z-30 md:hidden hidden" id="mobileOverlay"></div>
 
   <style>
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1.5px;
+      background: #8ec07c;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+    }
+    .nav-link.active {
+      color: #8ec07c;
+      font-weight: 600;
+    }
+
+    #topNav.scrolled {
+      background: rgba(29, 32, 33, 0.97);
+      border-bottom-color: #504945;
+    }
+
+    #exploreFlyoutButton[aria-expanded="true"] .flyout-chevron {
+      transform: rotate(180deg);
+    }
+    #exploreFlyoutButton[aria-expanded="true"] {
+      color: #8ec07c;
+    }
+
+    .flyout-menu.open {
+      display: block;
+      animation: flyout-in 0.18s ease both;
+    }
+    @keyframes flyout-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .mobile-menu.open {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .mobile-overlay.open {
       display: block;
     }
-    
-    .nav-link.active {
-      color: #8ec07c; /* gold accent */
-      font-weight: 600;
+
+    @media (prefers-reduced-motion: reduce) {
+      .flyout-menu.open,
+      .nav-link::after {
+        animation: none;
+        transition: none;
+      }
     }
   </style>
 
   <script>
-    // === Mobile Menu Toggle ===
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileOverlay = document.getElementById('mobileOverlay');
     const mobileLinks = document.querySelectorAll('.mobile-link');
-    
+
     function openMobileMenu() {
       mobileMenu?.classList.add('open');
       mobileOverlay?.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
+      mobileMenuButton?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     }
-    
+
     function closeMobileMenu() {
       mobileMenu?.classList.remove('open');
       mobileOverlay?.classList.remove('open');
-      document.body.style.overflow = ''; // Restore scrolling
+      mobileMenuButton?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
-    
+
     mobileMenuButton?.addEventListener('click', openMobileMenu);
     mobileOverlay?.addEventListener('click', closeMobileMenu);
-    
-    // Close mobile menu when clicking outside
+
     document.addEventListener('click', (event) => {
       if (
         mobileMenu?.classList.contains('open') &&
@@ -85,18 +260,89 @@ import { personalInfo } from '../data/content.js';
         closeMobileMenu();
       }
     });
-    
-    // Close mobile menu when clicking a link inside
-    mobileLinks.forEach(link => {
+
+    mobileLinks.forEach((link) => {
       link.addEventListener('click', closeMobileMenu);
     });
 
-    // === Scroll Spy Logic ===
+    const flyoutButton = document.getElementById('exploreFlyoutButton');
+    const flyoutMenu = document.getElementById('exploreFlyoutMenu');
+    const flyoutContainer = document.getElementById('exploreFlyout');
+
+    function openFlyout() {
+      flyoutMenu?.classList.add('open');
+      flyoutMenu?.classList.remove('hidden');
+      flyoutButton?.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeFlyout() {
+      flyoutMenu?.classList.remove('open');
+      flyoutMenu?.classList.add('hidden');
+      flyoutButton?.setAttribute('aria-expanded', 'false');
+    }
+
+    flyoutButton?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = flyoutMenu?.classList.contains('open');
+      if (isOpen) {
+        closeFlyout();
+      } else {
+        openFlyout();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (
+        flyoutMenu?.classList.contains('open') &&
+        !flyoutContainer?.contains(event.target)
+      ) {
+        closeFlyout();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (flyoutMenu?.classList.contains('open')) {
+          closeFlyout();
+          flyoutButton?.focus();
+        }
+        if (mobileMenu?.classList.contains('open')) {
+          closeMobileMenu();
+        }
+      }
+    });
+
+    const topNav = document.getElementById('topNav');
+    const navProgress = document.getElementById('navProgress');
+    let navTicking = false;
+
+    function updateNav() {
+      if (topNav) {
+        topNav.classList.toggle('scrolled', window.scrollY > 8);
+      }
+      if (navProgress) {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        navProgress.style.width = `${pct}%`;
+      }
+      navTicking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!navTicking) {
+        requestAnimationFrame(updateNav);
+        navTicking = true;
+      }
+    }, { passive: true });
+
+    updateNav();
+
     if (typeof window !== 'undefined') {
       document.addEventListener('astro:page-load', initScrollSpy);
 
       function initScrollSpy() {
-        if (window.innerWidth < 768) return; // desktop only
+        if (window.innerWidth < 768) return;
 
         const navLinks = document.querySelectorAll('.nav-link');
         if (!navLinks.length) return;
@@ -112,7 +358,7 @@ import { personalInfo } from '../data/content.js';
             id,
             element: document.querySelector(selector)
           }))
-          .filter(sec => sec.element);
+          .filter((sec) => sec.element);
 
         if (sections.length === 0) return;
 
@@ -130,7 +376,7 @@ import { personalInfo } from '../data/content.js';
 
         function setActiveLink() {
           const activeId = getActiveSectionId();
-          navLinks.forEach(link => {
+          navLinks.forEach((link) => {
             const sectionId = link.getAttribute('data-section');
             if (sectionId === activeId) {
               link.classList.add('active');

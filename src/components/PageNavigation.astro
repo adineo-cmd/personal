@@ -5,102 +5,157 @@ interface Props {
 
 const { currentPage } = Astro.props;
 
-const navItems = [
-  { label: 'home', href: '/', display: '🏠 home' },
-  { label: 'projects', href: '/projects', display: '🚀 projects' },
-  { label: 'writings', href: '/writings', display: '✍️ writings' },
-  { label: 'exercise', href: '/exercise', display: '💪 exercise' },
-  { label: 'home training', href: '/hometraining', display: '🧭 home training' },
-  { label: 'martial arts', href: '/martialarts', display: '🥋 martial arts' }, // 🆕 Added
-  { label: 'mobility', href: '/mobility', display: '🦴 mobility' },           // 🆕 Added
-  { label: 'mind', href: '/mind', display: '🧠 mind' },
-  { label: 'gear', href: '/gear', display: '⚙️ gear' },
-  { label: 'minimalism', href: '/minimalism', display: '🎒 minimalism' },
-  { label: 'timeline', href: '/timeline', display: '📅 timeline' },
-  { label: 'notes', href: '/notes', display: '🗒️ notes' },
-  { label: 'daily routine', href: '/routine', display: '🌅 daily routine' },
-  { label: 'family tree, lineage', href: '/family-tree', display: '🌳 family-tree' },
-  { label: 'library', href: '/library', display: '📚 library' },
-  { label: 'list 100', href: '/list100', display: '💯 list 100' },
-  { label: 'photos', href: '/photos', display: '📸 photos' },
-  { label: 'links', href: '/links', display: '🔗 links' },
-  { label: 'misc', href: '/misc', display: '📦 misc' },
-  { label: 'explore', href: '/explore', display: '🗺️ explore' }
+const navGroups = [
+  {
+    id: 'site',
+    title: 'site',
+    accent: '#8ec07c',
+    items: [
+      { label: 'home', href: '/', display: 'home' },
+      { label: 'projects', href: '/projects', display: 'projects' },
+      { label: 'writings', href: '/writings', display: 'writings' },
+      { label: 'photos', href: '/photos', display: 'photos' },
+      { label: 'notes', href: '/notes', display: 'notes' },
+      { label: 'library', href: '/library', display: 'library' },
+      { label: 'list 100', href: '/list100', display: 'list 100' },
+      { label: 'explore', href: '/explore', display: 'explore' },
+    ]
+  },
+  {
+    id: 'body',
+    title: 'body',
+    accent: '#fe8019',
+    items: [
+      { label: 'exercise', href: '/exercise', display: 'exercise' },
+      { label: 'home training', href: '/hometraining', display: 'home training' },
+      { label: 'martial arts', href: '/martialarts', display: 'martial arts' },
+      { label: 'mobility', href: '/mobility', display: 'mobility' },
+      { label: 'anatomy', href: '/anatomy', display: 'anatomy' },
+      { label: 'daily routine', href: '/routine', display: 'daily routine' },
+    ]
+  },
+  {
+    id: 'mind',
+    title: 'mind',
+    accent: '#b8bb26',
+    items: [
+      { label: 'mind', href: '/mind', display: 'mind training' },
+    ]
+  },
+  {
+    id: 'tools',
+    title: 'tools',
+    accent: '#83a598',
+    items: [
+      { label: 'gear', href: '/gear', display: 'gear' },
+      { label: 'minimalism', href: '/minimalism', display: 'minimalism' },
+      { label: 'links', href: '/links', display: 'links' },
+      { label: 'timeline', href: '/timeline', display: 'timeline' },
+    ]
+  },
+  {
+    id: 'roots',
+    title: 'roots',
+    accent: '#d3869b',
+    items: [
+      { label: 'family tree', href: '/family-tree', display: 'family tree' },
+      { label: 'misc', href: '/misc', display: 'misc' },
+    ]
+  },
 ];
 
-// CONFIG: How many items to show directly before "More"
-const visibleCount = 6;
-const visibleItems = navItems.slice(0, visibleCount);
-const moreItems = navItems.slice(visibleCount);
+const allItems = navGroups.flatMap((group) => group.items);
+const activeItem = allItems.find((item) => item.label === currentPage);
+const archiveGroupIds = ['body', 'mind', 'tools', 'roots'];
+const activeGroupId = navGroups.find((group) =>
+  group.items.some((item) => item.label === currentPage)
+)?.id;
+const inArchive = activeGroupId ? archiveGroupIds.includes(activeGroupId) : false;
+const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
 ---
 
 <>
-  {/* Desktop Navigation */}
-  <nav class="hidden md:block border-b border-[#3c3836] bg-[#1d2021]">
-    <div class="max-w-7xl mx-auto px-6 py-6">
-      <div class="flex flex-wrap justify-end gap-4 items-center">
-        {/* Visible Items */}
-        {visibleItems.map(item => (
-          <a
-            href={item.href}
-            class={`text-sm transition-colors ${
-              currentPage === item.label
-                ? 'text-[#8ec07c] underline decoration-[#8ec07c]/40 underline-offset-4'
-                : 'text-[#928374] hover:text-[#ebdbb2]'
-            }`}
-            aria-current={currentPage === item.label ? 'page' : undefined}
-          >
-            {item.display}
-          </a>
-        ))}
-        
-        {/* More Dropdown */}
-        {moreItems.length > 0 && (
-          <div class="more-container relative inline-block" id="moreContainer">
-            <button
-              id="moreButton"
-              class="text-sm text-[#928374] hover:text-[#ebdbb2] cursor-pointer transition-colors select-none bg-transparent border-none"
-              aria-label="Toggle more menu"
-            >
-              more ▾
-            </button>
-            <div class="dropdown-menu absolute right-0 mt-2 min-w-[180px] bg-[#282828] border border-[#3c3836] rounded-lg shadow-lg z-50 overflow-hidden hidden">
-              {moreItems.map(item => (
-                <a
-                  href={item.href}
-                  class={`block px-4 py-2 text-sm transition-colors ${
-                    currentPage === item.label
-                      ? 'bg-[#3c3836] text-[#8ec07c]'
-                      : 'text-[#a89984] hover:bg-[#3c3836] hover:text-[#ebdbb2]'
-                  }`}
-                  aria-current={currentPage === item.label ? 'page' : undefined}
-                >
-                  {item.display}
-                </a>
-              ))}
-            </div>
-          </div>
+  <nav class="border-b border-[#3c3836] bg-[#1d2021]/95 backdrop-blur-sm relative z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div class="font-mono text-xs sm:text-sm flex items-center gap-1.5 text-[#928374] min-w-0 overflow-hidden whitespace-nowrap">
+        <a href={`${root}/`} class="hover:text-[#8ec07c] transition-colors shrink-0">~</a>
+        <span class="text-[#504945] shrink-0">/</span>
+        {inArchive && (
+          <>
+            <a href={`${root}/explore`} class="hover:text-[#8ec07c] transition-colors shrink-0">explore</a>
+            <span class="text-[#504945] shrink-0">/</span>
+          </>
         )}
+        <span class="text-[#8ec07c] truncate">{activeItem?.display ?? currentPage ?? 'adineo'}</span>
+      </div>
+
+      <div class="relative shrink-0" id="sectionsContainer">
+        <button
+          type="button"
+          id="sectionsButton"
+          class="font-mono text-xs sm:text-sm text-[#928374] hover:text-[#ebdbb2] cursor-pointer bg-transparent border border-[#3c3836] hover:border-[#504945] transition-colors px-3 py-1.5 flex items-center gap-1.5"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-controls="sectionsMenu"
+        >
+          sections
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="sections-chevron transition-transform duration-200">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div
+          id="sectionsMenu"
+          class="sections-menu hidden absolute right-0 top-full mt-2 w-[min(480px,calc(100vw-2rem))] p-5 bg-[#1d2021] border border-[#3c3836] shadow-2xl"
+        >
+          <div class="grid grid-cols-2 gap-x-6 gap-y-4">
+            {navGroups.map((group) => (
+              <div>
+                <h3 class="font-mono text-[10px] uppercase tracking-widest mb-1.5" style={`color: ${group.accent}`}>
+                  <span class="opacity-60">/</span>{group.title}
+                </h3>
+                <ul class="space-y-0.5">
+                  {group.items.map((item) => (
+                    <li>
+                      <a
+                        href={`${root}${item.href}`}
+                        class:list={[
+                          'block px-2 py-1 text-[13px] rounded-sm transition-colors',
+                          item.label === currentPage
+                            ? 'bg-[#3c3836] text-[#8ec07c]'
+                            : 'text-[#a89984] hover:text-[#ebdbb2] hover:bg-[#282828]'
+                        ]}
+                        aria-current={item.label === currentPage ? 'page' : undefined}
+                      >
+                        {item.display}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </nav>
 
-  {/* Mobile Menu Button */}
-  <div class="md:hidden flex justify-end px-6 py-6 border-b border-[#3c3836] bg-[#1d2021]">
+  <div class="md:hidden flex justify-end px-4 sm:px-6 py-3 border-b border-[#3c3836] bg-[#1d2021]">
     <button
       id="mobileMenuButton"
-      class="text-[#a89984] hover:text-[#ebdbb2] cursor-pointer bg-transparent border-none p-0"
+      class="font-mono text-xs text-[#a89984] hover:text-[#ebdbb2] cursor-pointer bg-transparent border border-[#3c3836] px-3 py-1.5 flex items-center gap-1.5"
       aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobileNav"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      all pages
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
   </div>
 
-  {/* Mobile Sidebar */}
-  <nav class="mobile-nav fixed inset-y-0 left-0 z-50 w-64 bg-[#1d2021] text-[#ebdbb2] transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden" id="mobileNav">
-    <div class="p-6 pt-12">
+  <nav class="mobile-nav fixed inset-y-0 right-0 z-50 w-72 max-w-[85vw] bg-[#1d2021] text-[#ebdbb2] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden overflow-y-auto" id="mobileNav">
+    <div class="p-5 pt-12">
       <button
         id="mobileCloseButton"
         class="absolute top-4 right-4 text-[#a89984] hover:text-[#ebdbb2] cursor-pointer bg-transparent border-none p-0"
@@ -110,69 +165,94 @@ const moreItems = navItems.slice(visibleCount);
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
-      <nav class="mt-8 space-y-4">
-        {navItems.map(item => (
-          <a
-            href={item.href}
-            class={`block w-full text-left px-4 py-2 rounded transition-colors ${
-              currentPage === item.label
-                ? 'bg-[#3c3836] text-[#8ec07c]'
-                : 'text-[#a89984] hover:bg-[#3c3836] hover:text-[#ebdbb2]'
-            }`}
-            aria-current={currentPage === item.label ? 'page' : undefined}
-          >
-            {item.display}
-          </a>
+      <div class="space-y-4">
+        {navGroups.map((group) => (
+          <div>
+            <h3 class="font-mono text-[10px] uppercase tracking-widest mb-1.5" style={`color: ${group.accent}`}>
+              <span class="opacity-60">/</span>{group.title}
+            </h3>
+            <div class="grid grid-cols-2 gap-x-3">
+              {group.items.map((item) => (
+                <a
+                  href={`${root}${item.href}`}
+                  class:list={[
+                    'block py-1.5 text-[13px] transition-colors',
+                    item.label === currentPage
+                      ? 'text-[#8ec07c]'
+                      : 'text-[#a89984] hover:text-[#ebdbb2]'
+                  ]}
+                  aria-current={item.label === currentPage ? 'page' : undefined}
+                >
+                  {item.display}
+                </a>
+              ))}
+            </div>
+          </div>
         ))}
-      </nav>
+      </div>
     </div>
   </nav>
 
-  {/* Overlay for mobile menu */}
   <div class="mobile-overlay fixed inset-0 bg-[#1d2021]/80 z-40 md:hidden hidden" id="mobileOverlay"></div>
 
   <style>
-    /* Mobile Sidebar Open State */
+    .sections-menu.open {
+      display: block;
+      animation: sections-in 0.18s ease both;
+    }
+    @keyframes sections-in {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #sectionsButton[aria-expanded="true"] {
+      color: #8ec07c;
+      border-color: #8ec07c;
+    }
+    #sectionsButton[aria-expanded="true"] .sections-chevron {
+      transform: rotate(180deg);
+    }
+
     .mobile-nav.open {
       transform: translateX(0);
     }
-    
-    /* Show overlay when mobile menu is open */
+
     .mobile-overlay.open {
       display: block;
     }
-    
-    /* Desktop More Dropdown Open State */
-    .dropdown-menu.open {
-      display: block;
+
+    @media (prefers-reduced-motion: reduce) {
+      .sections-menu.open {
+        animation: none;
+      }
     }
   </style>
-  
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // === Mobile Menu ===
       const mobileMenuButton = document.getElementById('mobileMenuButton');
       const mobileCloseButton = document.getElementById('mobileCloseButton');
       const mobileNav = document.getElementById('mobileNav');
       const mobileOverlay = document.getElementById('mobileOverlay');
-      
+
       function openMobileMenu() {
         mobileNav?.classList.add('open');
         mobileOverlay?.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        mobileMenuButton?.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
       }
-      
+
       function closeMobileMenu() {
         mobileNav?.classList.remove('open');
         mobileOverlay?.classList.remove('open');
-        document.body.style.overflow = ''; // Restore scrolling
+        mobileMenuButton?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       }
-      
+
       mobileMenuButton?.addEventListener('click', openMobileMenu);
       mobileCloseButton?.addEventListener('click', closeMobileMenu);
       mobileOverlay?.addEventListener('click', closeMobileMenu);
-      
-      // Close mobile menu when clicking outside
+
       document.addEventListener('click', (event) => {
         if (
           mobileNav?.classList.contains('open') &&
@@ -182,32 +262,52 @@ const moreItems = navItems.slice(visibleCount);
           closeMobileMenu();
         }
       });
-      
-      // === Desktop More Dropdown ===
-      const moreButton = document.getElementById('moreButton');
-      const moreContainer = document.getElementById('moreContainer');
-      const dropdownMenu = moreContainer?.querySelector('.dropdown-menu');
-      
-      moreButton?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdownMenu?.classList.toggle('open');
-      });
-      
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (event) => {
-        if (
-          dropdownMenu?.classList.contains('open') &&
-          !moreContainer?.contains(event.target)
-        ) {
-          dropdownMenu?.classList.remove('open');
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && mobileNav?.classList.contains('open')) {
+          closeMobileMenu();
         }
       });
-      
-      // Close dropdown when clicking a link inside
-      dropdownMenu?.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          dropdownMenu?.classList.remove('open');
-        });
+
+      const sectionsButton = document.getElementById('sectionsButton');
+      const sectionsMenu = document.getElementById('sectionsMenu');
+      const sectionsContainer = document.getElementById('sectionsContainer');
+
+      function openSections() {
+        sectionsMenu?.classList.add('open');
+        sectionsMenu?.classList.remove('hidden');
+        sectionsButton?.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeSections() {
+        sectionsMenu?.classList.remove('open');
+        sectionsMenu?.classList.add('hidden');
+        sectionsButton?.setAttribute('aria-expanded', 'false');
+      }
+
+      sectionsButton?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sectionsMenu?.classList.contains('open')) {
+          closeSections();
+        } else {
+          openSections();
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (
+          sectionsMenu?.classList.contains('open') &&
+          !sectionsContainer?.contains(event.target)
+        ) {
+          closeSections();
+        }
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && sectionsMenu?.classList.contains('open')) {
+          closeSections();
+          sectionsButton?.focus();
+        }
       });
     });
   </script>
