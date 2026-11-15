@@ -1,8 +1,6 @@
----
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageNavigation from '../components/PageNavigation.astro';
 
-// Deeper archives — moved off the home page. Create & Learn remain on /#explore.
 const modes = [
   {
     id: 'body',
@@ -54,6 +52,9 @@ const modes = [
     ]
   },
 ];
+
+const allCount = modes.reduce((sum, mode) => sum + mode.items.length, 0);
+const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
 ---
 
 <BaseLayout title="Explore | Aditya Yadav" description="Body, mind, tools & roots — the deeper archives: fitness, martial arts, mind training, gear, timeline, family tree and misc.">
@@ -61,7 +62,7 @@ const modes = [
     <PageNavigation currentPage="explore" />
 
     <div
-      class="min-h-screen bg-[#1d2021] text-[#ebdbb2] relative"
+      class="archive-root min-h-screen bg-[#1d2021] text-[#ebdbb2] relative"
       style={{
         backgroundImage: `url('/images/debian_grey_swirl.webp')`,
         backgroundSize: 'cover',
@@ -70,79 +71,200 @@ const modes = [
         backgroundColor: '#1d2021',
         backgroundAttachment: 'fixed',
       }}
+      data-base={root}
     >
       <div class="absolute inset-0 bg-[#1d2021]/80"></div>
 
       <div class="max-w-6xl mx-auto px-4 py-12 relative z-10">
-        <!-- Header -->
-        <header class="mb-12">
+        <header class="mb-10">
           <h1 class="text-5xl md:text-6xl font-serif mb-2">
             <span class="text-[#fbf1c7]">Exp</span><span class="text-[#8ec07c] italic">lore</span>
           </h1>
           <p class="text-[#a89984] text-base max-w-2xl">
             The deeper archives — body, mind, tools & roots. Everything that shapes the day-to-day, and everything that came before it.
           </p>
+          <p class="font-mono text-[11px] text-[#928374] mt-3">
+            <span class="text-[#8ec07c]">{allCount}</span> sections · pick a card to read it right here — no page loads, no leaving the console
+          </p>
         </header>
 
-        <div class="flex flex-col gap-10 md:gap-14">
-          {modes.map((mode) => (
-            <section id={mode.id} class="scroll-mt-24">
-              <!-- Mode header -->
-              <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
-                <div class="flex items-baseline gap-3 md:gap-4">
-                  <span class="font-mono text-xs text-[#8ec07c]/80 tracking-widest">{mode.num}</span>
-                  <h2 class="text-2xl md:text-3xl font-serif tracking-tight" style={`color: ${mode.accent}`}>
-                    {mode.title}
-                  </h2>
-                </div>
-                <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap">{mode.tag}</span>
-              </div>
+        <div class="grid lg:grid-cols-[200px_1fr] gap-6 lg:gap-12 items-start">
+          <nav class="rail lg:sticky lg:top-6" role="tablist" aria-label="Archive modes">
+            <div class="flex lg:flex-col gap-2 overflow-x-auto pb-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible">
+              {modes.map((mode, i) => (
+                <button
+                  type="button"
+                  class:list={['rail-btn group shrink-0 lg:w-full text-left border border-[#3c3836] bg-[#282828]/50 hover:bg-[#3c3836]/60 transition-all duration-200 px-4 py-2.5 lg:py-3 flex items-center gap-3 lg:gap-2 cursor-pointer', i === 0 ? 'rail-active' : '']}
+                  style={`--accent: ${mode.accent}`}
+                  role="tab"
+                  data-mode={mode.id}
+                  aria-selected={i === 0 ? 'true' : 'false'}
+                  aria-controls={`panel-${mode.id}`}
+                >
+                  <span class="font-mono text-[10px] text-[#928374]">{mode.num}</span>
+                  <span class="rail-title text-sm font-medium text-[#a89984] transition-colors">{mode.title}</span>
+                  <span class="font-mono text-[10px] text-[#928374] ml-auto lg:ml-auto opacity-70">{mode.items.length}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
 
-              <!-- Items grid -->
-              <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {mode.items.map((item) => (
-                  <a
-                    href={`/${item.path}`}
-                    class="mode-card group block border border-[#3c3836] bg-[#282828]/60 hover:bg-[#3c3836]/60 transition-all duration-300 px-5 py-4"
-                    style={`--accent: ${mode.accent}`}
-                  >
-                    <div class="flex items-center justify-between gap-3">
-                      <span class="font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] transition-colors">
-                        {item.name}
-                      </span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="15" height="15" viewBox="0 0 24 24"
-                        fill="none" stroke-width="2"
-                        class="mode-arrow flex-shrink-0 transition-all duration-300"
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                      </svg>
+          <div class="min-w-0">
+            <div class="flex flex-col gap-10 md:gap-14">
+              {modes.map((mode, i) => (
+                <section
+                  id={`panel-${mode.id}`}
+                  class:list={['mode-panel scroll-mt-24', i === 0 ? '' : 'hidden']}
+                  data-panel={mode.id}
+                  style={`--accent: ${mode.accent}`}
+                >
+                  <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
+                    <div class="flex items-baseline gap-3 md:gap-4">
+                      <span class="font-mono text-xs text-[#8ec07c]/80 tracking-widest">{mode.num}</span>
+                      <h2 class="text-2xl md:text-3xl font-serif tracking-tight" style={`color: ${mode.accent}`}>
+                        {mode.title}
+                      </h2>
                     </div>
-                    <span class="text-xs md:text-sm text-[#a89984] group-hover:text-[#ebdbb2] transition-colors">
-                      {item.label}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </section>
-          ))}
+                    <span class="text-xs md:text-sm text-[#928374] italic whitespace-nowrap hidden sm:block">{mode.tag}</span>
+                  </div>
+
+                  <div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-3">
+                    {mode.items.map((item) => (
+                      <a
+                        href={`${root}/${item.path}`}
+                        id={`card-${item.path}`}
+                        class="archive-card mode-card group block border border-[#3c3836] bg-[#282828]/60 hover:bg-[#3c3836]/60 transition-all duration-300 px-5 py-4"
+                        style={`--accent: ${mode.accent}`}
+                        data-path={item.path}
+                        data-title={item.name}
+                      >
+                        <div class="flex items-center justify-between gap-3">
+                          <span class="font-medium text-[#ebdbb2] group-hover:text-[#fbf1c7] transition-colors">
+                            {item.name}
+                          </span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15" height="15" viewBox="0 0 24 24"
+                            fill="none" stroke-width="2"
+                            class="mode-arrow flex-shrink-0 transition-all duration-300"
+                          >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                          </svg>
+                        </div>
+                        <div class="flex items-center justify-between gap-3">
+                          <span class="text-xs md:text-sm text-[#a89984] group-hover:text-[#ebdbb2] transition-colors">
+                            {item.label}
+                          </span>
+                          <span class="card-hint font-mono text-[10px] text-[#928374] whitespace-nowrap">↧ read here</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            <div class="mt-14 pt-6 border-t border-[#3c3836] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#928374] font-mono">
+              <span>~/explore — body · mind · tools · roots</span>
+              <a href="/#explore" class="hover:text-[#8ec07c] transition-colors underline decoration-[#504945] underline-offset-4">
+                ← back to create & learn
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="archiveViewer" class="viewer fixed inset-0 z-[70] hidden" role="dialog" aria-modal="true" aria-label="Archive section viewer">
+      <div class="viewer-backdrop absolute inset-0 bg-[#1d2021]/90 backdrop-blur-sm"></div>
+      <div class="viewer-frame absolute inset-0 sm:inset-4 lg:inset-x-16 lg:inset-y-8 flex flex-col border border-[#3c3836] bg-[#1d2021] shadow-2xl overflow-hidden">
+        <header class="flex items-center justify-between gap-3 px-4 sm:px-5 py-3 border-b border-[#3c3836] bg-[#1d2021]">
+          <button
+            type="button"
+            id="viewerClose"
+            class="shrink-0 w-8 h-8 flex items-center justify-center border border-[#3c3836] text-[#a89984] hover:text-[#fb4934] hover:border-[#fb4934]/50 transition-colors cursor-pointer bg-transparent"
+            aria-label="Close viewer"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <div class="font-mono text-xs text-[#928374] min-w-0 flex items-center gap-2 truncate">
+            <span id="viewerIndex" class="shrink-0 text-[#8ec07c]">01 / 13</span>
+            <span class="text-[#504945] shrink-0">·</span>
+            <span id="viewerTitle" class="text-[#ebdbb2] truncate"></span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              id="viewerPrev"
+              class="w-8 h-8 flex items-center justify-center border border-[#3c3836] text-[#a89984] hover:text-[#8ec07c] hover:border-[#8ec07c]/50 transition-colors cursor-pointer bg-transparent"
+              aria-label="Previous section"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button
+              type="button"
+              id="viewerNext"
+              class="w-8 h-8 flex items-center justify-center border border-[#3c3836] text-[#a89984] hover:text-[#8ec07c] hover:border-[#8ec07c]/50 transition-colors cursor-pointer bg-transparent"
+              aria-label="Next section"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+            <a
+              id="viewerOpen"
+              href="#"
+              class="hidden sm:flex items-center gap-1.5 ml-1 px-2.5 h-8 border border-[#3c3836] text-[11px] font-mono text-[#a89984] hover:text-[#8ec07c] hover:border-[#8ec07c]/50 transition-colors"
+            >
+              full page ↗
+            </a>
+          </div>
+        </header>
+
+        <div class="h-[2px] bg-[#3c3836] shrink-0">
+          <div id="viewerFill" class="h-full bg-[#8ec07c] transition-[width] duration-100" style="width: 0%"></div>
         </div>
 
-        <!-- Back to the surface -->
-        <div class="mt-14 pt-6 border-t border-[#3c3836] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#928374] font-mono">
-          <span>~/explore — body · mind · tools · roots</span>
-          <a href="/#explore" class="hover:text-[#8ec07c] transition-colors underline decoration-[#504945] underline-offset-4">
-            ← back to create & learn
-          </a>
-        </div>
+        <div id="viewerBody" class="viewer-body flex-1 overflow-y-auto overflow-x-hidden px-4 sm:px-8 py-6"></div>
+
+        <footer class="hidden md:flex items-center justify-between px-5 py-2 border-t border-[#3c3836] text-[11px] font-mono text-[#928374]">
+          <span><kbd class="viewer-kbd">esc</kbd> close</span>
+          <span><kbd class="viewer-kbd">←</kbd> <kbd class="viewer-kbd">→</kbd> previous / next section</span>
+        </footer>
       </div>
     </div>
   </>
 </BaseLayout>
 
 <style>
+  .rail-btn.rail-active {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, #282828);
+  }
+  .rail-btn.rail-active .rail-title {
+    color: #fbf1c7;
+  }
+  .rail-btn.rail-active::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 14px;
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .rail-btn {
+    position: relative;
+  }
+
   .mode-card:hover {
     border-color: var(--accent);
   }
@@ -154,4 +276,341 @@ const modes = [
     opacity: 1;
     transform: translateX(4px);
   }
+  .card-hint {
+    opacity: 0;
+    transform: translateY(2px);
+    transition: all 0.25s ease;
+  }
+  .mode-card:hover .card-hint {
+    opacity: 1;
+    transform: translateY(0);
+    color: var(--accent);
+  }
+
+  .mode-panel {
+    animation: panel-in 0.35s ease both;
+  }
+  @keyframes panel-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .viewer.open .viewer-frame {
+    animation: viewer-in 0.25s ease both;
+  }
+  @keyframes viewer-in {
+    from { opacity: 0; transform: translateY(14px) scale(0.985); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .viewer-kbd {
+    border: 1px solid #3c3836;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    color: #a89984;
+  }
+
+  .viewer-body .viewer-content {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+
+  .viewer-body img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .sk-wrap {
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .sk-line {
+    height: 14px;
+    margin-bottom: 14px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #282828 25%, #3c3836 50%, #282828 75%);
+    background-size: 200% 100%;
+    animation: sk-shimmer 1.2s ease-in-out infinite;
+  }
+  @keyframes sk-shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mode-panel,
+    .viewer.open .viewer-frame,
+    .sk-line {
+      animation: none;
+    }
+  }
 </style>
+
+<script>
+  const rootEl = document.querySelector<HTMLElement>('.archive-root');
+  const railButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.rail-btn'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('.mode-panel'));
+  const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('.archive-card'));
+  const viewer = document.getElementById('archiveViewer');
+  const viewerFrame = viewer?.querySelector('.viewer-frame');
+  const viewerBody = document.getElementById('viewerBody');
+  const viewerTitle = document.getElementById('viewerTitle');
+  const viewerIndex = document.getElementById('viewerIndex');
+  const viewerOpen = document.getElementById('viewerOpen') as HTMLAnchorElement | null;
+  const viewerFill = document.getElementById('viewerFill');
+  const closeButton = document.getElementById('viewerClose');
+  const prevButton = document.getElementById('viewerPrev');
+  const nextButton = document.getElementById('viewerNext');
+
+  const base = rootEl?.dataset.base ?? '';
+  const cache = new Map<string, HTMLElement>();
+  let currentCard: HTMLAnchorElement | null = null;
+  let lastFocus: HTMLElement | null = null;
+  let waitingForBack = false;
+
+  function setMode(id: string | null | undefined) {
+    if (!id) return;
+    railButtons.forEach((btn) => {
+      const active = btn.dataset.mode === id;
+      btn.classList.toggle('rail-active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    panels.forEach((panel) => {
+      panel.classList.toggle('hidden', panel.dataset.panel !== id);
+    });
+  }
+
+  railButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => setMode(btn.dataset.mode));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        railButtons[(i + 1) % railButtons.length].focus();
+        railButtons[(i + 1) % railButtons.length].click();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        railButtons[(i - 1 + railButtons.length) % railButtons.length].focus();
+        railButtons[(i - 1 + railButtons.length) % railButtons.length].click();
+      }
+    });
+  });
+
+  const pad = (n: number) => String(n).padStart(2, '0');
+
+  function skeletonHtml() {
+    return `
+      <div class="sk-wrap">
+        <div class="sk-line" style="width: 30%"></div>
+        <div class="sk-line" style="width: 65%; height: 30px"></div>
+        <div style="height: 18px"></div>
+        <div class="sk-line" style="width: 100%"></div>
+        <div class="sk-line" style="width: 92%"></div>
+        <div class="sk-line" style="width: 96%"></div>
+        <div class="sk-line" style="width: 88%"></div>
+        <div style="height: 18px"></div>
+        <div class="sk-line" style="width: 40%"></div>
+        <div class="sk-line" style="width: 95%"></div>
+        <div class="sk-line" style="width: 90%"></div>
+        <div class="sk-line" style="width: 93%"></div>
+      </div>`;
+  }
+
+  function errorHtml(title: string, href: string) {
+    return `
+      <div class="max-w-xl mx-auto text-center py-16 font-mono">
+        <p class="text-[#fb4934] text-sm mb-2">✕ could not load “${title}” inline</p>
+        <p class="text-[#928374] text-xs mb-6">the network said no — but the page itself is fine</p>
+        <a href="${href}" class="inline-block px-4 py-2 border border-[#3c3836] text-[#a89984] hover:text-[#8ec07c] hover:border-[#8ec07c]/50 transition-colors text-sm">open ${title} ↗</a>
+      </div>`;
+  }
+
+  function sanitizeClone(source: Element): HTMLElement {
+    const clone = source.cloneNode(true) as HTMLElement;
+    clone.querySelectorAll('script, nav, style, .mobile-overlay, .mobile-nav').forEach((el) => el.remove());
+    clone.querySelectorAll('div.absolute.inset-0').forEach((el) => el.remove());
+    clone.style.backgroundImage = 'none';
+    clone.style.backgroundAttachment = 'scroll';
+    clone.classList.remove('min-h-screen');
+    clone.querySelectorAll<HTMLElement>('.min-h-screen').forEach((el) => el.classList.remove('min-h-screen'));
+    return clone;
+  }
+
+  async function loadSection(path: string, target: HTMLElement) {
+    const cached = cache.get(path);
+    if (cached) {
+      target.replaceChildren(cached.cloneNode(true));
+      target.scrollTop = 0;
+      return;
+    }
+    target.innerHTML = skeletonHtml();
+    target.scrollTop = 0;
+    try {
+      const res = await fetch(`${base}/${path}/`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      doc.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
+        const href = link.getAttribute('href');
+        if (href && !document.head.querySelector(`link[rel="stylesheet"][href="${href}"]`)) {
+          document.head.appendChild(link.cloneNode(true));
+        }
+      });
+      const source = doc.querySelector('main') || doc.querySelector('div.min-h-screen') || doc.body;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'viewer-content';
+      wrapper.appendChild(sanitizeClone(source));
+      cache.set(path, wrapper);
+      if (currentCard?.dataset.path === path) {
+        target.replaceChildren(wrapper.cloneNode(true));
+        target.scrollTop = 0;
+      }
+    } catch {
+      const card = cards.find((c) => c.dataset.path === path);
+      if (currentCard?.dataset.path === path) {
+        target.innerHTML = errorHtml(card?.dataset.title ?? path, `${base}/${path}/`);
+      }
+    }
+  }
+
+  function showViewer(card: HTMLAnchorElement) {
+    if (!viewer || !viewerBody) return;
+    if (currentCard !== card) {
+      currentCard = card;
+      const idx = cards.indexOf(card);
+      const total = cards.length;
+      if (viewerIndex) viewerIndex.textContent = `${pad(idx + 1)} / ${pad(total)}`;
+      if (viewerTitle) viewerTitle.textContent = card.dataset.title ?? '';
+      if (viewerOpen) viewerOpen.href = `${base}/${card.dataset.path}/`;
+      setMode(card.closest<HTMLElement>('.mode-panel')?.dataset.panel);
+      loadSection(card.dataset.path ?? '', viewerBody);
+    }
+    if (lastFocus === null) lastFocus = document.activeElement as HTMLElement | null;
+    viewer.classList.remove('hidden');
+    viewer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeButton?.focus();
+  }
+
+  function hideViewer() {
+    if (!viewer) return;
+    viewer.classList.add('hidden');
+    viewer.classList.remove('open');
+    document.body.style.overflow = '';
+    currentCard = null;
+    waitingForBack = false;
+    if (lastFocus) {
+      lastFocus.focus();
+      lastFocus = null;
+    }
+  }
+
+  function pathFromHash() {
+    const hash = window.location.hash;
+    return hash.startsWith('#/') ? decodeURIComponent(hash.slice(2)) : null;
+  }
+
+  function syncFromHash() {
+    const path = pathFromHash();
+    if (path) {
+      const card = cards.find((c) => c.dataset.path === path);
+      if (card) {
+        showViewer(card);
+        return;
+      }
+    }
+    hideViewer();
+  }
+
+  window.addEventListener('hashchange', syncFromHash);
+
+  if (pathFromHash()) {
+    syncFromHash();
+  }
+
+  cards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      e.preventDefault();
+      waitingForBack = true;
+      lastFocus = card;
+      window.location.hash = `/${card.dataset.path}`;
+    });
+    card.addEventListener('pointerenter', () => {
+      const path = card.dataset.path;
+      if (!path || cache.has(path)) return;
+      fetch(`${base}/${path}/`)
+        .then((res) => (res.ok ? res.text() : Promise.reject(new Error(String(res.status)))))
+        .then((html) => {
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          doc.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href && !document.head.querySelector(`link[rel="stylesheet"][href="${href}"]`)) {
+              document.head.appendChild(link.cloneNode(true));
+            }
+          });
+          const source = doc.querySelector('main') || doc.querySelector('div.min-h-screen') || doc.body;
+          const wrapper = document.createElement('div');
+          wrapper.className = 'viewer-content';
+          wrapper.appendChild(sanitizeClone(source));
+          cache.set(path, wrapper);
+        })
+        .catch(() => {});
+    });
+  });
+
+  function closeViewer() {
+    if (waitingForBack) {
+      history.back();
+    } else {
+      hideViewer();
+    }
+  }
+
+  function stepViewer(delta: number) {
+    if (!currentCard) return;
+    const idx = cards.indexOf(currentCard);
+    const next = cards[(idx + delta + cards.length) % cards.length];
+    waitingForBack = true;
+    window.location.hash = `/${next.dataset.path}`;
+  }
+
+  closeButton?.addEventListener('click', closeViewer);
+  prevButton?.addEventListener('click', () => stepViewer(-1));
+  nextButton?.addEventListener('click', () => stepViewer(1));
+
+  document.addEventListener('keydown', (e) => {
+    if (!viewer || viewer.classList.contains('hidden')) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeViewer();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      stepViewer(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      stepViewer(1);
+    } else if (e.key === 'Tab' && viewerFrame) {
+      const focusables = Array.from(
+        viewerFrame.querySelectorAll<HTMLElement>('button, a[href]')
+      ).filter((el) => !el.classList.contains('hidden'));
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  viewerBody?.addEventListener('scroll', () => {
+    if (!viewerFill) return;
+    const max = viewerBody.scrollHeight - viewerBody.clientHeight;
+    const pct = max > 0 ? (viewerBody.scrollTop / max) * 100 : 0;
+    viewerFill.style.width = `${pct}%`;
+  });
+</script>
