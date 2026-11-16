@@ -89,34 +89,13 @@ const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
           </p>
         </header>
 
-        <div class="grid lg:grid-cols-[200px_1fr] gap-6 lg:gap-12 items-start">
-          <nav class="rail lg:sticky lg:top-6" role="tablist" aria-label="Archive modes">
-            <div class="flex lg:flex-col gap-2 overflow-x-auto pb-2 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible">
-              {modes.map((mode, i) => (
-                <button
-                  type="button"
-                  class:list={['rail-btn group shrink-0 lg:w-full text-left border border-[#3c3836] bg-[#282828]/50 hover:bg-[#3c3836]/60 transition-all duration-200 px-4 py-2.5 lg:py-3 flex items-center gap-3 lg:gap-2 cursor-pointer', i === 0 ? 'rail-active' : '']}
-                  style={`--accent: ${mode.accent}`}
-                  role="tab"
-                  data-mode={mode.id}
-                  aria-selected={i === 0 ? 'true' : 'false'}
-                  aria-controls={`panel-${mode.id}`}
-                >
-                  <span class="font-mono text-[10px] text-[#928374]">{mode.num}</span>
-                  <span class="rail-title text-sm font-medium text-[#a89984] transition-colors">{mode.title}</span>
-                  <span class="font-mono text-[10px] text-[#928374] ml-auto lg:ml-auto opacity-70">{mode.items.length}</span>
-                </button>
-              ))}
-            </div>
-          </nav>
-
+        <div>
           <div class="min-w-0">
             <div class="flex flex-col gap-10 md:gap-14">
-              {modes.map((mode, i) => (
+              {modes.map((mode) => (
                 <section
                   id={`panel-${mode.id}`}
-                  class:list={['mode-panel scroll-mt-24', i === 0 ? '' : 'hidden']}
-                  data-panel={mode.id}
+                  class="mode-panel scroll-mt-24"
                   style={`--accent: ${mode.accent}`}
                 >
                   <div class="flex items-baseline justify-between gap-4 mb-5 pb-3 border-b border-[#3c3836]">
@@ -244,28 +223,6 @@ const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
 </BaseLayout>
 
 <style>
-  .rail-btn.rail-active {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, #282828);
-  }
-  .rail-btn.rail-active .rail-title {
-    color: #fbf1c7;
-  }
-  .rail-btn.rail-active::before {
-    content: '';
-    display: block;
-    width: 3px;
-    height: 14px;
-    background: var(--accent);
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .rail-btn {
-    position: relative;
-  }
-
   .mode-card:hover {
     border-color: var(--accent);
   }
@@ -361,8 +318,6 @@ const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
 
 <script>
   const rootEl = document.querySelector<HTMLElement>('.archive-root');
-  const railButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.rail-btn'));
-  const panels = Array.from(document.querySelectorAll<HTMLElement>('.mode-panel'));
   const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('.archive-card'));
   const viewer = document.getElementById('archiveViewer');
   const viewerFrame = viewer?.querySelector('.viewer-frame');
@@ -380,33 +335,6 @@ const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
   let currentCard: HTMLAnchorElement | null = null;
   let lastFocus: HTMLElement | null = null;
   let waitingForBack = false;
-
-  function setMode(id: string | null | undefined) {
-    if (!id) return;
-    railButtons.forEach((btn) => {
-      const active = btn.dataset.mode === id;
-      btn.classList.toggle('rail-active', active);
-      btn.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    panels.forEach((panel) => {
-      panel.classList.toggle('hidden', panel.dataset.panel !== id);
-    });
-  }
-
-  railButtons.forEach((btn, i) => {
-    btn.addEventListener('click', () => setMode(btn.dataset.mode));
-    btn.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-        e.preventDefault();
-        railButtons[(i + 1) % railButtons.length].focus();
-        railButtons[(i + 1) % railButtons.length].click();
-      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault();
-        railButtons[(i - 1 + railButtons.length) % railButtons.length].focus();
-        railButtons[(i - 1 + railButtons.length) % railButtons.length].click();
-      }
-    });
-  });
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -494,7 +422,6 @@ const root = import.meta.env.BASE_URL.replace(/\/+$/, '') || '';
       if (viewerIndex) viewerIndex.textContent = `${pad(idx + 1)} / ${pad(total)}`;
       if (viewerTitle) viewerTitle.textContent = card.dataset.title ?? '';
       if (viewerOpen) viewerOpen.href = `${base}/${card.dataset.path}/`;
-      setMode(card.closest<HTMLElement>('.mode-panel')?.dataset.panel);
       loadSection(card.dataset.path ?? '', viewerBody);
     }
     if (lastFocus === null) lastFocus = document.activeElement as HTMLElement | null;
